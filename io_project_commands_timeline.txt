@@ -1,0 +1,5 @@
+composer require laravel/ui
+composer require laravel/socialite
+php artisan ui vue --auth
+npm install 
+npm run dev
