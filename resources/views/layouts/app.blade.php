@@ -26,9 +26,9 @@
                 @can('isAdmin')
                         <a class="navbar-brand" href="{{ url('/admin/home') }}">
                     @elsecan('isManager')
-                        <a class="navbar-brand" href="{{ url('/home') }}">
+                        <a class="navbar-brand" href="{{ url('/manager/home') }}">
                     @else
-                        <a class="navbar-brand" href="{{ url('/home') }}">
+                        <a class="navbar-brand" href="{{ url('/user/home') }}">
                 @endcan                   
                         <img class="mb-1 img-fluid" src="/img/oa_logo.png" alt="Інвентаризація Острозька академія" width="50px"> Інвентаризація ОА
                         {{-- config('app.name','Laravel') --}}

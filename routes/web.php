@@ -17,13 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-//Auth::routes(['register' => false, 'login' => false, 'confirm' => false, 'email' => false, 'request' => false, 'update' => false, 'reset' => false]);
-
-Route::get('/user/home', 'HomeController@index')->name('user.home');
-Route::get('/admin/home', 'HomeController@admin')->middleware('can:isAdmin')->name('admin.home');
-
 //login with Google
 Route::get('/login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/google/callback', 'Auth\LoginController@handleProviderCallback');
 //Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('/user/home', 'HomeController@user')->name('user.home');
+Route::get('/admin/home', 'HomeController@admin')->middleware('can:isAdmin')->name('admin.home');

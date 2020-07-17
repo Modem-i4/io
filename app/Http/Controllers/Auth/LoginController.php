@@ -86,8 +86,10 @@ class LoginController extends Controller
         if (Gate::allows('isAdmin')) {
             return redirect()->route('admin.home');
         }else{
-            return redirect()->route('user.home');
+             return redirect()->route('user.home');
         }
-        //return redirect()->to('/home');
+       
+        //return redirect()->to('/');
     }
+    
 }

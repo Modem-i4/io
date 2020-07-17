@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 class HomeController extends Controller
 {
     /**
@@ -23,14 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+               
         return view('home');
-        /**if(Auth::user()->isAdmin()) {
-            return redirect()->route('admin');
-        }
-        else {
-            return redirect()->route('user');
-        }**/
+        
+    }
+
+    public function user()
+    {
+        
+        return view('inventory.user.index');
+       
     }
     public function admin()
     {

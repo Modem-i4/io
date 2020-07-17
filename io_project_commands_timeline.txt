@@ -7,3 +7,9 @@ php artisan migrate
 php artisan route:list
 -
 php artisan migrate:refresh
+-
+php artisan make:controller Inventory/BaseController
+php artisan make:controller Inventory/ItemsController --resource
+php artisan make:controller Inventory/Admin/BaseController
+php artisan make:controller Inventory/Admin/ItemsController --resource
+
