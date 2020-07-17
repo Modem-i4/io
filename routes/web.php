@@ -19,7 +19,9 @@ Route::get('/', function () {
 
 //Auth::routes(['register' => false, 'login' => false, 'confirm' => false, 'email' => false, 'request' => false, 'update' => false, 'reset' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user/home', 'HomeController@index')->name('user.home');
+Route::get('/admin/home', 'HomeController@admin')->middleware('can:isAdmin')->name('admin.home');
+
 //login with Google
 Route::get('/login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/google/callback', 'Auth\LoginController@handleProviderCallback');

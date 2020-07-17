@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 Use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class LoginController extends Controller
 {
@@ -82,6 +83,11 @@ class LoginController extends Controller
             $newUser->save();
             auth()->login($newUser, true);
         }
-        return redirect()->to('/home');
+        if (Gate::allows('isAdmin')) {
+            return redirect()->route('admin.home');
+        }else{
+            return redirect()->route('user.home');
+        }
+        //return redirect()->to('/home');
     }
 }

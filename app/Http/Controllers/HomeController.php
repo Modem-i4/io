@@ -23,6 +23,19 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         return view('home');
+        /**if(Auth::user()->isAdmin()) {
+            return redirect()->route('admin');
+        }
+        else {
+            return redirect()->route('user');
+        }**/
+    }
+    public function admin()
+    {
+        
+        return view('inventory.admin.index');
+
     }
 }

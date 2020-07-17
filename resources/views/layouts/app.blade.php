@@ -23,9 +23,15 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    <img class="mb-1 img-fluid" src="/img/oa_logo.png" alt="Інвентаризація Острозька академія" width="50px"> Інвентаризація ОА
-                    {{-- config('app.name','Laravel') --}}
+                @can('isAdmin')
+                        <a class="navbar-brand" href="{{ url('/admin/home') }}">
+                    @elsecan('isManager')
+                        <a class="navbar-brand" href="{{ url('/home') }}">
+                    @else
+                        <a class="navbar-brand" href="{{ url('/home') }}">
+                @endcan                   
+                        <img class="mb-1 img-fluid" src="/img/oa_logo.png" alt="Інвентаризація Острозька академія" width="50px"> Інвентаризація ОА
+                        {{-- config('app.name','Laravel') --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

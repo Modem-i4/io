@@ -3,3 +3,7 @@ composer require laravel/socialite
 php artisan ui vue --auth
 npm install 
 npm run dev
+php artisan migrate
+php artisan route:list
+-
+php artisan migrate:refresh

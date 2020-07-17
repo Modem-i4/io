@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    ADMIN PANEL
 
                     @can('isAdmin')
                         <div class="btn btn-success btn-lg">
