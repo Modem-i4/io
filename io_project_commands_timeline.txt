@@ -8,8 +8,23 @@ php artisan route:list
 -
 php artisan migrate:refresh
 -
+php artisan make:model Models/InventoryItem -m
+php artisan make:model Models/InventoryType -m
+php artisan make:model Models/InventoryInvoice -m
+php artisan make:model Models/InventoryModel -m
+php artisan make:model Models/InventoryDepartment -m
+php artisan make:model Models/InventoryStatus -m
+php artisan make:model Models/InventoryLicense -m
+php artisan make:model Models/InventoryTransfer -m
+php artisan make:model Models/InventoryRepair -m
+php artisan make:model Models/InventoryRepairAgent -m
+php artisan make:model Models/InventoryWriteoff -m
+php artisan make:model Models/InventoryUtilization -m
+php artisan make:model Models/InventoryUtilizationAgent -m
+-
 php artisan make:controller Inventory/BaseController
-php artisan make:controller Inventory/ItemsController --resource
+php artisan make:controller Inventory/ItemController --resource
 php artisan make:controller Inventory/Admin/BaseController
-php artisan make:controller Inventory/Admin/ItemsController --resource
+php artisan make:controller Inventory/Admin/ItemController --resource
+-
 

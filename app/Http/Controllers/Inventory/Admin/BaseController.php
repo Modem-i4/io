@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Inventory\Admin;
 use App\Http\Controllers\Inventory\BaseController as GuestBaseController;
 
 /**
- * Базовий контроллер для всіх контроллерів керування в адмінці.
- * Має бути батьком для всіх контроллерів керування.
+ * Р‘Р°Р·РѕРІРёР№ РєРѕРЅС‚СЂРѕР»Р»РµСЂ РґР»СЏ РІСЃС–С… РєРѕРЅС‚СЂРѕР»Р»РµСЂС–РІ РєРµСЂСѓРІР°РЅРЅСЏ РІ Р°РґРјС–РЅС†С–.
+ * РњР°С” Р±СѓС‚Рё Р±Р°С‚СЊРєРѕРј РґР»СЏ РІСЃС–С… РєРѕРЅС‚СЂРѕР»Р»РµСЂС–РІ РєРµСЂСѓРІР°РЅРЅСЏ.
  * 
  * @package App\Http\Controllers\Inventory\Admin
  */
@@ -17,6 +17,6 @@ abstract class BaseController extends GuestBaseController
      */
     public function __construct()
     {
-        //Ініціалізація загальних елементів адмінки
+        //Р†РЅС–С†С–Р°Р»С–Р·Р°С†С–СЏ Р·Р°РіР°Р»СЊРЅРёС… РµР»РµРјРµРЅС‚С–РІ Р°РґРјС–РЅРєРё
     }
 }
