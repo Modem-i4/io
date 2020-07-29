@@ -15,7 +15,9 @@ class CreateInventoryDepartmentsTable extends Migration
     {
         Schema::create('inventory_departments', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('title');
+            $table->integer('parent_id')->unsigned()->default('1');
+            //$table->timestamps();
         });
     }
 

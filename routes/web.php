@@ -25,3 +25,26 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/user/home', 'HomeController@user')->name('user.home');
 Route::get('/admin/home', 'HomeController@admin')->middleware('can:isAdmin')->name('admin.home');
+
+/*Route::group(['namespace' => 'Inventory', 'prefix' => 'user'], function () {
+    Route::resource('items', 'InventoryController')->names('user.inventory'); 
+ });*/
+
+//Адмінка
+$groupData = [
+    'namespace' => 'Inventory\Admin',
+    'prefix' => 'admin',
+];
+Route::group($groupData, function () {
+    //
+   /* $methods = ['index','edit','store','update','create',];
+    Route::resource('categories', 'CategoryController')
+    ->only($methods)
+    ->names('admin.categories');*/ 
+
+    //Departments
+    Route::resource('departments', 'DepartmentController')
+    ->middleware('can:isAdmin')
+    ->except(['show','destroy'])                              //не робити маршрут для метода show
+    ->names('admin.departments');
+ });

@@ -27,4 +27,8 @@ php artisan make:controller Inventory/ItemController --resource
 php artisan make:controller Inventory/Admin/BaseController
 php artisan make:controller Inventory/Admin/ItemController --resource
 -
-
+php artisan make:controller Inventory/Admin/DepartmentController --resource
+php artisan make:seeder InventoryDepartmentsTableSeeder
+php artisan make:seeder UsersTableSeeder
+php artisan db:seed
+//php artisan vendor:publish --tag=laravel-pagination
