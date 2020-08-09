@@ -19,7 +19,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
         $categories[] = [
             'title'     => $cName,
             //'slug'      => Str::slug($cName),
-            'parent_id' => 0,
+            'parent_id' => 1,
         ];
 
         $categories[] = [

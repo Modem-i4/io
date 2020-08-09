@@ -14,10 +14,13 @@ class CreateInventoryDepartmentsTable extends Migration
     public function up()
     {
         Schema::create('inventory_departments', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('title');
             $table->integer('parent_id')->unsigned()->default('1');
             //$table->timestamps();
+
+            $table->foreign('parent_id')->references('id')->on('inventory_departments');
+            
         });
     }
 

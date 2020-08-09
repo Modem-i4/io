@@ -13,4 +13,17 @@ body {
   width: 100%;
   height: 50px;
 }
+.app table.table th, .app table.table td {
+  min-width: 1%;
+  padding: .75rem;
+}
 
+.editable-input {
+  padding-top: 6px;
+}
+.editable-clear-x {
+  margin-top: -5px;
+}
+/*.editable-error-block {
+  flex-basis: 100%;
+}*/

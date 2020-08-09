@@ -32,7 +32,7 @@ class InventoryDepartmentRepository extends CoreRepository
     {
         $columns = implode(', ', [
             'id',
-            'CONCAT (id, ". ", title) AS id_title',  //додаємо поле id_title 
+            'title',  //додаємо поле id_title  CONCAT (id, ". ", title) AS id_title'
         ]);
 
         $result = $this                           //2 варіант

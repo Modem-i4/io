@@ -9,18 +9,32 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--link href="{{ asset('css/app.css') }}" rel="stylesheet"-->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!-- MDBootstrap Datatables  -->
+    <link href="{{ asset('css/addons/datatables2.min.css') }}" rel="stylesheet">
+    <!-- DataTables Select CSS -->
+    <link href="{{ asset('css/addons/datatables-select2.min.css') }}" rel="stylesheet">
+    <!-- X Editable -->
+    <link href="{{ asset('css/bootstrap-editable.css') }}" rel="stylesheet"/>
+    <!-- Select 2 -->
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/select2-bootstrap4.min.css') }}" rel="stylesheet"/>
+    <!-- IO Css -->
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet"  />
+    
 </head>
-<body>
+<body class="bg-light">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
@@ -107,25 +121,11 @@
                                 Передачі
                               </a>
                             </li>
-                            <li class="mt-0 nav-item dropdown">
+                            <li class="mt-0 pl-1 nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <svg
-                                  width="1em"
-                                  height="1em"
-                                  viewBox="0 0 16 16"
-                                  class="bi bi-arrow-repeat mx-2"
-                                  fill="currentColor"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    fill-rule="evenodd"
-                                    d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"
-                                  />
-                                  <path
-                                    fill-rule="evenodd"
-                                    d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"
-                                  />
-                                </svg> Налаштування
+                                  <svg width="1em" viewBox="0 0 16 16" class="bi bi-gear-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"></path>
+                                  </svg> Налаштування
                               </a>
                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a href="{{ route('admin.departments.index') }}" class="dropdown-item {{ request()->routeIs('admin.departments.index')  ? 'active' : 'text-dark' }}">
@@ -216,7 +216,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdownLogin" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                     @can('isAdmin')
                                         <span class="badge badge-success">
@@ -233,7 +233,7 @@
                                     @endcan
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownLogin">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -262,5 +262,76 @@
               <span class="text-muted">Всі права захищені</span>
             </div>
         </footer>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="{{ asset('js/addons/datatables2.min.js') }}"></script>
+    <!-- DataTables Select JS -->
+    <script src="{{ asset('js/addons/datatables-select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/modules/mdb-autocomplete.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+    <script src="{{ asset('js/bootstrap-editable.min.js') }}"></script>
+    <script src="{{ asset('js/select2.full.min.js') }}"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+          $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': '{{csrf_token()}}'
+              //'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+          
+          //Update Item
+          $('.update').editable({
+            url: '/{{ Request::path() }}/update_ajax',
+            mode: 'inline',
+              validate: function(value) {
+                var value = $.trim(value);
+                if(value == '') {
+                  return 'Заповніть поле';
+                } else if (value.length < 5 || value.length > 200) {
+                  return 'Допустима кількість символів 5-200';
+                }
+            },
+              success: function (dataResult, newValue) {
+                //console.log(dataResult);
+                if(dataResult.statusCode == 500) return dataResult.msg;      
+              }
+          });
+          
+          //Remove Item
+          $('body').on("click", ".delete", function() { 
+              var $ele = $(this).parent().parent();
+              var id= $(this).attr('data-id');
+              var url = '/{{ Request::path() }}/'+id;  //Request::url()
+          $.ajax({
+            url: url,
+            type: "DELETE",
+            cache: false,
+            success: function(dataResult){
+              //var dataResult = JSON.parse(dataResult);
+                if(dataResult.statusCode==200){
+                  $(".alert-msg div").fadeIn(1000).addClass('text-success show').html(dataResult.msg).fadeOut(4000).removeClass('show');
+                  $ele.addClass('alert-danger').fadeOut(1500, function(){
+                    $ele.remove();
+                  });
+                }
+                if(dataResult.statusCode==404){
+                  $(".alert-msg div").fadeIn(1000).addClass('text-danger show').html(dataResult.msg); 
+                }
+            }
+
+          });
+          return false;
+        });
+      });
+      </script>
+    @yield('ajax')
+    <script src="{{ asset('js/config.min.js') }}"></script>
 </body>
 </html>

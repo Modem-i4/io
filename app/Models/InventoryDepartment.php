@@ -14,13 +14,13 @@ class InventoryDepartment extends Model
      * @property-read InventoryDepartment  $parentDepartment
      * @property-read string        $parentTitle
      */
+    public $timestamps = false;
     const ROOT = 1;
     protected $fillable
         = [
             'title',
             'parent_id',
         ];
-
     /**
      * Корпус
      * 
