@@ -150,8 +150,12 @@ class DepartmentController extends BaseController
     public function destroy($id)
     {
         $item = $this->inventoryDepartmentRepository->getEdit($id); 
+        $hasChild = $this->inventoryDepartmentRepository->getChild($id);
+
             if (empty($item)) { //якщо ід не знайдено
                 return response()->json(['statusCode' => 404,'msg' => 'Помилка видалення']);
+            } elseif ($hasChild) {
+                return response()->json(['statusCode' => 600,'msg' => 'Помилка видалення. Має дочірні відділи']);
             } else {
                 $result = $item->forceDelete();
 

@@ -25,6 +25,15 @@ class InventoryDepartmentRepository extends CoreRepository
     }
     
     /**
+     *  Пошук дочірніх елементів
+     *  @param int $id
+     *  @return Model
+     */
+    public function getChild($id)
+    {
+        return $this->startConditions()->where('parent_id',$id)->first();
+    }
+    /**
      *  Отримати список для виводу
      *  @return Collection
      */

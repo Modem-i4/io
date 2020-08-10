@@ -316,13 +316,17 @@
             success: function(dataResult){
               //var dataResult = JSON.parse(dataResult);
                 if(dataResult.statusCode==200){
-                  $(".alert-msg div").fadeIn(1000).addClass('text-success show').html(dataResult.msg).fadeOut(4000).removeClass('show');
+                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-success show').html(dataResult.msg).fadeOut(4000).removeClass('show');
                   $ele.addClass('alert-danger').fadeOut(1500, function(){
                     $ele.remove();
                   });
-                }
-                if(dataResult.statusCode==404){
-                  $(".alert-msg div").fadeIn(1000).addClass('text-danger show').html(dataResult.msg); 
+                } else if(dataResult.statusCode==404){
+                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-danger show').html(dataResult.msg); 
+                } else if(dataResult.statusCode==600){
+                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-warning show').html(dataResult.msg); 
+                  $ele.addClass('alert-warning');
+                } else {
+                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-warning show').html('Невідома помилка');
                 }
             }
 
