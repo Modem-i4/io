@@ -274,7 +274,10 @@
     <script src="{{ asset('js/select2.full.min.js') }}"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        
+          $('select').select2({
+            theme: 'bootstrap4'
+          });
+
           $.ajaxSetup({
             headers: {
               'X-CSRF-TOKEN': '{{csrf_token()}}'
