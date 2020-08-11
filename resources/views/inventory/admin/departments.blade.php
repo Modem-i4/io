@@ -5,9 +5,31 @@
     <section class="">
       <div class="container-fluid">
         <div class="col-12 pt-3 mb-3 bg-white rounded">
-          <div class="d-flex justify-content-between flex-wrap">
-        
-              
+          
+            <div class="">
+                <form class="form-inline mb-3" id="addItem" name="addItem" action="{{ route('admin.departments.store') }}" method="post">
+                  @csrf
+                  <div class="form-group mr-3">
+                    <label for="addtitle" class="my-1 mr-2">Назва:</label>
+                    <input type="text" class="form-control" id="addTitle" placeholder="Введіть назву" name="addTitle">
+                  </div>
+                  <div class="form-group mr-3">
+                    <label for="addPlace" class="my-1 mr-2">Корпус:</label>
+                    <select name="addPlace" placeholder="Оберіть категорію" id="addPlace" class="form-control" required>
+                      @foreach ($categoryList as $categoryOption)
+                          <option value="{{ $categoryOption->id }}">{{ $categoryOption->title }}</option>
+                      @endforeach
+                      </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary p-2 border rounded"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"></path>
+                    <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"></path>
+                  </svg>
+                  <span class="d-none d-md-inline">Додати приміщення</span></button>
+                </form>
+            </div>
+            <div class="d-flex justify-content-between flex-wrap">
+
             @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -22,13 +44,7 @@
                       </svg>
                       <span class="d-none d-md-inline">Редагувати відмічені</span>
                     </a>
-                    <a href="" class="p-2 border rounded text-decoration-none">
-                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"></path>
-                        <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"></path>
-                      </svg>
-                      <span class="d-none d-md-inline">Додати приміщення</span>
-                    </a>
+                    
                   </div>
                 </div>
 
@@ -43,12 +59,12 @@
                       </div>  
                     @endif
                 
-              </div>
-                <div class="">
-                <table class="table table-hover" id="dt-multi-checkbox" >
+          </div>    
+              <div id="table" class="table-editable">
+                <table class="table table-hover items-table" id="dt-multi-checkbox" >
                   <thead class="thead-light">
                     <tr>
-                      <th></th>
+                      <!--th></th-->
                       <!--th>
                         <svg
                           width="1em"
@@ -74,11 +90,11 @@
                     @foreach ($paginator as $item)
                                 @php /** @var \App\Models\InventoryDepartment $item */ @endphp
                                     <tr>
-                                      <td></td>
+                                      <!--td></td-->
                                       <!--td><input type="checkbox" aria-label="Choose item" /></td-->
-                                      <td class="p-1 align-middle">{{ $item->id }}</td>    
-                                      <td class="p-1 align-middle"><a href="" class="update" data-name="title" data-type="text" data-pk="{{ $item->id }}" data-title="Введіть назву">{{ $item->title }}</a></td>        
-                                      <td class="p-1 align-middle"><a href="" class="update-select" data-name="parent_id" data-type="select2" data-pk="{{ $item->id }}" data-value="{{ $item->parent_id }}" data-title="Оберіть корпус1">{{ $item->parentTitle }}</a>
+                                      <td class="align-middle">{{ $item->id }}</td>    
+                                      <td class="align-middle"><a href="" class="update" data-name="title" data-type="text" data-pk="{{ $item->id }}" data-title="Введіть назву">{{ $item->title }}</a></td>        
+                                      <td class="align-middle"><a href="" class="update-select" data-name="parent_id" data-type="select2" data-pk="{{ $item->id }}" data-value="{{ $item->parent_id }}" data-title="Оберіть корпус">{{ $item->parentTitle }}</a>
                                       </td>
                                       <td disabled><a href="" class="delete" data-id="{{ $item->id }}"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -97,13 +113,6 @@
                       <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"></path>
                     </svg>
                     <span class="d-none d-md-inline">Редагувати відмічені</span>
-                  </a>
-                  <a href="" class="p-2 border rounded text-decoration-none">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-repeat" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"></path>
-                      <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"></path>
-                    </svg>
-                    <span class="d-none d-md-inline">Передати відмічені</span>
                   </a>
                 </div>
                 <div>
@@ -124,30 +133,8 @@
 @section('ajax')
 <script type="text/javascript">
   $(document).ready(function () {
-    //var countries = [];
-          
-          /*$.each({ @foreach ($categoryList as $categoryOption) "{{ (string) $categoryOption->id }}":"{{ (string) $categoryOption->title }}"{{ ($loop->last ? '' : ',') }}@endforeach }, function(k, v) {
-              countries.push({id: k, text: v});
-          });*/
     
-    var places = [@foreach ($categoryList as $categoryOption) {id:'{{ (string) $categoryOption->id }}', text:'{{ (string) $categoryOption->title }}' } {{ ($loop->last ? '':',') }} @endforeach];
-
-    $('.update-select').editable({
-            url: '/{{ Request::path() }}/update_ajax',
-            source: places,
-            mode: 'inline',
-              select2: {
-                width: '200px',
-                theme: 'bootstrap4',
-                success: function (dataResult, newValue) {
-                  if(dataResult.statusCode == 500) return dataResult.msg;      
-                }
-                //placeholder: $(this).data('value'),
-                //width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-                //allowClear: Boolean($(this).data('allow-clear')) //allowClear: true,
-                //multiple: true
-              }
-          });
+    
   });
 </script>
 

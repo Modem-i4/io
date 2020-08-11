@@ -32,7 +32,7 @@ class DepartmentController extends BaseController
      */
     public function index()
     {
-        $paginator = $this->inventoryDepartmentRepository->getAllWithPaginate(20);
+        $paginator = $this->inventoryDepartmentRepository->getAllWithPaginate(50);
         $categoryList = $this->inventoryDepartmentRepository->getForComboBox();
         return view('inventory.admin.departments', compact('paginator', 'categoryList'));
 
@@ -53,11 +53,11 @@ class DepartmentController extends BaseController
      */
     public function create()
     {
-        $item = InventoryDepartment::make(); //використовуємо метод make
+        /*$item = InventoryDepartment::make(); //використовуємо метод make
         $categoryList = $this->inventoryDepartmentRepository->getForComboBox(); //::all();
         
 
-        return view('admin.departments.edit', compact('item', 'categoryList'));
+        return view('admin.departments.edit', compact('item', 'categoryList'));*/
     }
 
     /**
@@ -68,14 +68,11 @@ class DepartmentController extends BaseController
      */
     public function store(Request $request)
     {
+        $data = ['title' => $request->post('addTitle'),
+        'parent_id'=> $request->post('addPlace'),];
 
-       /* $student = InventoryDepartment::updateOrCreate( 
-            ['id' => $request->post('hdnStudentId')],
-            ['title' => $request->post('txtFirstName'),
-            'parent_id'=> $request->post('txtAddress'),
-            ]
-        );  
-        return response()->json($student);*/
+        $result = InventoryDepartment::create($data);  
+        return response()->json($result);
     }
 
     /**

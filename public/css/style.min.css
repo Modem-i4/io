@@ -18,11 +18,11 @@ body {
   padding: .75rem;
 }
 
-.editable-input {
-  padding-top: 6px;
+.editable-error-block {
+  margin-top: 0;
 }
-.editable-clear-x {
-  margin-top: -5px;
+#dt-multi-checkbox tr{
+  transition: all 0.5s ease;
 }
 /*.editable-error-block {
   flex-basis: 100%;

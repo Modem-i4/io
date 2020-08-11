@@ -20,11 +20,12 @@
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!--link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"-->
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- MDBootstrap Datatables  -->
-    <link href="{{ asset('css/addons/datatables2.min.css') }}" rel="stylesheet">
+    <link href="{{-- asset('css/addons/datatables2.min.css') --}}" rel="stylesheet">
     <!-- DataTables Select CSS -->
-    <link href="{{ asset('css/addons/datatables-select2.min.css') }}" rel="stylesheet">
+    <link href="{{-- asset('css/addons/datatables-select2.min.css') --}}" rel="stylesheet">
     <!-- X Editable -->
     <link href="{{ asset('css/bootstrap-editable.css') }}" rel="stylesheet"/>
     <!-- Select 2 -->
@@ -57,11 +58,11 @@
                         <ul class="navbar-nav mr-auto list-unstyled">
                             @can('isAdmin')
                             <li class="nav-item mt-2">
-                              <a href="#" class="text-dark">
+                              <a href="#" class="text-dark ml-2">
                                 <svg
                                   height="1em"
                                   viewBox="0 0 16 16"
-                                  class="bi bi-laptop mx-2"
+                                  class="bi bi-laptop mx-1"
                                   fill="currentColor"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
@@ -72,17 +73,16 @@
                                   <path
                                     d="M0 12h16v.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5V12z"
                                   />
-                                </svg>
-                                Технічне обладнання
+                                </svg>Технічне обладнання
                               </a>
                             </li>
                             <li class="nav-item mt-2">
-                              <a href="#" class="{{ request()->routeIs('admin.departments.i')  ? 'active' : 'text-dark' }}">
+                              <a href="#" class="ml-2 {{ request()->routeIs('admin.departments.i')  ? 'active' : 'text-dark' }}">
                                 <svg
                                   width="1em"
                                   height="1em"
                                   viewBox="0 0 16 16"
-                                  class="bi bi-file-earmark-text mx-2"
+                                  class="bi bi-file-earmark-text mx-1"
                                   fill="currentColor"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
@@ -94,18 +94,17 @@
                                     fill-rule="evenodd"
                                     d="M5 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"
                                   />
-                                </svg>
-                                Накладні
+                                </svg>Накладні
                               </a>
                             </li>
                             
                             <li class="nav-item mt-2">
-                              <a href="#" class="text-dark">
+                              <a href="#" class="text-dark ml-2">
                                 <svg
                                   width="1em"
                                   height="1em"
                                   viewBox="0 0 16 16"
-                                  class="bi bi-arrow-repeat mx-2"
+                                  class="bi bi-arrow-repeat mx-1"
                                   fill="currentColor"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
@@ -117,15 +116,14 @@
                                     fill-rule="evenodd"
                                     d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"
                                   />
-                                </svg>
-                                Передачі
+                                </svg>Передачі
                               </a>
                             </li>
                             <li class="mt-0 pl-1 nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <svg width="1em" viewBox="0 0 16 16" class="bi bi-gear-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <a class="nav-link dropdown-toggle ml-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <svg width="1em" viewBox="0 0 16 16" class="bi bi-gear-fill mx-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"></path>
-                                  </svg> Налаштування
+                                  </svg>Налаштування
                               </a>
                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a href="{{ route('admin.departments.index') }}" class="dropdown-item {{ request()->routeIs('admin.departments.index')  ? 'active' : 'text-dark' }}">
@@ -145,10 +143,9 @@
                                       fill-rule="evenodd"
                                       d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"
                                     />
-                                  </svg>
-                                  Приміщення
+                                  </svg>Приміщення
                                 </a>
-                                <a href="#" class="dropdown-item text-dark">
+                                <a href="#" class="dropdown-item text-dark ">
                                 <svg
                                   width="1em"
                                   height="1em"
@@ -168,12 +165,11 @@
                                   <circle cx="3.5" cy="5.5" r=".5" />
                                   <circle cx="3.5" cy="8" r=".5" />
                                   <circle cx="3.5" cy="10.5" r=".5" />
-                                </svg>
-                                Тип обладнання
+                                </svg>Тип обладнання
                               </a>
                                 
                                 <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item text-dark">
+                                <a href="#" class="dropdown-item text-dark ">
                                   <svg
                                     width="1em"
                                     viewBox="0 0 16 16"
@@ -185,14 +181,12 @@
                                       fill-rule="evenodd"
                                       d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"
                                     />
-                                  </svg>
-                                  Користувачі
+                                  </svg>Користувачі
                                 </a>
-                                <a href="#" class="dropdown-item text-dark">
+                                <a href="#" class="dropdown-item text-dark ">
                                   <svg width="1em" viewBox="0 0 16 16" class="bi bi-people-fill mx-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-                                  </svg> 
-                                  Ролі користувачів
+                                  </svg>Ролі користувачів
                                 </a>
                               </div>
                             </li>
@@ -267,18 +261,20 @@
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script-->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="{{ asset('js/addons/datatables2.min.js') }}"></script>
     <!-- DataTables Select JS -->
-    <script src="{{ asset('js/addons/datatables-select2.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/modules/mdb-autocomplete.min.js') }}"></script>
+    <!--script src="{{-- asset('js/addons/datatables-select2.min.js') --}}"></script-->
+    <!--script type="text/javascript" src="{{-- asset('js/modules/mdb-autocomplete.min.js') --}}"></script-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 
     <script src="{{ asset('js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/select2.full.min.js') }}"></script>
     <script type="text/javascript">
       $(document).ready(function () {
+        
           $.ajaxSetup({
             headers: {
               'X-CSRF-TOKEN': '{{csrf_token()}}'
@@ -286,7 +282,8 @@
             }
           });
           
-          //Update Item
+        //Update Item
+          var makeEdit = function() {
           $('.update').editable({
             url: '/{{ Request::path() }}/update_ajax',
             mode: 'inline',
@@ -302,10 +299,40 @@
                 //console.log(dataResult);
                 if(dataResult.statusCode == 500) return dataResult.msg;      
               }
-          });
+            });
+          }
+          makeEdit();
           
-          //Remove Item
-          $('body').on("click", ".delete", function() { 
+        //Update Select   
+        /*var countries = [];  //робимо масив на стороні клієнта
+          
+          $.each({ @foreach ($categoryList as $categoryOption) "{{ (string) $categoryOption->id }}":"{{ (string) $categoryOption->title }}"{{ ($loop->last ? '' : ',') }}@endforeach }, function(k, v) {
+              countries.push({id: k, text: v});
+          });*/     
+        var places = [@foreach ($categoryList as $categoryOption) {id:'{{ (string) $categoryOption->id }}', text:'{{ (string) $categoryOption->title }}' } {{ ($loop->last ? '':',') }} @endforeach];
+
+        var makeEditSelect = function() {
+          $('.update-select').editable({
+            url: '/{{ Request::path() }}/update_ajax',
+            source: places,
+            mode: 'inline',
+              select2: {
+                width: '200px',
+                theme: 'bootstrap4',
+                success: function (dataResult, newValue) {
+                  if(dataResult.statusCode == 500) return dataResult.msg;      
+                }
+                //placeholder: $(this).data('value'),
+                //width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                //allowClear: Boolean($(this).data('allow-clear')) //allowClear: true,
+                //multiple: true
+              }
+          });
+        }
+        makeEditSelect();
+
+        //Remove Item
+        $('body').on("click", ".delete", function() { 
               var $ele = $(this).parent().parent();
               var id= $(this).attr('data-id');
               var url = '/{{ Request::path() }}/'+id;  //Request::url()
@@ -321,10 +348,11 @@
                     $ele.remove();
                   });
                 } else if(dataResult.statusCode==404){
-                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-danger show').html(dataResult.msg); 
+                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-danger show').html(dataResult.msg).fadeOut(5000).removeClass('show'); 
                 } else if(dataResult.statusCode==600){
-                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-warning show').html(dataResult.msg); 
+                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-warning show').html(dataResult.msg).fadeOut(5000).removeClass('show'); 
                   $ele.addClass('alert-warning');
+                  setTimeout(function(){  $ele.removeClass('alert-warning'); }, 2000);
                 } else {
                   $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-warning show').html('Невідома помилка');
                 }
@@ -333,6 +361,80 @@
           });
           return false;
         });
+
+        var t = $('#dt-multi-checkbox').DataTable({
+          "language": {
+            "sProcessing":     "Завантаження...",
+            "sSearch":         "Пошук&nbsp;:",
+            "sLengthMenu":     "Показати _MENU_ елементів",
+            "sInfo":           "Показано _START_ - _END_ з _TOTAL_ ",
+            "sInfoEmpty":      "Показано 0 - 0 з 0 ",
+            "sInfoFiltered":   "(фільтр з _MAX_ елементів)",
+            "sInfoPostFix":    "",
+            "sLoadingRecords": "Завантаження...",
+            "sZeroRecords":    "Нічого не знайдено",
+            "sEmptyTable":     "Дані відсутні",
+            "oPaginate": {
+                "sFirst":      "Початок",
+                "sPrevious":   "Назад",
+                "sNext":       "Вперед",
+                "sLast":       "Кінець"
+            },
+            "oAria": {
+                "sSortAscending":  ": сортувати в порядку зростання",
+                "sSortDescending": ": сортувати в порядку спадання"
+            },
+            "select": {
+                    "rows": {
+                        "_": "%d обрано",
+                        "0": "Елементи не обрано",
+                        "1": "1 обрано"
+                    } 
+            }
+        },
+          "columnDefs": [
+            { "orderable": false, "targets": 3 }
+          ],
+          "pageLength": 25
+        });
+
+        
+         //Add Item 
+          $("#addItem").validate({
+            rules: {
+              addTitle: "required",
+              addPlace: "required"
+            },
+            messages: {
+            },
+
+            submitHandler: function(form) {
+          var form_action = $("#addItem").attr("action");
+          var selectedText = $("#addPlace option:selected").text();
+          $.ajax({
+            data: $('#addItem').serialize(),
+            url: form_action, //не потребує треба розібратись
+            type: "POST",
+            dataType: 'json',
+            success: function (data) {
+              var rowNode =  t.row.add( [data.id, 
+                '<a href="" class="update new" data-name="title" data-type="text" data-pk="' + data.id + '" data-title="Введіть назву">' + data.title + '</a>', 
+                '<a href="" class="update-select" data-name="parent_id" data-type="select2" data-pk="' + data.id + '" data-value="' + data.parent_id + '" data-title="Оберіть корпус">' + selectedText + '</a>', 
+                '<a href="" class="delete" data-id="' + data.id + '"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a>'] )
+                .draw().node();
+                $( rowNode ).addClass( 'alert-success');
+                setTimeout(function(){  $(rowNode).removeClass('alert-success'); }, 2000);
+                makeEdit();
+                makeEditSelect();
+                $('#addItem')[0].reset();
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+          });
+          }
+          });
+     
       });
       </script>
     @yield('ajax')
