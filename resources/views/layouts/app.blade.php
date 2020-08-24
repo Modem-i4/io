@@ -25,7 +25,8 @@
     <!-- MDBootstrap Datatables  -->
     <link href="{{-- asset('css/addons/datatables2.min.css') --}}" rel="stylesheet">
     <!-- DataTables Select CSS -->
-    <link href="{{-- asset('css/addons/datatables-select2.min.css') --}}" rel="stylesheet">
+    <!--link href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet"-->
+    <link href="{{ asset('css/addons/datatables-select2.min.css') }}" rel="stylesheet">
     <!-- X Editable -->
     <link href="{{ asset('css/bootstrap-editable.css') }}" rel="stylesheet"/>
     <!-- Select 2 -->
@@ -260,187 +261,28 @@
     <!-- Scripts -->
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     
-    <!-- MDB core JavaScript -->
     <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script-->
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    
+    <!-- MD Datatables  -->
     <script type="text/javascript" src="{{ asset('js/addons/datatables2.min.js') }}"></script>
+    
     <!-- DataTables Select JS -->
-    <!--script src="{{-- asset('js/addons/datatables-select2.min.js') --}}"></script-->
+    <script src="{{ asset('js/addons/datatables-select2.min.js') }}"></script>
     <!--script type="text/javascript" src="{{-- asset('js/modules/mdb-autocomplete.min.js') --}}"></script-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 
     <script src="{{ asset('js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/select2.full.min.js') }}"></script>
+    @yield('pagejs')
     <script type="text/javascript">
-      $(document).ready(function () {
-          $('select').select2({
-            theme: 'bootstrap4'
-          });
-
-          $.ajaxSetup({
-            headers: {
-              'X-CSRF-TOKEN': '{{csrf_token()}}'
-              //'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-          });
-          
-        //Update Item
-          var makeEdit = function() {
-          $('.update').editable({
-            url: '/{{ Request::path() }}/update_ajax',
-            mode: 'inline',
-              validate: function(value) {
-                var value = $.trim(value);
-                if(value == '') {
-                  return 'Заповніть поле';
-                } else if (value.length < 5 || value.length > 200) {
-                  return 'Допустима кількість символів 5-200';
-                }
-            },
-              success: function (dataResult, newValue) {
-                //console.log(dataResult);
-                if(dataResult.statusCode == 500) return dataResult.msg;      
-              }
-            });
-          }
-          makeEdit();
-          
-        //Update Select   
-        /*var countries = [];  //робимо масив на стороні клієнта
-          
-          $.each({ @foreach ($categoryList as $categoryOption) "{{ (string) $categoryOption->id }}":"{{ (string) $categoryOption->title }}"{{ ($loop->last ? '' : ',') }}@endforeach }, function(k, v) {
-              countries.push({id: k, text: v});
-          });*/     
-        var places = [@foreach ($categoryList as $categoryOption) {id:'{{ (string) $categoryOption->id }}', text:'{{ (string) $categoryOption->title }}' } {{ ($loop->last ? '':',') }} @endforeach];
-
-        var makeEditSelect = function() {
-          $('.update-select').editable({
-            url: '/{{ Request::path() }}/update_ajax',
-            source: places,
-            mode: 'inline',
-              select2: {
-                width: '200px',
-                theme: 'bootstrap4',
-                success: function (dataResult, newValue) {
-                  if(dataResult.statusCode == 500) return dataResult.msg;      
-                }
-                //placeholder: $(this).data('value'),
-                //width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-                //allowClear: Boolean($(this).data('allow-clear')) //allowClear: true,
-                //multiple: true
-              }
-          });
-        }
-        makeEditSelect();
-
-        //Remove Item
-        $('body').on("click", ".delete", function() { 
-              var $ele = $(this).parent().parent();
-              var id= $(this).attr('data-id');
-              var url = '/{{ Request::path() }}/'+id;  //Request::url()
-          $.ajax({
-            url: url,
-            type: "DELETE",
-            cache: false,
-            success: function(dataResult){
-              //var dataResult = JSON.parse(dataResult);
-                if(dataResult.statusCode==200){
-                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-success show').html(dataResult.msg).fadeOut(4000).removeClass('show');
-                  $ele.addClass('alert-danger').fadeOut(1500, function(){
-                    $ele.remove();
-                  });
-                } else if(dataResult.statusCode==404){
-                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-danger show').html(dataResult.msg).fadeOut(5000).removeClass('show'); 
-                } else if(dataResult.statusCode==600){
-                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-warning show').html(dataResult.msg).fadeOut(5000).removeClass('show'); 
-                  $ele.addClass('alert-warning');
-                  setTimeout(function(){  $ele.removeClass('alert-warning'); }, 2000);
-                } else {
-                  $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-warning show').html('Невідома помилка');
-                }
-            }
-
-          });
-          return false;
-        });
-
-        var t = $('#dt-multi-checkbox').DataTable({
-          "language": {
-            "sProcessing":     "Завантаження...",
-            "sSearch":         "Пошук&nbsp;:",
-            "sLengthMenu":     "Показати _MENU_ елементів",
-            "sInfo":           "Показано _START_ - _END_ з _TOTAL_ ",
-            "sInfoEmpty":      "Показано 0 - 0 з 0 ",
-            "sInfoFiltered":   "(фільтр з _MAX_ елементів)",
-            "sInfoPostFix":    "",
-            "sLoadingRecords": "Завантаження...",
-            "sZeroRecords":    "Нічого не знайдено",
-            "sEmptyTable":     "Дані відсутні",
-            "oPaginate": {
-                "sFirst":      "Початок",
-                "sPrevious":   "Назад",
-                "sNext":       "Вперед",
-                "sLast":       "Кінець"
-            },
-            "oAria": {
-                "sSortAscending":  ": сортувати в порядку зростання",
-                "sSortDescending": ": сортувати в порядку спадання"
-            },
-            "select": {
-                    "rows": {
-                        "_": "%d обрано",
-                        "0": "Елементи не обрано",
-                        "1": "1 обрано"
-                    } 
-            }
-        },
-          "columnDefs": [
-            { "orderable": false, "targets": 3 }
-          ],
-          "pageLength": 25
-        });
-
-        
-         //Add Item 
-          $("#addItem").validate({
-            rules: {
-              addTitle: "required",
-              addPlace: "required"
-            },
-            messages: {
-            },
-
-            submitHandler: function(form) {
-          var form_action = $("#addItem").attr("action");
-          var selectedText = $("#addPlace option:selected").text();
-          $.ajax({
-            data: $('#addItem').serialize(),
-            url: form_action, //не потребує треба розібратись
-            type: "POST",
-            dataType: 'json',
-            success: function (data) {
-              var rowNode =  t.row.add( [data.id, 
-                '<a href="" class="update new" data-name="title" data-type="text" data-pk="' + data.id + '" data-title="Введіть назву">' + data.title + '</a>', 
-                '<a href="" class="update-select" data-name="parent_id" data-type="select2" data-pk="' + data.id + '" data-value="' + data.parent_id + '" data-title="Оберіть корпус">' + selectedText + '</a>', 
-                '<a href="" class="delete" data-id="' + data.id + '"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a>'] )
-                .draw().node();
-                $( rowNode ).addClass( 'alert-success');
-                setTimeout(function(){  $(rowNode).removeClass('alert-success'); }, 2000);
-                makeEdit();
-                makeEditSelect();
-                $('#addItem')[0].reset();
-            },
-            error: function (data) {
-              console.log('Error:', data);
-            }
-          });
-          }
-          });
-     
-      });
-      </script>
-    @yield('ajax')
+          var pathUrl = '/{{ Request::path() }}/'; //Request::url()
+          //var updateUrl = '/{{ Request::path() }}/update_ajax';
+          var destroyManyUrl = '/{{ Request::path() }}/destroyMany/'
+    </script>    
     <script src="{{ asset('js/config.min.js') }}"></script>
+    @yield('pagejs1')
+
 </body>
 </html>

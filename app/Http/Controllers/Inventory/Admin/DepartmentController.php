@@ -47,6 +47,22 @@ class DepartmentController extends BaseController
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function categories(Request $request)
+    {
+        $term = $request->input('term', '');
+        $categoryList = $this->inventoryDepartmentRepository->getForJson($term);
+       // $items = InventoryDepartment::where('title', 'LIKE', '%'.$request->input('term', '').'%')
+         //   ->get(['id', 'title as text']);
+          
+        return response()->json(['results' => $categoryList]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -124,13 +140,16 @@ class DepartmentController extends BaseController
         if($request->ajax()){
             
             $item = $this->inventoryDepartmentRepository->getEdit($request->pk);
+            
 
             if (empty($item)) { //якщо ід не знайдено
                 return json_encode(array('statusCode'=>404));
             } else {
                 $result = $item->update([$request->name => $request->value]);
+                $parentTitle = $item->parentTitle;
+                //$pk = $item->id;
                 if ($result) {
-                    return response()->json(['success' => true]);
+                    return response()->json(['success' => true, 'title' => $parentTitle]);
                 } else {
                     return response()->json(['statusCode' => 500,'msg' => 'Помилка 500']);
                 }
@@ -154,7 +173,7 @@ class DepartmentController extends BaseController
             } elseif ($hasChild) {
                 return response()->json(['statusCode' => 600,'msg' => 'Помилка видалення. Має дочірні відділи']);
             } else {
-                $result = $item->forceDelete();
+                $result = $item->destroy($id);
 
                 if ($result) {
                         return response()->json(['statusCode' => 200,'msg' => 'Запис видалено']);
@@ -164,5 +183,30 @@ class DepartmentController extends BaseController
                 }
             }  
     }
-    
+    /**
+     * Remove many resources from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyMany($id)
+    {
+        $ids = explode(",", $id);
+        foreach ($ids as $id) {
+            $item = $this->inventoryDepartmentRepository->getEdit($id);
+            $hasChild = $this->inventoryDepartmentRepository->getChild($id);
+            if (empty($item)) { 
+                return response()->json(['statusCode' => 404,'msg' => 'Помилка видалення']);
+            } elseif ($hasChild) {
+                return response()->json(['statusCode' => 600,'msg' => 'Помилка видалення. Має дочірні відділи', 'id' => $item->id]);
+            }
+        }
+            $result = InventoryDepartment::destroy($ids);
+
+                if ($result) {
+                        return response()->json(['statusCode' => 200,'msg' => 'Записи видалено']);
+                } else {
+                        return response()->json(['statusCode' => 500,'msg' => 'Помилка 500']);
+                }
+    }
 }

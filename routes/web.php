@@ -45,6 +45,10 @@ Route::group($groupData, function () {
     ->names('admin.departments');
  });
     Route::post('/admin/departments/update_ajax', 'Inventory\Admin\DepartmentController@updateAjax');
+    Route::delete('/admin/departments/destroyMany/{id}', 'Inventory\Admin\DepartmentController@destroyMany')->middleware('can:isAdmin')->name('destroyMany');
+    Route::get('/admin/departments/categories', 'Inventory\Admin\DepartmentController@categories')->name('api.categories');
+
+    
 
  /*Route::get('/livetable', 'Inventory\Admin\DepartmentController@index');
  Route::get('/livetable/fetch_data', 'Inventory\Admin\DepartmentController@fetch_data');

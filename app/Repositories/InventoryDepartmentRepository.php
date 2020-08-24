@@ -55,6 +55,30 @@ class InventoryDepartmentRepository extends CoreRepository
         return $result;
 
     }
+    /**
+     *  Отримати список для виводу
+     *  @return Collection
+     */
+    public function getForJson($term)
+    {
+        //$term = $term;
+        $columns = implode(', ', [
+            'id',
+            'title AS text',  //додаємо поле id_title  CONCAT (id, ". ", title) AS id_title'
+        ]);
+
+        $result = $this                           //2 варіант
+            ->startConditions()
+            ->selectRaw($columns)
+            ->where('title', 'LIKE', '%'.$term.'%')
+            ->toBase()
+            ->get();
+
+        //dd($result);
+
+        return $result;
+
+    }
 
     /**
      * Отримати категорію для виводу пагінатором

@@ -3740,6 +3740,7 @@ $(function(){
          } else {
             //can not get list of possible values 
             //(e.g. autotext for select2 with ajax source)
+		//data = value;
          }
 
          //data may be array (when multiple values allowed)
