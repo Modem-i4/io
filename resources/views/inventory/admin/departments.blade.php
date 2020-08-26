@@ -5,7 +5,7 @@
     <section class="">
       <div class="container-fluid">
         <div class="col-12 pt-3 mb-3 bg-white rounded">
-            <h2>Приміщення</h2>
+            <h2 class="mb-3 display-4">Приміщення</h2>
             <div class="">
                 <form class="form-inline mb-3" id="addItem" name="addItem" action="{{ route('admin.departments.store') }}" method="post">
                   @csrf
@@ -153,7 +153,7 @@
           $.each({ @foreach ($categoryList as $categoryOption) "{{ (string) $categoryOption->id }}":"{{ (string) $categoryOption->title }}"{{ ($loop->last ? '' : ',') }}@endforeach }, function(k, v) {
               countries.push({id: k, text: v});
           });*/     
-         // var selectData = [@foreach ($categoryList as $categoryOption) {id:'{{ (string) $categoryOption->id }}', text:'{{ (string) $categoryOption->title }}' } {{ ($loop->last ? '':',') }} @endforeach];
+          var selectData = [@foreach ($categoryList as $categoryOption) {id:'{{ (string) $categoryOption->id }}', text:'{{ (string) $categoryOption->title }}' } {{ ($loop->last ? '':',') }} @endforeach];
           
 
 </script>
@@ -184,7 +184,7 @@
         '<a href="" class="update-select" data-name="parent_id" data-type="select2" data-pk="' + data.id + '" data-url="/{{ Request::path() }}/update_ajax" data-value="' + data.parent_id + '" data-title="Оберіть корпус" data-source="{{ route('api.categories') }}" data-placeholder="Оберіть корпус">' + selectedText + '</a>', 
         '<a href="" class="delete" data-id="' + data.id + '"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a>'] )
           .draw().node();
-          $( rowNode ).addClass( 'alert-success');
+          $( rowNode ).attr("data-id", data.id).addClass( 'alert-success');
           setTimeout(function(){  $(rowNode).removeClass('alert-success'); }, 2000);
           makeEdit();
           makeEditSelect();

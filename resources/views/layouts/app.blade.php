@@ -59,7 +59,7 @@
                         <ul class="navbar-nav mr-auto list-unstyled">
                             @can('isAdmin')
                             <li class="nav-item mt-2">
-                              <a href="#" class="text-dark ml-2">
+                              <a href="#" class="text-dark ml-2 d-flex align-items-center">
                                 <svg
                                   height="1em"
                                   viewBox="0 0 16 16"
@@ -78,7 +78,7 @@
                               </a>
                             </li>
                             <li class="nav-item mt-2">
-                              <a href="#" class="ml-2 {{ request()->routeIs('admin.departments.i')  ? 'active' : 'text-dark' }}">
+                              <a href="#" class="ml-2 {{ request()->routeIs('admin.departments.i')  ? 'active' : 'text-dark' }} d-flex align-items-center">
                                 <svg
                                   width="1em"
                                   height="1em"
@@ -100,7 +100,7 @@
                             </li>
                             
                             <li class="nav-item mt-2">
-                              <a href="#" class="text-dark ml-2">
+                              <a href="#" class="text-dark ml-2 d-flex align-items-center">
                                 <svg
                                   width="1em"
                                   height="1em"
@@ -121,13 +121,13 @@
                               </a>
                             </li>
                             <li class="mt-0 pl-1 nav-item dropdown">
-                                <a class="nav-link dropdown-toggle ml-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle ml-2 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   <svg width="1em" viewBox="0 0 16 16" class="bi bi-gear-fill mx-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"></path>
                                   </svg>Налаштування
                               </a>
                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a href="{{ route('admin.departments.index') }}" class="dropdown-item {{ request()->routeIs('admin.departments.index')  ? 'active' : 'text-dark' }}">
+                                <a href="{{ route('admin.departments.index') }}" class="dropdown-item d-flex align-items-center {{ request()->routeIs('admin.departments.index')  ? 'active' : 'text-dark' }}">
                                   <svg
                                     width="1em"
                                     height="1em"
@@ -146,7 +146,7 @@
                                     />
                                   </svg>Приміщення
                                 </a>
-                                <a href="#" class="dropdown-item text-dark ">
+                                <a href="#" class="dropdown-item text-dark d-flex align-items-center">
                                 <svg
                                   width="1em"
                                   height="1em"
@@ -170,7 +170,7 @@
                               </a>
                                 
                                 <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item text-dark ">
+                                <a href="#" class="dropdown-item text-dark d-flex align-items-center">
                                   <svg
                                     width="1em"
                                     viewBox="0 0 16 16"
@@ -184,7 +184,7 @@
                                     />
                                   </svg>Користувачі
                                 </a>
-                                <a href="#" class="dropdown-item text-dark ">
+                                <a href="#" class="dropdown-item text-dark d-flex align-items-center">
                                   <svg width="1em" viewBox="0 0 16 16" class="bi bi-people-fill mx-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
                                   </svg>Ролі користувачів
@@ -253,7 +253,7 @@
 
     </div>
         <footer class="footer">
-            <div class="container-fluid bg-dark p-3">
+            <div class="container-fluid bg-dark p-3 text-center">
               <span class="text-muted">Всі права захищені</span>
             </div>
         </footer>
