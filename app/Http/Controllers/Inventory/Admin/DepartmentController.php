@@ -165,7 +165,7 @@ class DepartmentController extends BaseController
      */
     public function destroy($id)
     {
-        $item = $this->inventoryDepartmentRepository->getEdit($id); 
+       /* $item = $this->inventoryDepartmentRepository->getEdit($id); 
         $hasChild = $this->inventoryDepartmentRepository->getChild($id);
 
             if (empty($item)) { //якщо ід не знайдено
@@ -181,7 +181,25 @@ class DepartmentController extends BaseController
                 } else {
                         return response()->json(['statusCode' => 500,'msg' => 'Помилка 500']);
                 }
-            }  
+            }  */
+
+            $ids = explode(",", $id);
+            foreach ($ids as $id) {
+                $item = $this->inventoryDepartmentRepository->getEdit($id);
+                $hasChild = $this->inventoryDepartmentRepository->getChild($id);
+                if (empty($item)) { 
+                    return response()->json(['statusCode' => 404,'msg' => 'Помилка видалення']);
+                } elseif ($hasChild) {
+                    return response()->json(['statusCode' => 600,'msg' => 'Помилка видалення. Має дочірні відділи', 'id' => $item->id]);
+                }
+            }
+                $result = $item->destroy($ids);
+    
+                    if ($result) {
+                            return response()->json(['statusCode' => 200,'msg' => 'Записи видалено']);
+                    } else {
+                            return response()->json(['statusCode' => 500,'msg' => 'Помилка 500']);
+                    }
     }
     /**
      * Remove many resources from storage.
@@ -189,7 +207,7 @@ class DepartmentController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyMany($id)
+   /* public function destroyMany($id)
     {
         $ids = explode(",", $id);
         foreach ($ids as $id) {
@@ -201,12 +219,12 @@ class DepartmentController extends BaseController
                 return response()->json(['statusCode' => 600,'msg' => 'Помилка видалення. Має дочірні відділи', 'id' => $item->id]);
             }
         }
-            $result = InventoryDepartment::destroy($ids);
+            $result = $item->destroy($ids);
 
                 if ($result) {
                         return response()->json(['statusCode' => 200,'msg' => 'Записи видалено']);
                 } else {
                         return response()->json(['statusCode' => 500,'msg' => 'Помилка 500']);
                 }
-    }
+    }*/
 }
