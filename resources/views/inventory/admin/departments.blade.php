@@ -153,8 +153,8 @@
           $.each({ @foreach ($categoryList as $categoryOption) "{{ (string) $categoryOption->id }}":"{{ (string) $categoryOption->title }}"{{ ($loop->last ? '' : ',') }}@endforeach }, function(k, v) {
               countries.push({id: k, text: v});
           });*/     
-          var selectData = [@foreach ($categoryList as $categoryOption) {id:'{{ (string) $categoryOption->id }}', text:'{{ (string) $categoryOption->title }}' } {{ ($loop->last ? '':',') }} @endforeach];
-          
+         /* var selectData = [@foreach ($categoryList as $categoryOption) {id:'{{ (string) $categoryOption->id }}', text:'{{ (string) $categoryOption->title }}' } {{ ($loop->last ? '':',') }} @endforeach];
+          */
 
 </script>
 

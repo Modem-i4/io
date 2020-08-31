@@ -201,30 +201,5 @@ class DepartmentController extends BaseController
                             return response()->json(['statusCode' => 500,'msg' => 'Помилка 500']);
                     }
     }
-    /**
-     * Remove many resources from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-   /* public function destroyMany($id)
-    {
-        $ids = explode(",", $id);
-        foreach ($ids as $id) {
-            $item = $this->inventoryDepartmentRepository->getEdit($id);
-            $hasChild = $this->inventoryDepartmentRepository->getChild($id);
-            if (empty($item)) { 
-                return response()->json(['statusCode' => 404,'msg' => 'Помилка видалення']);
-            } elseif ($hasChild) {
-                return response()->json(['statusCode' => 600,'msg' => 'Помилка видалення. Має дочірні відділи', 'id' => $item->id]);
-            }
-        }
-            $result = $item->destroy($ids);
 
-                if ($result) {
-                        return response()->json(['statusCode' => 200,'msg' => 'Записи видалено']);
-                } else {
-                        return response()->json(['statusCode' => 500,'msg' => 'Помилка 500']);
-                }
-    }*/
 }
