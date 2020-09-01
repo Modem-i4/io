@@ -2,7 +2,7 @@
 
 ## About IO
 
-Inventoty Organizer System
+Inventory Organizer System
 
 ## Installation
 
