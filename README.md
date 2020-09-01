@@ -11,6 +11,7 @@ Inventory Organizer System
 - Create DB: io
 - Run in project folder command: php artisan migrate --seed
 - Open in browser io.de
+- Log in with oa.edu.ua email
 
 ## Developers
 
