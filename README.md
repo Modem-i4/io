@@ -3,6 +3,7 @@
 ## About IO
 
 Inventory Organizer System
+
 [DB Schema](https://dbdesigner.page.link/XDCe6mDJfkDnMMZ89)
 
 
