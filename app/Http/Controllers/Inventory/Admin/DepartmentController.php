@@ -32,7 +32,7 @@ class DepartmentController extends BaseController
      */
     public function index()
     {
-        $paginator = $this->inventoryDepartmentRepository->getAllWithPaginate(50);
+        $paginator = $this->inventoryDepartmentRepository->getAllWithPaginate(500);
         $categoryList = $this->inventoryDepartmentRepository->getForComboBox();
         return view('inventory.admin.departments', compact('paginator', 'categoryList'));
 
