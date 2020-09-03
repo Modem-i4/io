@@ -11,17 +11,23 @@
                   @csrf
                   <div class="form-group mr-3">
                     <label for="addtitle" class="my-1 mr-2">Назва:</label>
-                    <input type="text" class="form-control" id="addTitle" placeholder="Введіть назву" name="addTitle">
+                    <input type="text" class="form-control" id="addTitle" placeholder="Введіть назву" name="addTitle" minlength="3" required>
                   </div>
                   <div class="form-group mr-3">
                     <label for="addPlace" class="my-1 mr-2">Корпус:</label>
                     <!--No Ajax-->
-                      <select name="addPlace" placeholder="Оберіть категорію" id="addPlace" class="form-control" required>
+                      <!--select name="addPlace" placeholder="Оберіть категорію" id="addPlace" class="form-control" required>
                       @foreach ($categoryList as $categoryOption)
                           <option value="{{ $categoryOption->id }}">{{ $categoryOption->title }}</option>
                       @endforeach
+                      </select-->
+                      <select name="addPlace" placeholder="Оберіть категорію" id="addPlace" class="form-control" data-ajax--url="{{ route('api.categories') }}" data-width="200px" data-placeholder="Оберіть корпус" required>
+                          @foreach ($categoryList as $categoryOption) 
+                            @if ($loop->first)
+                              <option value="{{ $categoryOption->id }}">{{ $categoryOption->title }}</option>
+                            @endif
+                          @endforeach
                       </select>
-                      <!--select name="addPlace" placeholder="Оберіть категорію" id="addPlace" class="form-control" data-ajax--url="{{ route('api.categories') }}" data-width="200px" data-placeholder="Оберіть корпус"></select-->
                   </div>
                   <button type="submit" class="btn btn-primary p-2 border rounded"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"></path>
@@ -167,13 +173,17 @@
     //Add Item 
     $("#addItem").validate({
       rules: {
-        addTitle: "required",
-        addPlace: "required"
+       // addTitle: {required: true},
+       // addPlace: {required: true},
+
       },
       messages: {
-        addTitle: "Заповніть поле",
+        addTitle: "Заповніть поле (мін. 3 символи)",
         addPlace: "Заповніть поле"
         
+      },
+      tooltip_options: {
+        addPlace: {placement:'auto'}
       },
       submitHandler: function(form) {
     var form_action = $("#addItem").attr("action");
@@ -193,9 +203,8 @@
           $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-success show').html(dataAddmsg).fadeOut(5000).removeClass('show');
           $( rowNode ).attr("data-id", data.id).addClass( 'alert-success');
           setTimeout(function(){  $(rowNode).removeClass('alert-success'); }, 2000);
-          makeEdit();
-          makeEditSelect();
           $('#addItem')[0].reset();
+          $('#addPlace').val('1').trigger('change');
       },
       error: function (data) {
         console.log('Error:', data);

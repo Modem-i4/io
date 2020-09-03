@@ -275,6 +275,7 @@
 
     <script src="{{ asset('js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-validate.bootstrap-tooltip.min.js') }}"></script>
     @yield('pagejs')
     <script type="text/javascript">
           var pathUrl = '/{{ Request::path() }}/'; //Request::url()

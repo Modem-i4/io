@@ -25,6 +25,23 @@ class DepartmentController extends BaseController
         parent::__construct(); //конструктор від парента на перпективу, можливо колись знадобиться
         $this->inventoryDepartmentRepository = app(InventoryDepartmentRepository::class); //app вертає об'єкт класа
     }
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function categoriesApi(Request $request)
+    {
+        $term = $request->input('term', '');
+        $categoryList = $this->inventoryDepartmentRepository->getForJson($term);
+       // $items = InventoryDepartment::where('title', 'LIKE', '%'.$request->input('term', '').'%')
+         //   ->get(['id', 'title as text']);
+          
+        return response()->json(['results' => $categoryList]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,31 +53,8 @@ class DepartmentController extends BaseController
         $categoryList = $this->inventoryDepartmentRepository->getForComboBox();
         return view('inventory.admin.departments', compact('paginator', 'categoryList'));
 
-        
-       /* $data['students'] = InventoryDepartment::orderBy('id','desc')->paginate(5);   
-        return view('inventory.admin.deptest',$data);*/
-
-       // return view('inventory.admin.deptest2');
-
-       // $data = InventoryDepartment::all();
-    	//return view('inventory.admin.deptest3', compact('paginator'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function categories(Request $request)
-    {
-        $term = $request->input('term', '');
-        $categoryList = $this->inventoryDepartmentRepository->getForJson($term);
-       // $items = InventoryDepartment::where('title', 'LIKE', '%'.$request->input('term', '').'%')
-         //   ->get(['id', 'title as text']);
-          
-        return response()->json(['results' => $categoryList]);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -69,11 +63,7 @@ class DepartmentController extends BaseController
      */
     public function create()
     {
-        /*$item = InventoryDepartment::make(); //використовуємо метод make
-        $categoryList = $this->inventoryDepartmentRepository->getForComboBox(); //::all();
-        
 
-        return view('admin.departments.edit', compact('item', 'categoryList'));*/
     }
 
     /**
@@ -85,7 +75,7 @@ class DepartmentController extends BaseController
     public function store(Request $request)
     {
         $data = ['title' => $request->post('addTitle'),
-        'parent_id'=> $request->post('addPlace'),];
+                'parent_id'=> $request->post('addPlace'),];
 
         $result = InventoryDepartment::create($data);  
         return response()->json($result);
@@ -110,10 +100,7 @@ class DepartmentController extends BaseController
      */
     public function edit($id)
     {
-       /* $where = array('id' => $id);
-        $student  = InventoryDepartment::where($where)->first();
- 
-        return Response::json($student);*/
+
     }
 
     /**
@@ -125,14 +112,7 @@ class DepartmentController extends BaseController
      */
     public function update(Request $request)
     {
-        /*$student = InventoryDepartment::updateOrCreate(
-            ['id' => $request->post('hdnStudentId')],
-            ['title' => $request->post('txtFirstName'),
-            'parent_id'=> $request->post('txtAddress'),
-            ]
-        );
 
-        return response()->json($student);*/
     }
     
     public function updateAjax (Request $request)
@@ -165,24 +145,6 @@ class DepartmentController extends BaseController
      */
     public function destroy($id)
     {
-       /* $item = $this->inventoryDepartmentRepository->getEdit($id); 
-        $hasChild = $this->inventoryDepartmentRepository->getChild($id);
-
-            if (empty($item)) { //якщо ід не знайдено
-                return response()->json(['statusCode' => 404,'msg' => 'Помилка видалення']);
-            } elseif ($hasChild) {
-                return response()->json(['statusCode' => 600,'msg' => 'Помилка видалення. Має дочірні відділи']);
-            } else {
-                $result = $item->destroy($id);
-
-                if ($result) {
-                        return response()->json(['statusCode' => 200,'msg' => 'Запис видалено']);
-                        //json_encode(array('statusCode'=>200));
-                } else {
-                        return response()->json(['statusCode' => 500,'msg' => 'Помилка 500']);
-                }
-            }  */
-
             $ids = explode(",", $id);
             foreach ($ids as $id) {
                 $item = $this->inventoryDepartmentRepository->getEdit($id);

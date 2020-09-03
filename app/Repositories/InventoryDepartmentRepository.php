@@ -61,20 +61,17 @@ class InventoryDepartmentRepository extends CoreRepository
      */
     public function getForJson($term)
     {
-        //$term = $term;
         $columns = implode(', ', [
             'id',
-            'title AS text',  //додаємо поле id_title  CONCAT (id, ". ", title) AS id_title'
+            'title AS text', 
         ]);
 
-        $result = $this                           //2 варіант
+        $result = $this                         
             ->startConditions()
             ->selectRaw($columns)
             ->where('title', 'LIKE', '%'.$term.'%')
             ->toBase()
             ->get();
-
-        //dd($result);
 
         return $result;
 

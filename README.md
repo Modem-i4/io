@@ -3,11 +3,13 @@
 ## About IO
 
 Inventory Organizer System
+[DB Schema](https://dbdesigner.page.link/XDCe6mDJfkDnMMZ89)
+
 
 ## Installation
 
 - Download files
-- Add domain **io.de** to hosts and apache vhosts file and route it to **you project folder**/public
+- Add domain **io.de** to hosts and apache vhosts file and route it to "**you project folder**/public"
 - Create DB: io
 - Run in project folder command: php artisan migrate --seed
 - Open in browser io.de
