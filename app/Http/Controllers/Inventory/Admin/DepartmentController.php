@@ -18,12 +18,13 @@ class DepartmentController extends BaseController
      * @var InventoryDepartmentRepository
      */
     private $inventoryDepartmentRepository; // властивість через яку будемо звертатись в репозиторій
-
+    
     public function __construct()
     {
         $this->middleware('auth');
-        parent::__construct(); //конструктор від парента на перпективу, можливо колись знадобиться
+        parent::__construct(); //конструктор від парента на перспективу, можливо колись знадобиться
         $this->inventoryDepartmentRepository = app(InventoryDepartmentRepository::class); //app вертає об'єкт класа
+        
     }
     
     /**
@@ -55,17 +56,6 @@ class DepartmentController extends BaseController
 
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -82,17 +72,6 @@ class DepartmentController extends BaseController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -100,7 +79,7 @@ class DepartmentController extends BaseController
      */
     public function edit($id)
     {
-
+        //Mass Edit
     }
 
     /**
@@ -112,7 +91,7 @@ class DepartmentController extends BaseController
      */
     public function update(Request $request)
     {
-
+        //Mass Update
     }
     
     public function updateAjax (Request $request)

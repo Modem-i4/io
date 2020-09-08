@@ -94,7 +94,7 @@
                       <th>id</th>
                       <th>Назва</th>
                       <th>Корпус</th>
-                      <th>Дія</th>
+                      <th class="no-sort">Дія</th>
                     </tr>
                   </thead>
                   <tbody>

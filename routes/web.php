@@ -41,11 +41,11 @@ Route::group($groupData, function () {
     //Departments
     Route::resource('departments', 'DepartmentController')
     ->middleware('can:isAdmin')
-    ->except(['show'])                              //не робити маршрут для метода show
+    ->except(['create', 'show'])                              //не робити маршрут для метода show
     ->names('admin.departments');
     Route::post('/departments/update_ajax', 'DepartmentController@updateAjax')->name('admin.departments.updateAjax');
 
-    //
+    //Users
 
  });
 
