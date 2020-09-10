@@ -16,14 +16,13 @@
     <!-- Styles -->
     <!--link href="{{ asset('css/app.css') }}" rel="stylesheet"-->
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!--link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"-->
+    <link rel="stylesheet" href="{{ asset('css/iconmoon.css') }}">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <!--link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"-->
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <!-- MDBootstrap Datatables  -->
-    <link href="{{-- asset('css/addons/datatables2.min.css') --}}" rel="stylesheet">
     <!-- DataTables Select CSS -->
     <!--link href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet"-->
     <link href="{{ asset('css/addons/datatables-select2.min.css') }}" rel="stylesheet">
@@ -260,7 +259,9 @@
 
     <!-- Scripts -->
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    
+    <!--script type="text/javascript" src="{{-- asset('js/jquery.min.js') --}}"></script>
+    <script src="{{-- asset('js/bootstrap.min.js') --}}"></script>
+    <script src="{{-- asset('js/popper.min.js') --}}"></script-->
     <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script-->
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>

@@ -29,11 +29,9 @@
                           @endforeach
                       </select>
                   </div>
-                  <button type="submit" class="btn btn-primary p-2 border rounded"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"></path>
-                    <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"></path>
-                  </svg>
-                  <span class="d-none d-md-inline">Додати приміщення</span></button>
+                  <button type="submit" class="btn btn-primary p-2 border rounded">
+                    <span class="icon-add"></span><span class="d-none d-md-inline">Додати приміщення</span>
+                  </button>
                 </form>
             </div>
             <div class="d-flex justify-content-between flex-wrap">
@@ -52,24 +50,7 @@
                       </svg>
                       <span class="d-none d-md-inline">Редагувати відмічені</span>
                     </a-->
-                    <a href="" class="p-2 border rounded text-decoration-none delete-many">
-                      <svg
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 16 16"
-                        class="bi bi-trash"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                        />
-                        <path
-                          fill-rule="evenodd"
-                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                        />
-                      </svg>
-                      <span class="d-none d-md-inline">Видалити відмічені</span>
+                    <a href="" class="p-2 border rounded text-decoration-none delete-many"><span class="icon-trash-o"></span> <span class="d-none d-md-inline">Видалити відмічені</span>
                     </a>
                   </div>
                 </div>
@@ -109,10 +90,7 @@
                                           data-source="{{ route('api.categories') }}" data-placeholder="Оберіть корпус">{{ $item->parentTitle }}</a>
                                       @endif
                                       </td>
-                                      <td disabled><a href="" class="delete" data-id="{{ $item->id }}"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                      </svg></a></td>
+                                      <td><a href="" class="delete" data-id="{{ $item->id }}"><span class="icon-trash-o"></span></a></td>
                                     </tr>   
                             @endforeach
                   </tbody>
@@ -121,23 +99,7 @@
               <div class="d-flex justify-content-between flex-wrap">
                 <div class="py-3">
                   <a href="" class="p-2 border rounded text-decoration-none delete-many">
-                    <svg
-                      width="1em"
-                      height="1em"
-                      viewBox="0 0 16 16"
-                      class="bi bi-trash"
-                      fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                      />
-                    </svg>
-                    <span class="d-none d-md-inline">Видалити відмічені</span>
+                    <span class="icon-trash-o"></span> <span class="d-none d-md-inline">Видалити відмічені</span>
                   </a>
                 </div>
                 <div>
@@ -198,7 +160,7 @@
         var rowNode =  t.row.add( ['',data.id,
         '<a href="" class="update new" data-name="title" data-type="text" data-pk="' + data.id + '" data-url="/{{ Request::path() }}/update_ajax" data-title="Введіть назву">' + data.title + '</a>', 
         '<a href="" class="update-select" data-name="parent_id" data-type="select2" data-pk="' + data.id + '" data-url="/{{ Request::path() }}/update_ajax" data-value="' + data.parent_id + '" data-title="Оберіть корпус" data-source="{{ route('api.categories') }}" data-placeholder="Оберіть корпус">' + selectedText + '</a>', 
-        '<a href="" class="delete" data-id="' + data.id + '"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a>'] )
+        '<a href="" class="delete" data-id="' + data.id + '"><span class="icon-trash-o"></span></a>'] )
           .draw().node();
           $(".alert-msg div").removeClass().fadeIn(1000).addClass('text-success show').html(dataAddmsg).fadeOut(5000).removeClass('show');
           $( rowNode ).attr("data-id", data.id).addClass( 'alert-success');

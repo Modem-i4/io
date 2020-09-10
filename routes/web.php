@@ -46,11 +46,11 @@ Route::group($groupData, function () {
     Route::post('/departments/update_ajax', 'DepartmentController@updateAjax')->name('admin.departments.updateAjax');
 
     //Users
-
+    
  });
-
     
 //API
 Route::get('/api/departments/categories', 'Inventory\Admin\DepartmentController@categoriesApi')->middleware('can:isAdmin')->name('api.categories');
+Route::get('/api/departments/all', 'Inventory\Admin\DepartmentController@allApi')->middleware('can:isAdmin')->name('api.dep.all');
 
     

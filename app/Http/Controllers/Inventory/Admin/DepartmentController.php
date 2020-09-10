@@ -42,7 +42,22 @@ class DepartmentController extends BaseController
           
         return response()->json(['results' => $categoryList]);
     }
-
+/**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function allApi(Request $request)
+    {
+        $paginator = $this->inventoryDepartmentRepository->getAllWithPaginate(2000);
+        $categoryList = $this->inventoryDepartmentRepository->getForComboBox();
+       // $items = InventoryDepartment::where('title', 'LIKE', '%'.$request->input('term', '').'%')
+         //   ->get(['id', 'title as text']);
+          //$id = $paginator->id;
+         // dd($paginator->id->all());
+        return response()->json(['data' => $paginator]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,9 +65,9 @@ class DepartmentController extends BaseController
      */
     public function index()
     {
-        $paginator = $this->inventoryDepartmentRepository->getAllWithPaginate(500);
+        $paginator = $this->inventoryDepartmentRepository->getAllWithPaginate(2000);
         $categoryList = $this->inventoryDepartmentRepository->getForComboBox();
-        return view('inventory.admin.departments', compact('paginator', 'categoryList'));
+        return view('inventory.admin.test', compact('paginator', 'categoryList'));
 
     }
 

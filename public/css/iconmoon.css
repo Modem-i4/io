@@ -1,0 +1,127 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?h6gai2');
+  src:  url('fonts/icomoon.eot?h6gai2#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?h6gai2') format('truetype'),
+    url('fonts/icomoon.woff?h6gai2') format('woff'),
+    url('fonts/icomoon.svg?h6gai2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-trash-o:before {
+  content: "\e906";
+}
+.icon-close:before {
+  content: "\e90a";
+}
+.icon-home-outline:before {
+  content: "\e903";
+}
+.icon-add:before {
+  content: "\e902";
+}
+.icon-list:before {
+  content: "\e904";
+}
+.icon-plus1:before {
+  content: "\e901";
+}
+.icon-x:before {
+  content: "\e90c";
+}
+.icon-cancel:before {
+  content: "\e90c";
+}
+.icon-close1:before {
+  content: "\e90c";
+}
+.icon-transfer:before {
+  content: "\e905";
+}
+.icon-arrows:before {
+  content: "\e905";
+}
+.icon-home:before {
+  content: "\e907";
+}
+.icon-office:before {
+  content: "\e908";
+}
+.icon-pencil:before {
+  content: "\e909";
+}
+.icon-file-text2:before {
+  content: "\e926";
+}
+.icon-display:before {
+  content: "\e956";
+}
+.icon-laptop:before {
+  content: "\e957";
+}
+.icon-users:before {
+  content: "\e972";
+}
+.icon-user-plus:before {
+  content: "\e973";
+}
+.icon-wrench:before {
+  content: "\e991";
+}
+.icon-cog:before {
+  content: "\e994";
+}
+.icon-bin:before {
+  content: "\e9ac";
+}
+.icon-list1:before {
+  content: "\e9ba";
+}
+.icon-plus:before {
+  content: "\ea0a";
+}
+.icon-minus:before {
+  content: "\ea0b";
+}
+.icon-cancel-circle:before {
+  content: "\ea0d";
+}
+.icon-cross:before {
+  content: "\ea0f";
+}
+.icon-checkmark:before {
+  content: "\ea10";
+}
+.icon-trash-can1:before {
+  content: "\e90b";
+}
+.icon-trash-can:before {
+  content: "\e900";
+}

@@ -92,7 +92,9 @@ class InventoryDepartmentRepository extends CoreRepository
             ->startConditions()
             ->select($columns)
             ->with(['parentDepartment:id,title',])
-            ->paginate($perPage);
+            //->paginate($perPage)
+            //->toBase()
+            ->get();
             //dd($result);
         return $result;
     }
