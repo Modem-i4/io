@@ -1,13 +1,15 @@
 /node_modules
-# /public/hot
-# /public/storage
-# /storage/*.key
-# /vendor
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/.idea
 .env
 .env.backup
-#.phpunit.result.cache
-#Homestead.json
-#Homestead.yaml
-#npm-debug.log
-#yarn-error.log
-node_modules
+_ide_helper.php
+.phpstorm.meta.php
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
