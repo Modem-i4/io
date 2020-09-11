@@ -12,6 +12,7 @@ Inventory Organizer System
 - Download files
 - Add domain **io.de** to hosts and apache vhosts file and route it to "**you project folder**/public"
 - Create DB: io
+- Run in project folder command: composer install
 - Run in project folder command: php artisan migrate --seed
 - Open in browser io.de
 - Log in with oa.edu.ua email
