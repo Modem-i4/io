@@ -18,15 +18,15 @@ class DepartmentController extends BaseController
      * @var InventoryDepartmentRepository
      */
     private $inventoryDepartmentRepository; // властивість через яку будемо звертатись в репозиторій
-    
+
     public function __construct()
     {
         $this->middleware('auth');
         parent::__construct(); //конструктор від парента на перспективу, можливо колись знадобиться
         $this->inventoryDepartmentRepository = app(InventoryDepartmentRepository::class); //app вертає об'єкт класа
-        
+
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -39,7 +39,7 @@ class DepartmentController extends BaseController
         $categoryList = $this->inventoryDepartmentRepository->getForJson($term);
        // $items = InventoryDepartment::where('title', 'LIKE', '%'.$request->input('term', '').'%')
          //   ->get(['id', 'title as text']);
-          
+
         return response()->json(['results' => $categoryList]);
     }
 /**
@@ -82,7 +82,7 @@ class DepartmentController extends BaseController
         $data = ['title' => $request->post('addTitle'),
                 'parent_id'=> $request->post('addPlace'),];
 
-        $result = InventoryDepartment::create($data);  
+        $result = InventoryDepartment::create($data);
         return response()->json($result);
     }
 
@@ -108,13 +108,13 @@ class DepartmentController extends BaseController
     {
         //Mass Update
     }
-    
+
     public function updateAjax (Request $request)
     {
         if($request->ajax()){
-            
+
             $item = $this->inventoryDepartmentRepository->getEdit($request->pk);
-            
+
 
             if (empty($item)) { //якщо ід не знайдено
                 return json_encode(array('statusCode'=>404));
@@ -127,8 +127,8 @@ class DepartmentController extends BaseController
                 } else {
                     return response()->json(['statusCode' => 500,'msg' => 'Помилка 500']);
                 }
-            }        
-            
+            }
+
         }
     }
     /**
@@ -143,14 +143,14 @@ class DepartmentController extends BaseController
             foreach ($ids as $id) {
                 $item = $this->inventoryDepartmentRepository->getEdit($id);
                 $hasChild = $this->inventoryDepartmentRepository->getChild($id);
-                if (empty($item)) { 
+                if (empty($item)) {
                     return response()->json(['statusCode' => 404,'msg' => 'Помилка видалення']);
                 } elseif ($hasChild) {
                     return response()->json(['statusCode' => 600,'msg' => 'Помилка видалення. Має дочірні відділи', 'id' => $item->id]);
                 }
             }
                 $result = $item->destroy($ids);
-    
+
                     if ($result) {
                             return response()->json(['statusCode' => 200,'msg' => 'Записи видалено']);
                     } else {
