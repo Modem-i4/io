@@ -19,11 +19,35 @@ class InventoryDepartmentRepository extends CoreRepository
      *  @param int $id
      *  @return Model
      */
-    public function getEdit($id)
+    public function getForShow($id)
     {
-        return $this->startConditions()->find($id);
+        return $this->startConditions()
+            ->where('id', $id)
+            ->toBase()
+            ->first();
     }
-    
+
+    /**
+     * Отримати всі відділи
+     *
+     * @return
+     */
+    public function getAll()
+    {
+        /*$columns = implode(', ', [
+            'id',
+            'title',  //додаємо поле id_title  CONCAT (id, ". ", title) AS id_title'
+        ]);*/
+        $columns = ['id', 'title', 'parent_id'];
+
+        $result = $this->startConditions()
+            ->select($columns)
+            ->with(['parentDepartment:id,title',]) //?
+            ->toBase()
+            ->get();
+        return $result;
+    }
+
     /**
      *  Пошук дочірніх елементів
      *  @param int $id
@@ -33,69 +57,5 @@ class InventoryDepartmentRepository extends CoreRepository
     {
         return $this->startConditions()->where('parent_id',$id)->first();
     }
-    /**
-     *  Отримати список для виводу
-     *  @return Collection
-     */
-    public function getForComboBox()
-    {
-        $columns = implode(', ', [
-            'id',
-            'title',  //додаємо поле id_title  CONCAT (id, ". ", title) AS id_title'
-        ]);
 
-        $result = $this                           //2 варіант
-            ->startConditions()
-            ->selectRaw($columns)
-            ->toBase()
-            ->get();
-
-        //dd($result);
-
-        return $result;
-
-    }
-    /**
-     *  Отримати список для виводу
-     *  @return Collection
-     */
-    public function getForJson($term)
-    {
-        $columns = implode(', ', [
-            'id',
-            'title AS text', 
-        ]);
-
-        $result = $this                         
-            ->startConditions()
-            ->selectRaw($columns)
-            ->where('title', 'LIKE', '%'.$term.'%')
-            ->toBase()
-            ->get();
-
-        return $result;
-
-    }
-
-    /**
-     * Отримати категорію для виводу пагінатором
-     * 
-     * @param int|null $perPage
-     * 
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    public function getAllWithPaginate($perPage = null)
-    {
-        $columns = ['id', 'title', 'parent_id'];
-
-        $result = $this
-            ->startConditions()
-            ->select($columns)
-            ->with(['parentDepartment:id,title',])
-            //->paginate($perPage)
-            //->toBase()
-            ->get();
-            //dd($result);
-        return $result;
-    }
 }
