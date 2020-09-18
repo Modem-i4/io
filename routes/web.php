@@ -12,45 +12,66 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//TODO: Додати групу з middleware auth на всі маршрути окрім тих що треба для входу. Підчистити конструктори контроллерів
+//TODO: Delete?
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-//login with Google
-Route::get('/login/google', 'Auth\LoginController@redirectToProvider');
-Route::get('/login/google/callback', 'Auth\LoginController@handleProviderCallback');
-//Route::post('login', 'Auth\LoginController@login');  //Native Login User Form
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
 Route::get('/user/home', 'HomeController@user')->name('user.home');
 Route::get('/admin/home', 'HomeController@admin')->middleware('can:isAdmin')->name('admin.home');
 
-//Адмінка
-$groupData = [
-    'namespace' => 'Inventory\Admin',
-    'prefix' => 'admin',
+
+$inventoryGroupData = [
+    'namespace' => 'Inventory',
 ];
-Route::group($groupData, function () {
-    //
-   /* $methods = ['index','edit','store','update','create',];
-    Route::resource('categories', 'CategoryController')
-    ->only($methods)
-    ->names('admin.categories');*/ 
+Route::group($inventoryGroupData, function() {
 
-    //Departments
-    Route::resource('departments', 'DepartmentController')
-    ->middleware('can:isAdmin')
-    ->except(['create', 'show'])                              //не робити маршрут для метода show
-    ->names('admin.departments');
-    Route::post('/departments/update_ajax', 'DepartmentController@updateAjax')->name('admin.departments.updateAjax');
+    //TODO: user/home???
+    Route::get('profile', 'UserController@profile');
 
-    //Users
-    
- });
-    
+
+    //Адмінка
+    $inventoryAdminGroupData = [
+        'namespace' => 'Admin',
+        'prefix' => 'admin',
+    ];
+    Route::group($inventoryAdminGroupData, function () {
+        //
+        /* $methods = ['index','edit','store','update','create',];
+         Route::resource('categories', 'CategoryController')
+         ->only($methods)
+         ->names('admin.categories');*/
+
+        //Departments
+        Route::resource('departments', 'DepartmentController')
+            ->middleware('can:isAdmin')
+            ->except(['create', 'show'])                              //не робити маршрут для метода show
+            ->names('admin.departments');
+        Route::post('/departments/update_ajax', 'DepartmentController@updateAjax')->name('admin.departments.updateAjax');
+
+        //Users
+        Route::resource('users', 'UserController')
+            ->only(['index', 'show'])
+            ->names('admin.users');
+
+    });
+});
+
+
+$authGroupData = [
+    'namespace' => 'Auth',
+];
+Route::group($authGroupData, function() {
+    //login with Google
+    Route::get('/login/google', 'LoginController@redirectToProvider');
+    Route::get('/login/google/callback', 'LoginController@handleProviderCallback');
+    Route::post('logout', 'LoginController@logout')->name('logout');
+
+    //Route::post('login', 'LoginController@login');  //Native Login User Form
+});
+
 //API
 Route::get('/api/departments/categories', 'Inventory\Admin\DepartmentController@categoriesApi')->middleware('can:isAdmin')->name('api.categories');
 Route::get('/api/departments/all', 'Inventory\Admin\DepartmentController@allApi')->middleware('can:isAdmin')->name('api.dep.all');
 
-    

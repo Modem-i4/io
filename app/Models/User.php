@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Filters\UserFilter;
+use App\Traits\Filterable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Filterable;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +30,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
+    /**i
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -36,4 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected function getFilterClass()
+    {
+        return UserFilter::class;
+    }
 }
