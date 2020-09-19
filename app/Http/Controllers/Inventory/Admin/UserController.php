@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Inventory\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * @var UserRepository

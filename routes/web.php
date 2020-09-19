@@ -70,8 +70,4 @@ Route::group($authGroupData, function() {
 
     //Route::post('login', 'LoginController@login');  //Native Login User Form
 });
-
-//API
-Route::get('/api/departments/categories', 'Inventory\Admin\DepartmentController@categoriesApi')->middleware('can:isAdmin')->name('api.categories');
-Route::get('/api/departments/all', 'Inventory\Admin\DepartmentController@allApi')->middleware('can:isAdmin')->name('api.dep.all');
-
+Route::get('/test/users', 'Api\UserController@index');

@@ -14,5 +14,6 @@ class UserController extends Controller
         return User::select(['id', 'name', 'email', 'role'])
             ->filter()
             ->paginate($perPage);
+
     }
 }

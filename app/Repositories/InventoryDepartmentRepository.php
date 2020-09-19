@@ -10,15 +10,18 @@ use Illuminate\Database\Eloquent\Collection;
  */
 class InventoryDepartmentRepository extends CoreRepository
 {
-    protected function getModelClass()
-    {
-        return Model::class; //абстрагування моделі InventoryDepartment, для легшого створення іншого репозиторія
-    }
     /**
      *  Отримати модель для редагування в адмінці
      *  @param int $id
      *  @return Model
      */
+    protected function getModelClass()
+    {
+        return Model::class; //абстрагування моделі InventoryDepartment, для легшого створення іншого репозиторія
+    }
+
+    /**
+    */
     public function getForShow($id)
     {
         return $this->startConditions()
@@ -38,14 +41,16 @@ class InventoryDepartmentRepository extends CoreRepository
             'id',
             'title',  //додаємо поле id_title  CONCAT (id, ". ", title) AS id_title'
         ]);*/
+        $perPage = request('perPage');
         $columns = ['id', 'title', 'parent_id'];
 
         $result = $this->startConditions()
             ->select($columns)
             ->with(['parentDepartment:id,title',]) //?
-            ->toBase()
-            ->get();
+            ->filter()
+            ->paginate($perPage);
         return $result;
+
     }
 
     /**

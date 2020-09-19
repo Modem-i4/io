@@ -25,4 +25,9 @@ $apiGroupData = [
 
 Route::group($apiGroupData, function() {
     Route::get('users', 'UserController@index');
+    Route::get('departments', 'DepartmentController@index')->name('api.departments');
 });
+
+//Dep
+//Route::get('/api/departments/categories', 'Inventory\Admin\DepartmentController@categoriesApi')->middleware('can:isAdmin')->name('api.categories');
+
