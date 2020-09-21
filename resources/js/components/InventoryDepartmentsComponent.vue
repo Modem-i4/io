@@ -72,7 +72,46 @@
                         :server-items-length="pagination.total"
                         :loading="loading"
                         class="elevation-1"
-                    ></v-data-table>
+                    >
+                        <template v-slot:item.title="props">
+                            <v-edit-dialog
+                                :return-value.sync="props.item.title"
+                                @save="save"
+                                @cancel="cancel"
+                                @open="open"
+                                @close="close"
+                            >
+                                {{ props.item.title }}
+                                <template v-slot:input>
+                                    <v-text-field
+                                        v-model="props.item.title"
+                                        :rules="[max25chars]"
+                                        label="Edit"
+                                        single-line
+                                        counter
+                                    ></v-text-field>
+                                </template>
+                            </v-edit-dialog>
+                        </template>
+
+                    </v-data-table>
+                    <v-snackbar
+                        v-model="snack"
+                        :timeout="3000"
+                        :color="snackColor"
+                    >
+                        {{ snackText }}
+
+                        <template v-slot:action="{ attrs }">
+                            <v-btn
+                                v-bind="attrs"
+                                text
+                                @click="snack = false"
+                            >
+                                Close
+                            </v-btn>
+                        </template>
+                    </v-snackbar>
                 </v-card>
             </div>
         </div>
@@ -96,19 +135,21 @@
 export default {
     data () {
         return {
+            snack: false,
+            snackColor: '',
+            snackText: '',
+            max25chars: v => v.length <= 25 || 'Input too long!',
+
             search: null,
             pagination: {},
             items: [],
             options: {
-                itemsPerPage: 25,
+                itemsPerPage: 10,
             },
             loading: true,
             headers: [
-                {
-                    text: 'id',
-                    align: 'start',
-                    sortable: false,
-                    value: 'id',
+                { text: 'id', align: 'start',  value: 'id',
+                   // sortable: false,
                 },
                 { text: "Назва", value: 'title' },
                 { text: 'Корпус', value: 'parent_department.title' },
@@ -146,6 +187,24 @@ export default {
 
                     this.loading = false;
                 })
+        },
+        save () {
+            this.snack = true
+            this.snackColor = 'success'
+            this.snackText = 'Data saved'
+        },
+        cancel () {
+            this.snack = true
+            this.snackColor = 'error'
+            this.snackText = 'Canceled'
+        },
+        open () {
+            this.snack = true
+            this.snackColor = 'info'
+            this.snackText = 'Dialog opened'
+        },
+        close () {
+            console.log('Dialog closed')
         },
     },
 }

@@ -2035,21 +2035,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      snack: false,
+      snackColor: '',
+      snackText: '',
+      max25chars: function max25chars(v) {
+        return v.length <= 25 || 'Input too long!';
+      },
       search: null,
       pagination: {},
       items: [],
       options: {
-        itemsPerPage: 25
+        itemsPerPage: 10
       },
       loading: true,
       headers: [{
         text: 'id',
         align: 'start',
-        sortable: false,
-        value: 'id'
+        value: 'id' // sortable: false,
+
       }, {
         text: "Назва",
         value: 'title'
@@ -2089,6 +2134,24 @@ __webpack_require__.r(__webpack_exports__);
         _this.pagination.total = response.data.total;
         _this.loading = false;
       });
+    },
+    save: function save() {
+      this.snack = true;
+      this.snackColor = 'success';
+      this.snackText = 'Data saved';
+    },
+    cancel: function cancel() {
+      this.snack = true;
+      this.snackColor = 'error';
+      this.snackText = 'Canceled';
+    },
+    open: function open() {
+      this.snack = true;
+      this.snackColor = 'info';
+      this.snackText = 'Dialog opened';
+    },
+    close: function close() {
+      console.log('Dialog closed');
     }
   }
 });
@@ -37891,8 +37954,127 @@ var render = function() {
                       "update:options": function($event) {
                         _vm.options = $event
                       }
-                    }
-                  })
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "item.title",
+                        fn: function(props) {
+                          return [
+                            _c(
+                              "v-edit-dialog",
+                              {
+                                attrs: { "return-value": props.item.title },
+                                on: {
+                                  "update:returnValue": function($event) {
+                                    return _vm.$set(props.item, "title", $event)
+                                  },
+                                  "update:return-value": function($event) {
+                                    return _vm.$set(props.item, "title", $event)
+                                  },
+                                  save: _vm.save,
+                                  cancel: _vm.cancel,
+                                  open: _vm.open,
+                                  close: _vm.close
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "input",
+                                      fn: function() {
+                                        return [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              rules: [_vm.max25chars],
+                                              label: "Edit",
+                                              "single-line": "",
+                                              counter: ""
+                                            },
+                                            model: {
+                                              value: props.item.title,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  props.item,
+                                                  "title",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "props.item.title"
+                                            }
+                                          })
+                                        ]
+                                      },
+                                      proxy: true
+                                    }
+                                  ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(props.item.title) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          ]
+                        }
+                      }
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-snackbar",
+                    {
+                      attrs: { timeout: 3000, color: _vm.snackColor },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "action",
+                          fn: function(ref) {
+                            var attrs = ref.attrs
+                            return [
+                              _c(
+                                "v-btn",
+                                _vm._b(
+                                  {
+                                    attrs: { text: "" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.snack = false
+                                      }
+                                    }
+                                  },
+                                  "v-btn",
+                                  attrs,
+                                  false
+                                ),
+                                [
+                                  _vm._v(
+                                    "\n                            Close\n                        "
+                                  )
+                                ]
+                              )
+                            ]
+                          }
+                        }
+                      ]),
+                      model: {
+                        value: _vm.snack,
+                        callback: function($$v) {
+                          _vm.snack = $$v
+                        },
+                        expression: "snack"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.snackText) +
+                          "\n\n                    "
+                      )
+                    ]
+                  )
                 ],
                 1
               )

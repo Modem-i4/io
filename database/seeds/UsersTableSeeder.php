@@ -29,6 +29,14 @@ class UsersTableSeeder extends Seeder
                 'avatar_original' => 'https://lh5.googleusercontent.com/-d_60A16k1Qo/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclJXsCCfufd8iQ89JnaZofl6R7jGw/photo.jpg',
                 'google_id' => '116474708955860264231',
             ],
+            [
+                'name' => 'Максим Луцюк',
+                'email' => 'maksym.lutsiuk@oa.edu.ua',
+                'role' => 'admin',
+                'avatar' => 'https://lh5.googleusercontent.com/-d_60A16k1Qo/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclJXsCCfufd8iQ89JnaZofl6R7jGw/photo.jpg',
+                'avatar_original' => 'https://lh5.googleusercontent.com/-d_60A16k1Qo/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclJXsCCfufd8iQ89JnaZofl6R7jGw/photo.jpg',
+                'google_id' => '116474708955860264232',
+            ],
         ];
         DB::table('users')->insert($data);
 
