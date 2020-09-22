@@ -58,7 +58,7 @@ Route::group($inventoryGroupData, function() {
     });
 });
 
-
+//Auth
 $authGroupData = [
     'namespace' => 'Auth',
 ];
@@ -71,3 +71,19 @@ Route::group($authGroupData, function() {
     //Route::post('login', 'LoginController@login');  //Native Login User Form
 });
 Route::get('/test/users', 'Api\UserController@index');
+
+//API
+Route::group(['middleware' => ['can:isAdmin']], function () {
+
+    $apiGroupData = [
+        'namespace' => 'Api',
+        'prefix' => 'api',
+    ];
+
+    Route::group($apiGroupData, function () {
+        Route::get('users', 'UserController@index');
+        Route::get('departments', 'DepartmentController@index')->name('api.departments');
+        Route::get('departments1', 'DepartmentController@index1')->name('api.departments1');
+    });
+
+});

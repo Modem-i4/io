@@ -2008,72 +2008,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37894,268 +37828,162 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", {}, [
-    _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "col-12 pt-3 mb-3 bg-white rounded" }, [
-        _c("h2", { staticClass: "mb-3 display-1" }, [_vm._v("Приміщення")]),
-        _vm._v(" "),
-        _c("div", {}),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "row justify-content-center" }, [
-          _c(
-            "div",
-            { staticClass: "col-md-12" },
-            [
-              _c(
-                "v-card",
-                [
-                  _c(
-                    "v-card-title",
-                    [
-                      _vm._v(
-                        "\n                    Приміщення\n                    "
-                      ),
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          "append-icon": "mdi-magnify",
-                          label: "Пошук",
-                          "single-line": "",
-                          "hide-details": ""
-                        },
-                        model: {
-                          value: _vm.search,
-                          callback: function($$v) {
-                            _vm.search = $$v
-                          },
-                          expression: "search"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("v-data-table", {
-                    staticClass: "elevation-1",
-                    attrs: {
-                      "footer-props": {
-                        itemsPerPageOptions: [10, 25, 50]
-                      },
-                      headers: _vm.headers,
-                      items: _vm.items,
-                      options: _vm.options,
-                      "server-items-length": _vm.pagination.total,
-                      loading: _vm.loading
-                    },
+  return _c(
+    "v-card",
+    [
+      _c(
+        "v-card-title",
+        [
+          _vm._v("\n        Приміщення\n        "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c("v-text-field", {
+            attrs: {
+              "append-icon": "mdi-magnify",
+              label: "Пошук",
+              "single-line": "",
+              "hide-details": ""
+            },
+            model: {
+              value: _vm.search,
+              callback: function($$v) {
+                _vm.search = $$v
+              },
+              expression: "search"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("v-data-table", {
+        staticClass: "elevation-1",
+        attrs: {
+          "footer-props": {
+            itemsPerPageOptions: [10, 25, 50]
+          },
+          headers: _vm.headers,
+          items: _vm.items,
+          options: _vm.options,
+          "server-items-length": _vm.pagination.total,
+          loading: _vm.loading
+        },
+        on: {
+          "update:options": function($event) {
+            _vm.options = $event
+          }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "item.title",
+            fn: function(props) {
+              return [
+                _c(
+                  "v-edit-dialog",
+                  {
+                    attrs: { "return-value": props.item.title },
                     on: {
-                      "update:options": function($event) {
-                        _vm.options = $event
-                      }
+                      "update:returnValue": function($event) {
+                        return _vm.$set(props.item, "title", $event)
+                      },
+                      "update:return-value": function($event) {
+                        return _vm.$set(props.item, "title", $event)
+                      },
+                      save: _vm.save,
+                      cancel: _vm.cancel,
+                      open: _vm.open,
+                      close: _vm.close
                     },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "item.title",
-                        fn: function(props) {
-                          return [
-                            _c(
-                              "v-edit-dialog",
-                              {
-                                attrs: { "return-value": props.item.title },
-                                on: {
-                                  "update:returnValue": function($event) {
-                                    return _vm.$set(props.item, "title", $event)
-                                  },
-                                  "update:return-value": function($event) {
-                                    return _vm.$set(props.item, "title", $event)
-                                  },
-                                  save: _vm.save,
-                                  cancel: _vm.cancel,
-                                  open: _vm.open,
-                                  close: _vm.close
-                                },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "input",
-                                      fn: function() {
-                                        return [
-                                          _c("v-text-field", {
-                                            attrs: {
-                                              rules: [_vm.max25chars],
-                                              label: "Edit",
-                                              "single-line": "",
-                                              counter: ""
-                                            },
-                                            model: {
-                                              value: props.item.title,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  props.item,
-                                                  "title",
-                                                  $$v
-                                                )
-                                              },
-                                              expression: "props.item.title"
-                                            }
-                                          })
-                                        ]
-                                      },
-                                      proxy: true
-                                    }
-                                  ],
-                                  null,
-                                  true
-                                )
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(props.item.title) +
-                                    "\n                            "
-                                )
-                              ]
-                            )
-                          ]
-                        }
-                      }
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "v-snackbar",
-                    {
-                      attrs: { timeout: 3000, color: _vm.snackColor },
-                      scopedSlots: _vm._u([
+                    scopedSlots: _vm._u(
+                      [
                         {
-                          key: "action",
-                          fn: function(ref) {
-                            var attrs = ref.attrs
+                          key: "input",
+                          fn: function() {
                             return [
-                              _c(
-                                "v-btn",
-                                _vm._b(
-                                  {
-                                    attrs: { text: "" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.snack = false
-                                      }
-                                    }
+                              _c("v-text-field", {
+                                attrs: {
+                                  rules: [_vm.max25chars],
+                                  label: "Edit",
+                                  "single-line": "",
+                                  counter: ""
+                                },
+                                model: {
+                                  value: props.item.title,
+                                  callback: function($$v) {
+                                    _vm.$set(props.item, "title", $$v)
                                   },
-                                  "v-btn",
-                                  attrs,
-                                  false
-                                ),
-                                [
-                                  _vm._v(
-                                    "\n                            Close\n                        "
-                                  )
-                                ]
-                              )
+                                  expression: "props.item.title"
+                                }
+                              })
                             ]
+                          },
+                          proxy: true
+                        }
+                      ],
+                      null,
+                      true
+                    )
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(props.item.title) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: { timeout: 3000, color: _vm.snackColor },
+          scopedSlots: _vm._u([
+            {
+              key: "action",
+              fn: function(ref) {
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._b(
+                      {
+                        attrs: { text: "" },
+                        on: {
+                          click: function($event) {
+                            _vm.snack = false
                           }
                         }
-                      ]),
-                      model: {
-                        value: _vm.snack,
-                        callback: function($$v) {
-                          _vm.snack = $$v
-                        },
-                        expression: "snack"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.snackText) +
-                          "\n\n                    "
-                      )
-                    ]
+                      },
+                      "v-btn",
+                      attrs,
+                      false
+                    ),
+                    [_vm._v("\n                Close\n            ")]
                   )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(1)
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "d-flex justify-content-between flex-wrap" },
-      [
-        _c("div", { staticClass: "d-flex justify-content-between flex-wrap" }, [
-          _c("div", { staticClass: "py-3" }, [
-            _c(
-              "a",
-              {
-                staticClass:
-                  "p-2 border rounded text-decoration-none delete-many",
-                attrs: { href: "" }
-              },
-              [
-                _c("span", { staticClass: "icon-trash-o" }),
-                _vm._v(" "),
-                _c("span", { staticClass: "d-none d-md-inline" }, [
-                  _vm._v("Видалити відмічені")
-                ])
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "alert-msg p-3 d-flex justify-content-between" },
-          [_c("div")]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "d-flex justify-content-between flex-wrap" },
-      [
-        _c("div", { staticClass: "py-3" }, [
-          _c(
-            "a",
-            {
-              staticClass:
-                "p-2 border rounded text-decoration-none delete-many",
-              attrs: { href: "" }
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.snack,
+            callback: function($$v) {
+              _vm.snack = $$v
             },
-            [
-              _c("span", { staticClass: "icon-trash-o" }),
-              _vm._v(" "),
-              _c("span", { staticClass: "d-none d-md-inline" }, [
-                _vm._v("Видалити відмічені")
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div")
-      ]
-    )
-  }
-]
+            expression: "snack"
+          }
+        },
+        [_vm._v("\n        " + _vm._s(_vm.snackText) + "\n\n        ")]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

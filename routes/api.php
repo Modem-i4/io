@@ -13,21 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-*/
 
-$apiGroupData = [
-    'namespace' => 'Api',
-];
+/*Route::group(['middleware' => ['can:isAdmin']], function () {
 
-Route::group($apiGroupData, function() {
-    Route::get('users', 'UserController@index');
-    Route::get('departments', 'DepartmentController@index')->name('api.departments');
-});
+    $apiGroupData = [
+        'namespace' => 'Api',
+    ];
 
+    Route::group($apiGroupData, function () {
+        Route::get('users', 'UserController@index');
+        Route::get('departments', 'DepartmentController@index')->name('api.departments');
+    });
+
+});*/
 //Dep
 //Route::get('/api/departments/categories', 'Inventory\Admin\DepartmentController@categoriesApi')->middleware('can:isAdmin')->name('api.categories');
 

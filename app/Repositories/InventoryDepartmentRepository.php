@@ -53,6 +53,17 @@ class InventoryDepartmentRepository extends CoreRepository
 
     }
 
+    public function getAll1()
+    {
+        /*$columns = implode(', ', [
+            'id',
+            'title',  //додаємо поле id_title  CONCAT (id, ". ", title) AS id_title'
+        ]);*/
+
+
+
+    }
+
     /**
      *  Пошук дочірніх елементів
      *  @param int $id

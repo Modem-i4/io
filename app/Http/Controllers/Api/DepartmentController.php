@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 //use App\Models\InventoryDepartment;
+use App\Models\InventoryDepartment;
 use App\Repositories\InventoryDepartmentRepository;
 
 class DepartmentController extends Controller
@@ -25,5 +26,13 @@ class DepartmentController extends Controller
         $items = $this->inventoryDepartmentRepository->getAll();
 
         return $items;
+    }
+    public function index1()
+    {
+        $departments = InventoryDepartment::with('parentDepartment')->get()
+            ->sortBy(function($department) {
+                return $department->parentDepartment->title;
+            });
+        return $departments;
     }
 }
