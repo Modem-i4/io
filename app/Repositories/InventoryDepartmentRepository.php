@@ -35,61 +35,21 @@ class InventoryDepartmentRepository extends CoreRepository
      *
      * @return
      */
+
     public function getAll()
     {
-        /*$columns = implode(', ', [
-            'id',
-            'title',  //додаємо поле id_title  CONCAT (id, ". ", title) AS id_title'
-        ]);*/
+
         $perPage = request('perPage');
-        $columns = ['id', 'title', 'parent_id'];
+        $columns = ['inventory_departments.id as id', 'inventory_departments.title as title', 'inventory_departments.parent_id as parent_id', 'inv_dep.title as parent_title'];
 
-        $result = $this->startConditions()
-            ->select($columns)
-            ->with(['parentDepartment:id,title',]) //?
-            ->filter()
-            ->paginate($perPage);
-        return $result;
-
-    }
-
-    public function getAll1()
-    {
-        /*$columns = implode(', ', [
-            'id',
-            'title',  //додаємо поле id_title  CONCAT (id, ". ", title) AS id_title'
-        ]);*/
-        $perPage = request('perPage');
-        $columns = ['inventory_departments.id', 'inventory_departments.title', 'inventory_departments.parent_id', 'ide.title as parent_title'];
-
-        /*$result = $this->startConditions()
-            //->select($columns)
-            ->with(['parentDepartment:id,title',]) //?
-            ->filter()
-            ->paginate($perPage);
-
-        $result->sortByDesc(function($product) {
-            return $product->parentDepartment->title;
-        });*/
-        //$order = 'asc';
         $result = $this->startConditions()
             ->select($columns)
             ->with(['parentDepartment:id,title',])
-            ->join('inventory_departments as ide', 'inventory_departments.parent_id', '=', 'ide.id')
+            ->join('inventory_departments as inv_dep', 'inventory_departments.parent_id', '=', 'inv_dep.id')
             //->orderBy('parent_title', $order)
             ->filter()
             ->paginate($perPage);
-        /*//->select($columns)
-            ->with('parentDepartment:id,title')
-            ->get()
-            ->sortBy(function($department) {
-                return $department->parentDepartment->title;
-            })
-            ->filter()
-            ->take(10)
-            //->paginate($perPage)*/
-            ;
-        //return response()->json(['data' => [$result]]);
+
         return $result;
 
     }

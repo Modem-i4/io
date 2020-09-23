@@ -13,15 +13,16 @@ class DepartmentsFilter extends QueryFilter
      * @var array
      */
     protected $searchable = [
-        'id',
-        'title',
-        'parent_id',
+        'inventory_departments.id',
+        'inventory_departments.title',
+        //'inventory_departments.parent_id',
+        'inv_dep.title',
     ];
 
     protected $sortable = [
         'id',
         'title',
-        'parent_id',
+        //'parent_id',
         'parent_title',
     ];
 
