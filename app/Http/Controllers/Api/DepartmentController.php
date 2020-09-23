@@ -24,7 +24,7 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $items = $this->inventoryDepartmentRepository->getAll();
+        $items = $this->inventoryDepartmentRepository->getAllWithParents();
 
         return $items;
     }

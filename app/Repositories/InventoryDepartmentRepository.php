@@ -33,14 +33,35 @@ class InventoryDepartmentRepository extends CoreRepository
     /**
      * Отримати всі відділи
      *
-     * @return
+     * @return id, title
      */
 
     public function getAll()
     {
 
         $perPage = request('perPage');
-        $columns = ['inventory_departments.id as id', 'inventory_departments.title as title', 'inventory_departments.parent_id as parent_id', 'inv_dep.title as parent_title'];
+        $columns = ['id', 'title'];
+
+        $result = $this->startConditions()
+            ->select($columns)
+            ->filter()
+            ->paginate($perPage);
+
+        return $result;
+
+    }
+
+    /**
+     * Отримати всі відділи з батьківськими категоріями
+     *
+     * @return id, title, parent_id, parent_title, parent_department {id, title}
+     */
+
+    public function getAllWithParents()
+    {
+
+        $perPage = request('perPage');
+        $columns = ['inventory_departments.*', 'inv_dep.title as parent_title'];
 
         $result = $this->startConditions()
             ->select($columns)
@@ -55,13 +76,13 @@ class InventoryDepartmentRepository extends CoreRepository
     }
 
     /**
-     *  Пошук дочірніх елементів
+     *  Пошук наявності дочірніх елементів для перевірки при видаленні
      *  @param int $id
      *  @return Model
      */
     public function getChild($id)
     {
-        return $this->startConditions()->where('parent_id',$id)->first();
+        return $this->startConditions()->where('parent_id', $id)->first();
     }
 
 }
