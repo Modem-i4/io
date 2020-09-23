@@ -22,6 +22,7 @@ class DepartmentsFilter extends QueryFilter
         'id',
         'title',
         'parent_id',
+        'parent_title',
     ];
 
     /*

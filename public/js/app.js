@@ -2034,7 +2034,7 @@ __webpack_require__.r(__webpack_exports__);
         value: 'title'
       }, {
         text: 'Корпус',
-        value: 'parent_department.title'
+        value: 'parent_title'
       }]
     };
   },

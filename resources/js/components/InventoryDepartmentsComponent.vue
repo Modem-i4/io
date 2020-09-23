@@ -86,7 +86,7 @@ export default {
                    // sortable: false,
                 },
                 { text: "Назва", value: 'title' },
-                { text: 'Корпус', value: 'parent_department.title' },
+                { text: 'Корпус', value: 'parent_title' },
             ],
         }
     },

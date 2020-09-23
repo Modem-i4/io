@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 //use App\Models\InventoryDepartment;
 use App\Models\InventoryDepartment;
 use App\Repositories\InventoryDepartmentRepository;
+use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
@@ -23,16 +24,28 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $items = $this->inventoryDepartmentRepository->getAll();
+        $items = $this->inventoryDepartmentRepository->getAll1();
 
         return $items;
     }
     public function index1()
     {
-        $departments = InventoryDepartment::with('parentDepartment')->get()
+        $items = $this->inventoryDepartmentRepository->getAll1();
+
+       /* $order = 'asc';
+        $items = InventoryDepartment::join('inventory_departments as ide', 'inventory_departments.parent_id', '=', 'ide.id')
+            ->orderBy('ide.title', $order)
+            ->select('inventory_departments.*')
+            ->paginate(10);*/
+
+
+       /* $departments = InventoryDepartment::with('parentDepartment:id,title')->get()
             ->sortBy(function($department) {
                 return $department->parentDepartment->title;
-            });
-        return $departments;
+            })->take(10);*/
+
+        return $items;
+        //return $departments;
+
     }
 }
