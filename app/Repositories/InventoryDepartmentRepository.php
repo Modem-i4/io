@@ -30,6 +30,13 @@ class InventoryDepartmentRepository extends CoreRepository
             ->first();
     }
 
+    public function getForEdit($id)
+    {
+        return $this->startConditions()
+            ->where('id', $id)
+            ->first();
+    }
+
     /**
      * Отримати всі відділи
      *
