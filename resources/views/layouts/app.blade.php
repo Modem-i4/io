@@ -41,38 +41,38 @@
                             @can('isAdmin')
                             <li class="nav-item mt-2">
                               <a href="#" class="text-dark ml-2 d-flex align-items-center">
-                                  <svg class="icon icon-display mx-2" width="1em" height="1em"><use xlink:href="/img/icons/symbol-defs.svg#icon-display"></use></svg>Технічне обладнання
+                                  <svg class="icon icon-display mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-display"></use></svg>Технічне обладнання
                               </a>
                             </li>
                             <li class="nav-item mt-2">
                               <a href="#" class="ml-2 {{ request()->routeIs('admin.departments.i')  ? 'active' : 'text-dark' }} d-flex align-items-center">
-                                  <svg class="icon icon-file-text2 mx-2" width="1em" height="1em"><use xlink:href="/img/icons/symbol-defs.svg#icon-file-text2"></use></svg>Накладні
+                                  <svg class="icon icon-file-text2 mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-file-text2"></use></svg>Накладні
                               </a>
                             </li>
 
                             <li class="nav-item mt-2">
                               <a href="#" class="text-dark ml-2 d-flex align-items-center">
-                                  <svg class="icon icon-transfer mx-2" width="1em" height="1em"><use xlink:href="/img/icons/symbol-defs.svg#icon-transfer"></use></svg>Передачі
+                                  <svg class="icon icon-transfer mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-transfer"></use></svg>Передачі
                               </a>
                             </li>
                             <li class="mt-0 pl-1 nav-item dropdown">
                                 <a class="nav-link dropdown-toggle ml-2 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <svg class="icon icon-cog mx-2" width="1em" height="1em"><use xlink:href="/img/icons/symbol-defs.svg#icon-cog"></use></svg>Налаштування
+                                    <svg class="icon icon-cog mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-cog"></use></svg>Налаштування
                               </a>
                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a href="{{ route('admin.departments.index') }}" class="dropdown-item d-flex align-items-center {{ request()->routeIs('admin.departments.index')  ? 'active' : 'text-dark' }}">
-                                    <svg class="icon icon-home mx-2" width="1em" height="1em"><use xlink:href="/img/icons/symbol-defs.svg#icon-home"></use></svg>Приміщення
+                                    <svg class="icon icon-home mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-home"></use></svg>Приміщення
                                 </a>
                                 <a href="#" class="dropdown-item text-dark d-flex align-items-center">
-                                    <svg class="icon icon-list mx-2" width="1em" height="1em"><use xlink:href="/img/icons/symbol-defs.svg#icon-list"></use></svg>Типи обладнання
+                                    <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-list"></use></svg>Типи обладнання
                               </a>
 
                                 <div class="dropdown-divider"></div>
                                 <a href="{{ route('admin.users.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.users.index')  ? 'active' : 'text-dark' }}">
-                                    <svg class="icon icon-user-plus mx-2" width="1em" height="1em"><use xlink:href="/img/icons/symbol-defs.svg#icon-user-plus"></use></svg>Користувачі
+                                    <svg class="icon icon-user-plus mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-user-plus"></use></svg>Користувачі
                                 </a>
                                 <a href="#" class="dropdown-item text-dark d-flex align-items-center">
-                                    <svg class="icon icon-users mx-2" width="1em" height="1em"><use xlink:href="/img/icons/symbol-defs.svg#icon-users"></use></svg>Ролі користувачів
+                                    <svg class="icon icon-users mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-users"></use></svg>Ролі користувачів
                                 </a>
                               </div>
                             </li>

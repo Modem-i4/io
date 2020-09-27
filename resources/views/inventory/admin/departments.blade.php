@@ -21,7 +21,7 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary p-2 border rounded">
-                            <span class="icon-add"></span><span class="d-none d-md-inline">Додати приміщення</span>
+                            <svg class="icon icon-plus mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-plus"></use></svg><span class="d-none d-md-inline">Додати приміщення</span>
                         </button>
                     </form>
                 </div>
@@ -36,7 +36,7 @@
                               </svg>
                               <span class="d-none d-md-inline">Редагувати відмічені</span>
                             </a-->
-                            <a href="" class="p-2 border rounded text-decoration-none delete-many"><span class="icon-trash-o"></span> <span class="d-none d-md-inline">Видалити відмічені</span>
+                            <a href="" class="p-2 border rounded text-decoration-none delete-many"><svg class="icon icon-trash-o mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-trash-o"></use></svg><span class="d-none d-md-inline">Видалити відмічені</span>
                             </a>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                 <div class="d-flex justify-content-between flex-wrap">
                     <div class="py-3">
                         <a href="" class="p-2 border rounded text-decoration-none delete-many">
-                            <span class="icon-trash-o"></span> <span class="d-none d-md-inline">Видалити відмічені</span>
+                            <svg class="icon icon-trash-o mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-trash-o"></use></svg><span class="d-none d-md-inline">Видалити відмічені</span>
                         </a>
                     </div>
                     <div>
