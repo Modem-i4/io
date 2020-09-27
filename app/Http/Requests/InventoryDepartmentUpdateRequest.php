@@ -25,7 +25,7 @@ class InventoryDepartmentUpdateRequest extends FormRequest
     public function rules()
     {
             return [
-                    'title' => 'required|min:5|max:200',
+                    'title' => 'required|min:2|max:200',
                     'parent_id' => 'required|integer|exists:inventory_departments,id',
             ];
     }

@@ -1,6 +1,8 @@
 export const DataTableCore = {
     data () {
         return {
+            //singleSelect: false,
+            selected: [],
             snack:{
                 visible: false,
                 color: '',
@@ -56,7 +58,7 @@ export const DataTableCore = {
                 .catch(error => {
                     if (error.response) {
                         // Сервер повернув помилку
-                        this.snackError('Помилка завантаення ' + error.response.status)
+                        this.snackError('Помилка завантаження ' + error.response.status)
                     } else if (error.request) {
                         // Сервер не повернув нічого
                         this.snackError('Не вдалось підключитися до сервера')
@@ -77,7 +79,7 @@ export const DataTableCore = {
                 .catch(error => {
                     if (error.response) {
                         // Сервер повернув помилку
-                        this.snackError('Помилка ' + error.response.status)
+                        this.snackError('Помилка ' + error.response.status + ' ' + error.response.data.errors.title)
                     } else if (error.request) {
                         // Сервер не повернув нічого
                         this.snackError('Не вдалось підключитися до сервера')

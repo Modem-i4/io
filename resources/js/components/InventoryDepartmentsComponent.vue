@@ -12,6 +12,8 @@
                         ></v-text-field>
                     </v-card-title>
                     <v-data-table
+                        v-model="selected"
+                        show-select
                         :footer-props="{
                             itemsPerPageOptions: [10, 25, 50]
                         }"
@@ -32,7 +34,7 @@
                                 <template v-slot:input>
                                     <v-text-field
                                         v-model="props.item.title"
-                                        :rules="[max25chars]"
+                                        :rules="[max50chars]"
                                         label="Edit"
                                         single-line
                                         counter
@@ -71,7 +73,7 @@ export default {
 
     data () {
         return {
-            max25chars: v => v.length <= 25 || 'Input too long!',
+            max50chars: v => v.length <= 50 || 'Input too long!',
             crudApiEndpoint: '/api/departments/',
             headers: [
                 { text: 'id', align: 'start',  value: 'id',

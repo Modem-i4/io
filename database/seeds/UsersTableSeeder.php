@@ -40,6 +40,6 @@ class UsersTableSeeder extends Seeder
         ];
         DB::table('users')->insert($data);
 
-        factory(App\Models\User::class, 2000)->create();
+       // factory(App\Models\User::class, 2000)->create();
     }
 }
