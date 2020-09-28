@@ -58,6 +58,18 @@ class InventoryDepartmentRepository extends CoreRepository
 
     }
 
+    public function getAllForList()
+    {
+        $columns = ['id', 'title'];
+
+        $result = $this->startConditions()
+            ->select($columns)
+            ->get();
+
+        return $result;
+
+    }
+
     /**
      * Отримати всі відділи з батьківськими категоріями
      *

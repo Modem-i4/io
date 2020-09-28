@@ -30,6 +30,13 @@ class DepartmentController extends Controller
         return $items;
     }
 
+    public function all()
+    {
+        $items = $this->inventoryDepartmentRepository->getAllForList();
+
+        return $items;
+    }
+
     public function update(InventoryDepartmentUpdateRequest $request, $id)
     {
         $item = $this->inventoryDepartmentRepository->getForEdit($id);

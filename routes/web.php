@@ -83,6 +83,7 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
     Route::group($apiGroupData, function () {
         Route::get('users', 'UserController@index');
 
+        Route::get('departments/all', 'DepartmentController@all');
         Route::resource('departments', 'DepartmentController')
             ->only(['index', 'update'])
             ->names('api.departments');

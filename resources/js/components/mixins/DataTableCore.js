@@ -72,11 +72,15 @@ export const DataTableCore = {
         },
 
         // Редагування полей
-        save (updatedItem) {
-            axios.patch(this.crudApiEndpoint + updatedItem.id, updatedItem).then(response => {
-                this.snackSuccess('Збережено')
-            })
-                .catch(error => {
+        save (item) {
+            if (typeof this.prepareItemForSave === 'function') {
+                item = this.prepareItemForSave(item);
+            }
+
+            axios.patch(this.crudApiEndpoint + item.id, item)
+                .then(response => {
+                    this.snackSuccess('Збережено')
+                }).catch(error => {
                     if (error.response) {
                         // Сервер повернув помилку
                         this.snackError('Помилка ' + error.response.status + ' ' + error.response.data.errors.title)
