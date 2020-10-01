@@ -1,4 +1,14 @@
 <template>
+    <div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <div class="py-3">
+                        <delete-selected-button
+                            @click.native="deleteSelectedItems"
+                        ></delete-selected-button>
+                    </div>
+                </div>
                 <v-card>
                     <v-card-title>
                         Приміщення
@@ -11,6 +21,7 @@
                             hide-details
                         ></v-text-field>
                     </v-card-title>
+
                     <v-data-table
                         v-model="selected"
                         show-select
@@ -43,9 +54,9 @@
                             </v-edit-dialog>
                         </template>
 
-                        <template v-slot:item.parent_title="props">
+                        <template v-slot:item.parent_department.title="props">
                             <v-edit-dialog
-                                :return-value.sync="props.item.parent_id"
+                                :return-value.sync="props.item.parent_department"
                                 save-text="Зберегти"
                                 cancel-text="Відмінити"
                                 @save="save(props.item)"
@@ -84,7 +95,16 @@
                         </template>
                     </v-snackbar>
                 </v-card>
-
+                <div class="d-flex justify-content-between flex-wrap">
+                    <div class="py-3">
+                        <delete-selected-button
+                            @click.native="deleteSelectedItems"
+                        ></delete-selected-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -104,19 +124,18 @@ export default {
                    // sortable: false,
                 },
                 { text: "Назва", value: 'title' },
-                { text: 'Корпус', value: 'parent_title' },
+                { text: 'Корпус', value: 'parent_department.title', fieldNameForSort: 'parent_title' },
             ],
-
-            prepareItemForSave(item) {
-                return {
-                    id: item.id,
-                    parent_id: item.parent_department.id,
-                    title: item.title,
-                };
-            }
         }
     },
     methods: {
+        prepareItemForSave(item) {
+            return {
+                id: item.id,
+                parent_id: item.parent_department.id,
+                title: item.title,
+            };
+        },
         getAllDepartments() {
             this.loading = true;
 

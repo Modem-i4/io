@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-//use App\Models\InventoryDepartment;
 use App\Http\Requests\InventoryDepartmentUpdateRequest;
 use App\Models\InventoryDepartment;
 use App\Repositories\InventoryDepartmentRepository;
-use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
@@ -46,6 +44,11 @@ class DepartmentController extends Controller
         if(!$result)
             abort('500');
 
+    }
+
+    public function destroyMany()    //TODO: Create InventoryDepartmentDestroyManyRequest
+    {
+        InventoryDepartment::destroy(request()->input('idList'));    //TODO: Change param name
     }
 
 }
