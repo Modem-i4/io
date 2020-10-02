@@ -86,7 +86,7 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
         Route::get('departments/all', 'DepartmentController@all');
         Route::delete('departments/', 'DepartmentController@destroyMany');
         Route::resource('departments', 'DepartmentController')
-            ->only(['index', 'update'])
+            ->only(['index', 'update', 'store'])
             ->names('api.departments');
 
         Route::get('departments1', 'DepartmentController@index1')->name('api.departments1');

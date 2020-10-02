@@ -46,6 +46,17 @@ class DepartmentController extends Controller
 
     }
 
+    public function store(InventoryDepartmentUpdateRequest $request)
+    {
+        //$item = $this->inventoryDepartmentRepository->getForEdit($id);
+        //abort_if(empty($item), '404');
+
+        $result = InventoryDepartment::create($request->input());
+        if(!$result)
+            abort('500');
+
+    }
+
     public function destroyMany()    //TODO: Create InventoryDepartmentDestroyManyRequest
     {
         InventoryDepartment::destroy(request()->input('idList'));    //TODO: Change param name

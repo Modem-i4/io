@@ -1,5 +1,25 @@
 <template>
-    <div>
+    <div class="">
+            <div class="form-inline">
+            <div class="form-group mr-3">
+                <label for="addtitle" class="my-1 mr-2">Назва:</label>
+                <input v-model="add_parent_title" type="text" class="form-control" id="addTitle" placeholder="Введіть назву" name="addTitle" minlength="3" required>
+            </div>
+            <div class="form-group mr-3">
+                <label for="addPlace" class="my-1 mr-2">Корпус:</label>
+                <v-combobox
+                    v-model="add_parent_department"
+                    :items="allDepartments"
+                    label="Виберіть батьківський департамент"
+                    item-text="title"
+                    item-value="id"
+                ></v-combobox>
+            </div>
+            <button type="submit" class="btn btn-primary p-2 border rounded" @click="addNewItem">
+                <svg class="icon icon-plus mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-plus"></use></svg><span class="d-none d-md-inline">Додати приміщення</span>
+            </button>
+            </div>
+
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="d-flex justify-content-between flex-wrap">
@@ -116,6 +136,8 @@ export default {
     data () {
         return {
             allDepartments: [],
+            add_parent_title: null,
+            add_parent_department: null,
 
             max50chars: v => v.length <= 50 || 'Input too long!',
             crudApiEndpoint: '/api/departments/',
@@ -134,6 +156,13 @@ export default {
                 id: item.id,
                 parent_id: item.parent_department.id,
                 title: item.title,
+            };
+        },
+        prepareItemForSaveNew() {
+            return {
+                title: this.add_parent_title,
+                parent_id: this.add_parent_department.id,
+
             };
         },
         getAllDepartments() {
@@ -158,6 +187,40 @@ export default {
 
                 this.loading = false;
             });
+        },
+        addNewItem() {
+            if (typeof this.prepareItemForSaveNew === 'function') {
+                var item = this.prepareItemForSaveNew();
+            }
+            axios.post(this.crudApiEndpoint, item)
+
+                .then(response => {console.log(item);
+                    this.snackSuccess('Збережено');
+                    this.fetch();
+                }).catch(error => {
+                if (error.response) {console.log(item);
+                    // Сервер повернув помилку
+                    let errorText;
+
+                    switch (error.response.status) {
+                        case 422:
+                            errorText = 'Помилка валідації!';
+                            console.log(error.response.data);
+                            break;
+                        default:
+                            errorText = 'Помилка ' + error.response.status;
+                            break;
+                    }
+                    this.snackError(errorText);
+                } else if (error.request) {
+                    // Сервер не повернув нічого
+                    this.snackError('Не вдалось підключитися до сервера')
+                } else {
+                    // Сталася помилка при створенні запиту
+                    this.snackError('Сталася помилка при створенні запиту')
+                }
+            });
+
         },
     },
     mounted() {
