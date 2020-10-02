@@ -16,6 +16,7 @@ export const DataTableCore = {
             pagination: {},
             search: '',
             items: [],
+            newItem: {},
 
             loading: true,
             options: {
@@ -28,7 +29,7 @@ export const DataTableCore = {
     },
     computed: {
         sortBy: function() {    // TODO: Rename to sortField?
-            if(this.options.sortBy.length == 0) {
+            if(this.options.sortBy.length === 0) {
                 return null;
             }
             return (this.headers.filter(obj => {
@@ -90,12 +91,12 @@ export const DataTableCore = {
         },
 
         // Редагування полей
-        save (item) {
-            if (typeof this.prepareItemForSave === 'function') {
-                item = this.prepareItemForSave(item);
+        update (item) {
+            if (typeof this.prepareItemForUpdate === 'function') {
+                item = this.prepareItemForUpdate(item);
             }
 
-            axios.patch(this.crudApiEndpoint + item.id, item)
+            axios.patch(this.crudApiEndpoint + '/' + item.id, item)
                 .then(response => {
                     this.snackSuccess('Збережено');
                     this.fetch();
@@ -122,6 +123,42 @@ export const DataTableCore = {
                         this.snackError('Сталася помилка при створенні запиту')
                     }
                 });
+        },
+        // Створення
+        create () {
+            var item = this.newItem;
+
+            if (typeof this.prepareItemForCreate === 'function') {
+                item = this.prepareItemForCreate(item);
+            }
+
+            axios.post(this.crudApiEndpoint, item)
+                .then(response => {
+                    this.snackSuccess('Створено');
+                    this.fetch();
+                }).catch(error => {    //TODO: Винести перевірку помилок
+                if (error.response) {
+                    // Сервер повернув помилку
+                    let errorText;
+
+                    switch (error.response.status) {
+                        case 422:
+                            errorText = 'Помилка валідації!';
+                            console.log(error.response.data);
+                            break;
+                        default:
+                            errorText = 'Помилка ' + error.response.status;
+                            break;
+                    }
+                    this.snackError(errorText);
+                } else if (error.request) {
+                    // Сервер не повернув нічого
+                    this.snackError('Не вдалось підключитися до сервера')
+                } else {
+                    // Сталася помилка при створенні запиту
+                    this.snackError('Сталася помилка при створенні запиту')
+                }
+            });
         },
         cancel() {
             this.snackError('Відмінено')

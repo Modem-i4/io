@@ -51,10 +51,21 @@ class DepartmentController extends Controller
         //$item = $this->inventoryDepartmentRepository->getForEdit($id);
         //abort_if(empty($item), '404');
 
-        $result = InventoryDepartment::create($request->input());
+        //return __method__;
+/*
+        $item = new InventoryDepartment();
+        $item->title = $request->input('title');
+        $item->parent_id = $request->input('parent_id');
+
+        $item->create();
+        $item->save();
+*/
+        $result = InventoryDepartment::insert($request->input());
+/*
+        return $result;
         if(!$result)
             abort('500');
-
+*/
     }
 
     public function destroyMany()    //TODO: Create InventoryDepartmentDestroyManyRequest
