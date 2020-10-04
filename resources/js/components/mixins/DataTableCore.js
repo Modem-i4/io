@@ -36,8 +36,11 @@ export const DataTableCore = {
                 return obj.value === this.options.sortBy[0]
             })[0]).fieldNameForSort ?? this.options.sortBy[0];
         },
-        sortDirection: function () {
+        sortDirection: function() {
             return this.sortBy == null ? null : this.options.sortDesc[0] ? 'desc' : 'asc';
+        },
+        isSelectedAny: function() {
+          return (this.selected.length !== 0);
         },
     },
     watch: {
@@ -100,33 +103,36 @@ export const DataTableCore = {
                 .then(response => {
                     this.snackSuccess('Збережено');
                     this.fetch();
-                }).catch(error => {
-                    if (error.response) {
-                        // Сервер повернув помилку
-                        let errorText;
-
-                        switch (error.response.status) {
-                            case 422:
-                                errorText = 'Помилка валідації!';
-                                console.log(error.response.data);
-                                break;
-                            default:
-                                errorText = 'Помилка ' + error.response.status;
-                                break;
-                        }
-                        this.snackError(errorText);
-                    } else if (error.request) {
-                        // Сервер не повернув нічого
-                        this.snackError('Не вдалось підключитися до сервера')
-                    } else {
-                        // Сталася помилка при створенні запиту
-                        this.snackError('Сталася помилка при створенні запиту')
-                    }
-                });
+                }).catch(error => this.handleRequestError(error));
         },
+
+        handleRequestError(error) {
+            if (error.response) {
+                // Сервер повернув помилку
+                let errorText;
+
+                switch (error.response.status) {
+                    case 422:
+                        errorText = 'Помилка валідації!';
+                        console.log(error.response.data);
+                        break;
+                    default:
+                        errorText = 'Помилка ' + error.response.status;
+                        break;
+                }
+                this.snackError(errorText);
+            } else if (error.request) {
+                // Сервер не повернув нічого
+                this.snackError('Не вдалось підключитися до сервера')
+            } else {
+                // Сталася помилка при створенні запиту
+                this.snackError('Сталася помилка при створенні запиту')
+            }
+        },
+
         // Створення
         create () {
-            var item = this.newItem;
+            let item = this.newItem;
 
             if (typeof this.prepareItemForCreate === 'function') {
                 item = this.prepareItemForCreate(item);
@@ -136,29 +142,9 @@ export const DataTableCore = {
                 .then(response => {
                     this.snackSuccess('Створено');
                     this.fetch();
-                }).catch(error => {    //TODO: Винести перевірку помилок
-                if (error.response) {
-                    // Сервер повернув помилку
-                    let errorText;
 
-                    switch (error.response.status) {
-                        case 422:
-                            errorText = 'Помилка валідації!';
-                            console.log(error.response.data);
-                            break;
-                        default:
-                            errorText = 'Помилка ' + error.response.status;
-                            break;
-                    }
-                    this.snackError(errorText);
-                } else if (error.request) {
-                    // Сервер не повернув нічого
-                    this.snackError('Не вдалось підключитися до сервера')
-                } else {
-                    // Сталася помилка при створенні запиту
-                    this.snackError('Сталася помилка при створенні запиту')
-                }
-            });
+                    this.newItem = {};    //Очищуємо поля в формі додавання
+                }).catch(error => this.handleRequestError(error));
         },
         cancel() {
             this.snackError('Відмінено')
@@ -180,19 +166,9 @@ export const DataTableCore = {
                 this.snackSuccess('Видалено елементів - ' + this.selected.length);
 
                 this.selected = [];
+
             })
-            .catch(error => {
-                if (error.response) {
-                    // Сервер повернув помилку
-                    this.snackError('Помилка ' + error.response.status);
-                } else if (error.request) {
-                    // Сервер не повернув нічого
-                    this.snackError('Не вдалось підключитися до сервера')
-                } else {
-                    // Сталася помилка при створенні запиту
-                    this.snackError('Сталася помилка при створенні запиту')
-                }
-            });
+            .catch(error => this.handleRequestError(error));
         },
 
         // Створення снеків

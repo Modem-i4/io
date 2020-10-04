@@ -10,7 +10,7 @@
                 <v-combobox
                     v-model="newItem.parent_department"
                     :items="allDepartments"
-                    label="Виберіть батьківський департамент"
+                    label="Батьківський департамент"
                     item-text="title"
                     item-value="id"
                     return-object
@@ -27,6 +27,7 @@
                     <div class="py-3">
                         <delete-selected-button
                             @click.native="deleteSelectedItems"
+                            :disabled="isSelectedAny"
                         ></delete-selected-button>
                     </div>
                 </div>
@@ -137,7 +138,6 @@ export default {
     data () {
         return {
             allDepartments: [],
-            newItem: null,
 
             max50chars: v => v.length <= 50 || 'Input too long!',
             crudApiEndpoint: '/api/departments',
@@ -154,14 +154,14 @@ export default {
         prepareItemForUpdate(item) {
             return {
                 id: item.id,
-                parent_id: item.parent_department.id,
+                parent_id: (item.parent_department ?? {}).id,
                 title: item.title,
             };
         },
         prepareItemForCreate(data) {
             return {
                 title: data.title,
-                parent_id: data.parent_department.id,
+                parent_id: (data.parent_department ?? {}).id,
 
             };
         },
