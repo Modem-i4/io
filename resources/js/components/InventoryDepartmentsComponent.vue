@@ -2,7 +2,7 @@
     <div class="">
             <div class="form-inline">
             <div class="form-group mr-3">
-                <label for="addtitle" class="my-1 mr-2">Назва:</label>
+                <label for="addTitle" class="my-1 mr-2">Назва:</label>
                 <input v-model="newItem.title" type="text" class="form-control" id="addTitle" placeholder="Введіть назву" name="addTitle" minlength="3" required>
             </div>
             <div class="form-group mr-3">

@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 import Vuetify from 'vuetify';
+//import { ValidationProvider } from 'vee-validate';
 
 window.Vue = require('vue');
 window.Vue.use(Vuetify);
@@ -23,6 +24,7 @@ window.axios = require('axios');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+//Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('users-table', require('./components/UserTableComponent.vue').default);
 Vue.component('departments-table', require('./components/InventoryDepartmentsComponent.vue').default);

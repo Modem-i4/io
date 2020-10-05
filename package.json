@@ -27,6 +27,7 @@
         "vuetifyjs-mix-extension": "0.0.14"
     },
     "dependencies": {
+        "vee-validate": "^3.4.0",
         "vuetify": "^2.3.10"
     }
 }

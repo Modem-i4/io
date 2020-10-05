@@ -150,6 +150,7 @@ export const DataTableCore = {
             this.snackError('Відмінено')
         },
 
+        // Видалення
         deleteSelectedItems() {
             //console.log(this.selected.map(obj => obj.id));
             if(this.selected.length === 0) {
