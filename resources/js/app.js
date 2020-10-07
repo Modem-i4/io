@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 import Vuetify from 'vuetify';
-//import { ValidationProvider } from 'vee-validate';
+import { ValidationProvider } from 'vee-validate';
 
 window.Vue = require('vue');
 window.Vue.use(Vuetify);
@@ -24,7 +24,7 @@ window.axios = require('axios');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-//Vue.component('ValidationProvider', ValidationProvider);
+Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('users-table', require('./components/UserTableComponent.vue').default);
 Vue.component('departments-table', require('./components/InventoryDepartmentsComponent.vue').default);
@@ -34,8 +34,11 @@ Vue.component('departments-table', require('./components/InventoryDepartmentsCom
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//import { required, email, max } from 'vee-validate/dist/rules'
 
 const app = new Vue({
+
+   // mixins: [FormValidation],
     vuetify: new Vuetify(),
     el: '#app',
 });

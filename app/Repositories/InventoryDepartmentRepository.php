@@ -80,12 +80,12 @@ class InventoryDepartmentRepository extends CoreRepository
     {
 
         $perPage = request('perPage');
-        $columns = ['inventory_departments.*', 'inv_dep.title as parent_title'];
+        $columns = ['inventory_departments.*'];
 
         $result = $this->startConditions()
             ->select($columns)
             ->with(['parentDepartment:id,title',])
-            ->join('inventory_departments as inv_dep', 'inventory_departments.parent_id', '=', 'inv_dep.id')
+            ->join('inventory_departments as parent', 'inventory_departments.parent_id', '=', 'parent.id')
             //->orderBy('parent_title', $order)
             ->filter()
             ->paginate($perPage);

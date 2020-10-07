@@ -132,19 +132,24 @@ export const DataTableCore = {
 
         // Створення
         create () {
-            let item = this.newItem;
+            this.$refs.itemCreateObserver.validate().then(result => {
+                if (result) {
+                    let item = this.newItem;
 
-            if (typeof this.prepareItemForCreate === 'function') {
-                item = this.prepareItemForCreate(item);
-            }
+                    if (typeof this.prepareItemForCreate === 'function') {
+                        item = this.prepareItemForCreate(item);
+                    }
 
-            axios.post(this.crudApiEndpoint, item)
-                .then(response => {
-                    this.snackSuccess('Створено');
-                    this.fetch();
+                    axios.post(this.crudApiEndpoint, item)
+                        .then(response => {
+                            this.snackSuccess('Створено');
+                            this.fetch();
 
-                    this.newItem = {};    //Очищуємо поля в формі додавання
-                }).catch(error => this.handleRequestError(error));
+                            this.newItem = {};    //Очищуємо поля в формі додавання
+                            this.$refs.itemCreateObserver.reset();
+                        }).catch(error => this.handleRequestError(error));
+                }
+            });
         },
         cancel() {
             this.snackError('Відмінено')

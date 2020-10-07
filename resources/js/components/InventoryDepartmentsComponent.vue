@@ -1,25 +1,72 @@
 <template>
     <div class="">
-            <div class="form-inline">
-            <div class="form-group mr-3">
-                <label for="addTitle" class="my-1 mr-2">Назва:</label>
-                <input v-model="newItem.title" type="text" class="form-control" id="addTitle" placeholder="Введіть назву" name="addTitle" minlength="3" required>
-            </div>
-            <div class="form-group mr-3">
-                <label for="addPlace" class="my-1 mr-2">Корпус:</label>
-                <v-combobox
-                    v-model="newItem.parent_department"
-                    :items="allDepartments"
-                    label="Батьківський департамент"
-                    item-text="title"
-                    item-value="id"
-                    return-object
-                ></v-combobox>
-            </div>
-            <button type="submit" class="btn btn-primary p-2 border rounded" @click="create">
-                <svg class="icon icon-plus mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-plus"></use></svg><span class="d-none d-md-inline">Додати приміщення</span>
-            </button>
-            </div>
+        <validation-observer
+            ref="itemCreateObserver"
+            v-slot=""
+        >
+                <v-row>
+                    <v-col
+                        cols="12"
+                        md="4"
+                    >
+                        <validation-provider
+                            v-slot="{ errors }"
+                            name="Назва"
+                            rules="required|max:200"
+                        >
+                            <v-text-field
+                                v-model="newItem.title"
+                                :counter="200"
+                                :error-messages="errors"
+                                label="Введіть назву"
+                                required
+                            ></v-text-field>
+                        </validation-provider>
+                    </v-col>
+
+                    <v-col
+                        cols="12"
+                        md="4"
+                    >
+                        <validation-provider
+                            v-slot="{ errors }"
+                            name="Корпус"
+                            rules="required"
+                        >
+                            <v-combobox
+                                v-model="newItem.parent_department"
+                                :items="allDepartments"
+                                :error-messages="errors"
+                                label="Батьківський департамент"
+                                item-text="title"
+                                item-value="id"
+                                return-object
+                                required
+                            ></v-combobox>
+                            <!--v-select
+                                v-model="select"
+                                :items="items"
+                                :error-messages="errors"
+                                label="Select"
+                                data-vv-name="select"
+                                required
+                            ></v-select-->
+                        </validation-provider>
+                    </v-col>
+                    <v-col
+                        class="d-flex align-items-center"
+                        cols="12"
+                        md="4"
+                    >
+                        <v-btn
+                            class="mr-4"
+                            @click="create"
+                        >
+                            <svg class="icon icon-plus mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-plus"></use></svg><span class="d-none d-md-inline">Додати приміщення</span>
+                        </v-btn>
+                    </v-col>
+                </v-row>
+        </validation-observer>
 
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -65,13 +112,26 @@
                             >
                                 {{ props.item.title }}
                                 <template v-slot:input>
-                                    <v-text-field
-                                        v-model="props.item.title"
-                                        :rules="[max50chars]"
-                                        label="Edit"
-                                        single-line
-                                        counter
-                                    ></v-text-field>
+                                    <validation-observer
+                                        ref="itemCreateObserver"
+                                        v-slot=""
+                                    >
+                                        <validation-provider
+                                            v-slot="{ errors }"
+                                            name="Назва"
+                                            rules="required|max:200"
+                                        >
+                                        <v-text-field
+                                            v-model="props.item.title"
+                                            :counter="200"
+                                            :error-messages="errors"
+                                            label="Edit"
+                                            single-line
+                                            required
+                                        ></v-text-field>
+                                        </validation-provider>
+                                    </validation-observer>
+
                                 </template>
                             </v-edit-dialog>
                         </template>
@@ -85,7 +145,7 @@
                                 @cancel="cancel"
                                 large
                             >
-                                {{ props.item.parent_title }}
+                                {{ props.item.parent_department.title }}
                                 <template v-slot:input>
                                     <v-combobox
                                         v-model="props.item.parent_department"
@@ -132,21 +192,37 @@
 <script>
 import { DataTableCore } from "./mixins/DataTableCore";
 
+import { required, email, max } from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+
+setInteractionMode('eager')
+
+extend('required', {
+    ...required,
+    message: '{_field_} не може бути порожнє',
+})
+
+extend('max', {
+    ...max,
+    message: '{_field_} має містити не більше {length} символів',
+})
+
 export default {
     mixins: [DataTableCore],
-
+    components: {
+        ValidationProvider,
+        ValidationObserver,
+    },
     data () {
         return {
             allDepartments: [],
-
-            max50chars: v => v.length <= 50 || 'Input too long!',
             crudApiEndpoint: '/api/departments',
             headers: [
                 { text: 'id', align: 'start',  value: 'id',
                    // sortable: false,
                 },
                 { text: "Назва", value: 'title' },
-                { text: 'Корпус', value: 'parent_department.title', fieldNameForSort: 'parent_title' },
+                { text: 'Корпус', value: 'parent_department.title', fieldNameForSort: 'parent.title' },
             ],
         }
     },
