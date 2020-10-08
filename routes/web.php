@@ -46,9 +46,8 @@ Route::group($inventoryGroupData, function() {
         //Departments
         Route::resource('departments', 'DepartmentController')
             ->middleware('can:isAdmin')
-            ->except(['create', 'show'])                              //не робити маршрут для метода show
+            ->only(['index'])                              //не робити маршрут для метода show
             ->names('admin.departments');
-        Route::post('/departments/update_ajax', 'DepartmentController@updateAjax')->name('admin.departments.updateAjax');
 
         //Users
         Route::resource('users', 'UserController')
@@ -84,12 +83,10 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
         Route::get('users', 'UserController@index');
 
         Route::get('departments/all', 'DepartmentController@all');
-        Route::delete('departments/', 'DepartmentController@destroyMany');
+        Route::delete('departments/', 'DepartmentController@destroyMany');    //TODO Перенести
         Route::resource('departments', 'DepartmentController')
             ->only(['index', 'update', 'store'])
             ->names('api.departments');
-
-        Route::get('departments1', 'DepartmentController@index1')->name('api.departments1');
     });
 
 });

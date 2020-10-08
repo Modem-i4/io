@@ -109,6 +109,8 @@
                                 :return-value.sync="props.item.title"
                                 @save="update(props.item)"
                                 @cancel="cancel"
+                                persistent
+                                large
                             >
                                 {{ props.item.title }}
                                 <template v-slot:input>
@@ -192,27 +194,8 @@
 <script>
 import { DataTableCore } from "./mixins/DataTableCore";
 
-import { required, email, max } from 'vee-validate/dist/rules'
-import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
-
-setInteractionMode('eager')
-
-extend('required', {
-    ...required,
-    message: '{_field_} не може бути порожнє',
-})
-
-extend('max', {
-    ...max,
-    message: '{_field_} має містити не більше {length} символів',
-})
-
 export default {
     mixins: [DataTableCore],
-    components: {
-        ValidationProvider,
-        ValidationObserver,
-    },
     data () {
         return {
             allDepartments: [],

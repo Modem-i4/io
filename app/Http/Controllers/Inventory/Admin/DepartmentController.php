@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Inventory\Admin;
 
-use App\Http\Requests\InventoryDepartmentUpdateRequest;
 use App\Repositories\InventoryDepartmentRepository;
-use Response;
 
 
 class DepartmentController extends BaseController
@@ -29,8 +27,6 @@ class DepartmentController extends BaseController
      */
     public function index()
     {
-        /*$paginator = $this->inventoryDepartmentRepository->getAllWithPaginate(2000);
-        $categoryList = $this->inventoryDepartmentRepository->getForComboBox();*/
         return view('inventory.admin.departments');
 
     }

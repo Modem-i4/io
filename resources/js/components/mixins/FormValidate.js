@@ -1,21 +1,24 @@
-import { required, email, max } from 'vee-validate/dist/rules'
-import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import { required, max } from 'vee-validate/dist/rules'
+import { extend, setInteractionMode } from 'vee-validate'
 
-export const FormValidation = {
-    setInteractionMode('eager')
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
+
+setInteractionMode('eager')
 
 extend('required', {
     ...required,
-    message: '{_field_} can not be empty',
+    message: '{_field_} не може бути порожнє',
 })
 
 extend('max', {
     ...max,
-    message: '{_field_} may not be greater than {length} characters',
+    message: '{_field_} має містити не більше {length} символів',
 })
 
-extend('email', {
-    ...email,
-    message: 'Email must be valid',
-})
+export default {
+    components: {
+        ValidationProvider,
+        ValidationObserver,
+    },
 }
+
