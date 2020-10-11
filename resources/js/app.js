@@ -34,11 +34,8 @@ Vue.component('departments-table', require('./components/InventoryDepartmentsCom
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-//import { required, email, max } from 'vee-validate/dist/rules'
 
 const app = new Vue({
-
-   // mixins: [FormValidation],
     vuetify: new Vuetify(),
     el: '#app',
 });

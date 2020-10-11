@@ -20,5 +20,10 @@ export default {
         ValidationProvider,
         ValidationObserver,
     },
+    data () {
+        return {
+            errors: null,
+        }
+    }
 }
 

@@ -43,14 +43,6 @@
                                 return-object
                                 required
                             ></v-combobox>
-                            <!--v-select
-                                v-model="select"
-                                :items="items"
-                                :error-messages="errors"
-                                label="Select"
-                                data-vv-name="select"
-                                required
-                            ></v-select-->
                         </validation-provider>
                     </v-col>
                     <v-col
@@ -88,6 +80,7 @@
                             label="Пошук"
                             single-line
                             hide-details
+                            clearable
                         ></v-text-field>
                     </v-card-title>
 
@@ -106,7 +99,6 @@
                     >
                         <template v-slot:item.title="props">
                             <v-edit-dialog
-                                :return-value.sync="props.item.title"
                                 @save="update(props.item)"
                                 @cancel="cancel"
                                 persistent
@@ -114,26 +106,14 @@
                             >
                                 {{ props.item.title }}
                                 <template v-slot:input>
-                                    <validation-observer
-                                        ref="itemCreateObserver"
-                                        v-slot=""
-                                    >
-                                        <validation-provider
-                                            v-slot="{ errors }"
-                                            name="Назва"
-                                            rules="required|max:200"
-                                        >
-                                        <v-text-field
-                                            v-model="props.item.title"
-                                            :counter="200"
-                                            :error-messages="errors"
-                                            label="Edit"
-                                            single-line
-                                            required
-                                        ></v-text-field>
-                                        </validation-provider>
-                                    </validation-observer>
-
+                                    <v-text-field
+                                        v-model="props.item.title"
+                                        :counter="200"
+                                        :error-messages="errors"
+                                        label="Edit"
+                                        single-line
+                                        required
+                                    ></v-text-field>
                                 </template>
                             </v-edit-dialog>
                         </template>

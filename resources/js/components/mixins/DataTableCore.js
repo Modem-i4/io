@@ -78,21 +78,7 @@ export const DataTableCore = {
                 this.pagination.total = response.data.total;
 
                 this.loading = false;
-            })
-                .catch(error => {
-                    if (error.response) {
-                        // Сервер повернув помилку
-                        this.snackError('Помилка завантаження ' + error.response.status)
-                    } else if (error.request) {
-                        // Сервер не повернув нічого
-                        this.snackError('Не вдалось підключитися до сервера')
-                    } else {
-                        // Сталася помилка при створенні запиту
-                        this.snackError('Сталася помилка при створенні запиту')
-                    }
-
-                    this.loading = false;
-                });
+            }).catch(error => this.handleRequestError(error));
         },
 
         // Редагування полей
@@ -104,8 +90,11 @@ export const DataTableCore = {
             axios.patch(this.crudApiEndpoint + '/' + item.id, item)
                 .then(response => {
                     this.snackSuccess('Збережено');
+                }).catch(error => {
+                    this.handleRequestError(error);
+                }).finally(result => {
                     this.fetch();
-                }).catch(error => this.handleRequestError(error));
+                });
         },
 
         handleRequestError(error) {
