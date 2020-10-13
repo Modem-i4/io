@@ -24,6 +24,11 @@ export default {
         return {
             errors: null,
         }
-    }
+    },
+    methods: {
+        checkValidationResult(validator) {    //TODO: Delete?
+            this.$refs.itemCreateObserver.validate()
+        },
+    },
 }
 

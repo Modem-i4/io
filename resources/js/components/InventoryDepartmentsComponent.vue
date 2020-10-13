@@ -28,6 +28,26 @@
                         cols="12"
                         md="4"
                     >
+                        <dt-edit-dialog
+                            :return-value.sync="newItem.title"
+                            save-text="Зберегти"
+                            cancel-text="Відмінити"
+                            @save="test(newItem)"
+                            @cancel="cancel"
+                            validateable
+                            persistent
+                        >
+                            SomeText
+                            <template v-slot:input>
+                                <v-text-field
+                                    v-model="newItem.title"
+                                    :counter="200"
+                                    :error-messages="errors"
+                                    label="Введіть назву"
+                                    required
+                                ></v-text-field>
+                            </template>
+                        </dt-edit-dialog>
                         <validation-provider
                             v-slot="{ errors }"
                             name="Корпус"
@@ -99,6 +119,7 @@
                     >
                         <template v-slot:item.title="props">
                             <v-edit-dialog
+                                :return-value.sync="props.item.title"
                                 @save="update(props.item)"
                                 @cancel="cancel"
                                 persistent

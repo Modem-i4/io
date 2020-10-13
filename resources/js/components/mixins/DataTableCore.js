@@ -1,10 +1,12 @@
 import DeleteSelectedButtonComponent from "../DataTable/DeleteSelectedButtonComponent";
 import FormValidate from "./FormValidate";
+import EditDialogComponent from "../DataTable/EditDialogComponent";
 
 export const DataTableCore = {
     mixins: [FormValidate],
     components: {
         'delete-selected-button': DeleteSelectedButtonComponent,
+        'dt-edit-dialog': EditDialogComponent,
     },
     data () {
         return {
