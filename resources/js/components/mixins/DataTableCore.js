@@ -150,24 +150,30 @@ export const DataTableCore = {
 
         // Видалення
         deleteSelectedItems() {
-            //console.log(this.selected.map(obj => obj.id));
             if(this.selected.length === 0) {
                 return this.snackError('Виберіть елементи для видалення');
             }
 
+            this.massDelete(this.selected.map(item => item.id));
+
+        },
+        deleteSingleItem (id) {    //TODO: Add custom messages
+            this.massDelete([id]);
+        },
+        massDelete(itemsIdArray) {
             axios.delete(this.crudApiEndpoint, {
                 params: {
-                    idList: this.selected.map(item => item.id),
+                    idList: itemsIdArray,
                 },
             })
-            .then(response => {
-                this.fetch();
-                this.snackSuccess('Видалено елементів - ' + this.selected.length);
+                .then(response => {
+                    this.fetch();
+                    this.snackSuccess('Успішно видалено');
 
-                this.selected = [];
+                    this.selected = [];
 
-            })
-            .catch(error => this.handleRequestError(error));
+                })
+                .catch(error => this.handleRequestError(error));
         },
 
         // Створення снеків
