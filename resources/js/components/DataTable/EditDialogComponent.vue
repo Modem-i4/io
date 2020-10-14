@@ -61,7 +61,10 @@ export default {
         returnValue: {
             default: null,
         },
-        validateable: Boolean,    //TODO
+        validator: {
+            type: Object,
+            default: null,
+        }
 /*
 TODO
         large: Boolean,
@@ -91,25 +94,35 @@ TODO
             this.$emit('cancel')
         },
         save() {
-            if(this.checkIsCanBeSaved()) {
-                this.isActive = false
-                this.originalValue = this.returnValue;
-                this.$emit('save')
-            }
-            else {
-                this.$emit('save-forbidden')
-            }
+            this.checkIsCanBeSaved().then(result => {
+                if(result) {
+                    this.isActive = false
+                    this.originalValue = this.returnValue;
+                    this.$emit('save')
+                }
+                else {
+                    this.$emit('save-forbidden')
+                }
+            });
         },
         show() {
             this.isActive = true
         },
-        checkIsCanBeSaved() {    //TODO: Add exception handling
-            if (this.validateable) {
-                console.log(this.$refs.itemCreateObserver);
-                this.$refs.itemCreateObserver.validate()
-                    .then(result => {return result})
-                    .catch(error => {console.log('ItemUpdateValidationError - ', error)});
+        async checkIsCanBeSaved() {    //TODO: Add exception handling, delete debug messages
+            //console.log(this.validator)
+            if (this.validator) {
+                //console.log('validating');
+                return await this.validator.validate()
+                    .then(result => {
+                        console.log('Fn-checkIsCanBeSaved', 'Validation result', result)
+                        return result;
+                    })
+                    .catch(error => {
+                        console.error('ItemUpdateValidationError - ', error)
+                        return false;
+                    });
             }
+            console.warn('validator disabled')
             return true;
         },
     },

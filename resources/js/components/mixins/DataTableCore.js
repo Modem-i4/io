@@ -187,5 +187,10 @@ export const DataTableCore = {
             this.snack.color = 'success'
             this.snack.text = message
         },
+
+
+        getValidatorRef(itemFieldName, itemId) {    //TODO: Review
+            return 'itemsValidator.' + itemFieldName + '.' + itemId;
+        }
     },
 }

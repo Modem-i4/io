@@ -28,26 +28,6 @@
                         cols="12"
                         md="4"
                     >
-                        <dt-edit-dialog
-                            :return-value.sync="newItem.title"
-                            save-text="Зберегти"
-                            cancel-text="Відмінити"
-                            @save="test(newItem)"
-                            @cancel="cancel"
-                            validateable
-                            persistent
-                        >
-                            SomeText
-                            <template v-slot:input>
-                                <v-text-field
-                                    v-model="newItem.title"
-                                    :counter="200"
-                                    :error-messages="errors"
-                                    label="Введіть назву"
-                                    required
-                                ></v-text-field>
-                            </template>
-                        </dt-edit-dialog>
                         <validation-provider
                             v-slot="{ errors }"
                             name="Корпус"
@@ -118,25 +98,38 @@
                         class="elevation-1"
                     >
                         <template v-slot:item.title="props">
-                            <v-edit-dialog
-                                :return-value.sync="props.item.title"
-                                @save="update(props.item)"
-                                @cancel="cancel"
-                                persistent
-                                large
+
+                            <validation-observer
+                                :ref="getValidatorRef('title', props.item.id)"
+                                v-slot=""
                             >
-                                {{ props.item.title }}
-                                <template v-slot:input>
-                                    <v-text-field
-                                        v-model="props.item.title"
-                                        :counter="200"
-                                        :error-messages="errors"
-                                        label="Edit"
-                                        single-line
-                                        required
-                                    ></v-text-field>
-                                </template>
-                            </v-edit-dialog>
+                                <dt-edit-dialog
+                                    :return-value.sync="props.item.title"
+                                    :validator="$refs[getValidatorRef('title', props.item.id)]"
+                                    @save="update(props.item)"
+                                    @cancel="cancel"
+                                    persistent
+                                    large
+                                >
+                                    {{ props.item.title }}
+                                    <template v-slot:input>
+                                        <validation-provider
+                                            v-slot="{ errors }"
+                                            name="Назва"
+                                            rules="required|max:200"
+                                        >
+                                            <v-text-field
+                                                v-model="props.item.title"
+                                                :counter="200"
+                                                :error-messages="errors"
+                                                label="Edit"
+                                                single-line
+                                                required
+                                            ></v-text-field>
+                                        </validation-provider>
+                                    </template>
+                                </dt-edit-dialog>
+                            </validation-observer>
                         </template>
 
                         <template v-slot:item.parent_department.title="props">
@@ -206,14 +199,6 @@ export default {
     mixins: [DataTableCore],
     data () {
         return {
-            //////////////////
-            dialogDelete: false,
-            watch: {
-                dialogDelete (val) {
-                    val || this.closeDelete()
-                },
-            },
-            //////////////////////
             allDepartments: [],
             crudApiEndpoint: '/api/departments',
             headers: [
@@ -227,6 +212,9 @@ export default {
         }
     },
     methods: {
+        test() {
+            console.log(this.$refs.testProviderRef);
+        },
         prepareItemForUpdate(item) {
             return {
                 id: item.id,
