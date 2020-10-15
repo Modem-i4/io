@@ -163,23 +163,6 @@
                             </v-icon>
                         </template>
                     </v-data-table>
-                    <v-snackbar
-                        v-model="snack.visible"
-                        :timeout="3000"
-                        :color="snack.color"
-                    >
-                        {{ snack.text }}
-
-                        <template v-slot:action="{ attrs }">
-                            <v-btn
-                                v-bind="attrs"
-                                text
-                                @click="snack.visible = false"
-                            >
-                                Закрити
-                            </v-btn>
-                        </template>
-                    </v-snackbar>
                 </v-card>
                 <div class="d-flex justify-content-between flex-wrap">
                     <div class="py-3">

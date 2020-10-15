@@ -1,9 +1,10 @@
 import DeleteSelectedButtonComponent from "../DataTable/DeleteSelectedButtonComponent";
 import FormValidate from "./FormValidate";
 import EditDialogComponent from "../DataTable/EditDialogComponent";
+import SnackbarControl from "./SnackbarControl";
 
 export const DataTableCore = {
-    mixins: [FormValidate],
+    mixins: [FormValidate, SnackbarControl],
     components: {
         'delete-selected-button': DeleteSelectedButtonComponent,
         'dt-edit-dialog': EditDialogComponent,
@@ -12,11 +13,6 @@ export const DataTableCore = {
         return {
             //singleSelect: false,
             selected: [],
-            snack:{
-                visible: false,
-                color: '',
-                text: '',
-            },
             pagination: {},
             search: '',
             items: [],
@@ -175,19 +171,6 @@ export const DataTableCore = {
                 })
                 .catch(error => this.handleRequestError(error));
         },
-
-        // Створення снеків
-        snackError(message) {
-            this.snack.visible = true
-            this.snack.color = 'error'
-            this.snack.text = message
-        },
-        snackSuccess(message) {
-            this.snack.visible = true
-            this.snack.color = 'success'
-            this.snack.text = message
-        },
-
 
         getValidatorRef(itemFieldName, itemId) {    //TODO: Review
             return 'itemsValidator.' + itemFieldName + '.' + itemId;

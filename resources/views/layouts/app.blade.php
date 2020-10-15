@@ -134,6 +134,8 @@
         <main class="py-4">
             <v-app>
                 @yield('content')
+
+                <app-snackbar></app-snackbar>
             </v-app>
         </main>
 
