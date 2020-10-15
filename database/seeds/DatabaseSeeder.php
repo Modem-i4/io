@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
 
         App\Models\User::truncate();
         App\Models\InventoryDepartment::truncate();
+        App\Models\InventoryType::truncate();
 
         Schema::enableForeignKeyConstraints();
     }

@@ -7,7 +7,6 @@
 require('./bootstrap');
 
 import Vuetify from 'vuetify';
-import { ValidationProvider } from 'vee-validate';
 
 window.Vue = require('vue');
 window.Vue.use(Vuetify);
@@ -35,7 +34,15 @@ Vue.component('app-snackbar', require('./components/AppSnackbar.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
+import uk from "vuetify/lib/locale/uk";
+
 const app = new Vue({
-    vuetify: new Vuetify(),
+    vuetify: new Vuetify({
+        lang: {
+            locales: { uk },
+            current: 'uk',
+        },
+    }),
     el: '#app',
 });

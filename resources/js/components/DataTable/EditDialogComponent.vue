@@ -52,10 +52,10 @@ export default {
     },
     props: {
         cancelText: {
-            default: 'Cancel',
+            default: 'Відмінити',
         },
         saveText: {
-            default: 'Save',
+            default: 'Зберегти',
         },
         persistent: Boolean,
         returnValue: {
