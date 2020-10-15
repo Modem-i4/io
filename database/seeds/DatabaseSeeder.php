@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UsersTableSeeder::class);
         $this->call(InventoryDepartmentsTableSeeder::class);
+        $this->call(InventoryTypesTableSeeder::class);
+
         //TODO: Create seeders for testing
     }
 

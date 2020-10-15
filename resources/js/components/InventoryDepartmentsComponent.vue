@@ -106,9 +106,10 @@
                                 <dt-edit-dialog
                                     :return-value.sync="props.item.title"
                                     :validator="$refs[getValidatorRef('title', props.item.id)]"
+                                    save-text="Зберегти"
+                                    cancel-text="Відмінити"
                                     @save="update(props.item)"
                                     @cancel="cancel"
-                                    persistent
                                     large
                                 >
                                     {{ props.item.title }}
