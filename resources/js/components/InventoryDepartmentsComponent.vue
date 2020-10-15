@@ -72,8 +72,8 @@
                 </div>
                 <v-card>
                     <v-card-title>
-                        Приміщення
-                        <v-spacer></v-spacer>
+                        <!--Приміщення
+                        <v-spacer></v-spacer>-->
                         <v-text-field
                             v-model="search"
                             append-icon="mdi-magnify"
@@ -88,7 +88,7 @@
                         v-model="selected"
                         show-select
                         :footer-props="{
-                            itemsPerPageOptions: [10, 25, 50]
+                            itemsPerPageOptions: [10, 25, 50, 100]
                         }"
                         :headers="headers"
                         :items="items"

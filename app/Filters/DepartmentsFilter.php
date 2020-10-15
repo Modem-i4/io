@@ -13,7 +13,7 @@ class DepartmentsFilter extends QueryFilter
      * @var array
      */
     protected $searchable = [
-        'inventory_departments.id',
+        //'inventory_departments.id',
         'inventory_departments.title',
         //'inventory_departments.parent_id',
         'parent.title',
