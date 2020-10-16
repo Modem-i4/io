@@ -8,6 +8,14 @@ setInteractionMode('eager')
 extend('required', {
     ...required,
     message: '{_field_} не може бути порожнє',
+    computesRequired: true,
+
+    validate(value) {
+        return {
+            required: true,
+            valid: ['', null, undefined].indexOf(value) === -1,
+        }
+    }
 })
 
 extend('max', {

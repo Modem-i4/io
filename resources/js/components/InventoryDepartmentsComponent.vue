@@ -108,7 +108,6 @@
                                     :validator="$refs[getValidatorRef('title', props.item.id)]"
                                     @save="update(props.item)"
                                     @cancel="cancel"
-                                    large
                                 >
                                     {{ props.item.title }}
                                     <template v-slot:input>
@@ -132,25 +131,36 @@
                         </template>
 
                         <template v-slot:item.parent_department.title="props">
-                            <v-edit-dialog
-                                :return-value.sync="props.item.parent_department"
-                                save-text="Зберегти"
-                                cancel-text="Відмінити"
-                                @save="update(props.item)"
-                                @cancel="cancel"
-                                large
+                            <validation-observer
+                                :ref="getValidatorRef('parent', props.item.id)"
+                                v-slot=""
                             >
-                                {{ props.item.parent_department.title }}
-                                <template v-slot:input>
-                                    <v-combobox
-                                        v-model="props.item.parent_department"
-                                        :items="allDepartments"
-                                        label="Виберіть батьківський департамент"
-                                        item-text="title"
-                                        item-value="id"
-                                    ></v-combobox>
-                                </template>
-                            </v-edit-dialog>
+                                <dt-edit-dialog
+                                    :return-value.sync="props.item.parent_department"
+                                    :validator="$refs[getValidatorRef('parent', props.item.id)]"
+                                    @save="update(props.item)"
+                                    @cancel="cancel"
+                                >
+                                    {{ (props.item.parent_department) ? props.item.parent_department.title : ' ' }}
+                                    <template v-slot:input>
+                                        <validation-provider
+                                            v-slot="{ errors }"
+                                            name="Назва"
+                                            rules="required|max:200"
+                                        >
+                                            <v-autocomplete
+                                                v-model="props.item.parent_department"
+                                                :items="allDepartments"
+                                                :error-messages="errors"
+                                                label="Виберіть батьківський департамент"
+                                                item-text="title"
+                                                item-value="id"
+                                                return-object
+                                            ></v-autocomplete>
+                                        </validation-provider>
+                                    </template>
+                                </dt-edit-dialog>
+                            </validation-observer>
                         </template>
                         <template v-slot:item.actions="{ item }">
                             <v-icon
@@ -198,6 +208,8 @@ export default {
             console.log(this.$refs.testProviderRef);
         },
         prepareItemForUpdate(item) {
+            console.log('Typeof object - ', typeof item.parent_department);
+            console.log('Typeof object with replace - ', typeof (item.parent_department ?? {}));
             return {
                 id: item.id,
                 parent_id: (item.parent_department ?? {}).id,
