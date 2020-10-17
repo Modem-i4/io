@@ -33,7 +33,7 @@
                             name="Корпус"
                             rules="required"
                         >
-                            <v-combobox
+                            <v-autocomplete
                                 v-model="newItem.parent_department"
                                 :items="allDepartments"
                                 :error-messages="errors"
@@ -41,8 +41,7 @@
                                 item-text="title"
                                 item-value="id"
                                 return-object
-                                required
-                            ></v-combobox>
+                            ></v-autocomplete>
                         </validation-provider>
                     </v-col>
                     <v-col
@@ -186,6 +185,7 @@
 
 <script>
 import { DataTableCore } from "./mixins/DataTableCore";
+import { EventBus } from "./EventBus";
 
 export default {
     mixins: [DataTableCore],
@@ -249,6 +249,15 @@ export default {
     },
     mounted() {
         this.getAllDepartments();
+    },
+    created() {
+        EventBus.$on('dt-item-updated', data => {
+            this.getAllDepartments();
+        });
+
+        EventBus.$on('dt-item-created', data => {
+            this.getAllDepartments();
+        });
     }
 }
 </script>

@@ -2,6 +2,7 @@ import DeleteSelectedButtonComponent from "../DataTable/DeleteSelectedButtonComp
 import FormValidate from "./FormValidate";
 import EditDialogComponent from "../DataTable/EditDialogComponent";
 import SnackbarControl from "./SnackbarControl";
+import { EventBus } from "../EventBus";
 
 export const DataTableCore = {
     mixins: [FormValidate, SnackbarControl],
@@ -88,6 +89,8 @@ export const DataTableCore = {
             axios.patch(this.crudApiEndpoint + '/' + item.id, item)
                 .then(response => {
                     this.snackSuccess('Збережено');
+
+                    EventBus.$emit('dt-item-updated');
                 }).catch(error => {
                     this.handleRequestError(error);
                 }).finally(result => {
@@ -136,6 +139,8 @@ export const DataTableCore = {
 
                             this.newItem = {};    //Очищуємо поля в формі додавання
                             this.$refs.itemCreateObserver.reset();
+
+                            EventBus.$emit('dt-item-created');
                         }).catch(error => this.handleRequestError(error));
                 }
             });
