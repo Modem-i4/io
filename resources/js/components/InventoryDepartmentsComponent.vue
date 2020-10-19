@@ -106,6 +106,7 @@
                                     :return-value.sync="props.item.title"
                                     :validator="$refs[getValidatorRef('title', props.item.id)]"
                                     @save="update(props.item)"
+                                    @changeless-save="changeless"
                                     @cancel="cancel"
                                 >
                                     {{ props.item.title }}
@@ -138,6 +139,7 @@
                                     :return-value.sync="props.item.parent_department"
                                     :validator="$refs[getValidatorRef('parent', props.item.id)]"
                                     @save="update(props.item)"
+                                    @changeless-save="changeless"
                                     @cancel="cancel"
                                 >
                                     {{ (props.item.parent_department) ? props.item.parent_department.title : ' ' }}
@@ -256,6 +258,10 @@ export default {
         });
 
         EventBus.$on('dt-item-created', data => {
+            this.getAllDepartments();
+        });
+
+        EventBus.$on('dt-item-deleted', data => {
             this.getAllDepartments();
         });
     }

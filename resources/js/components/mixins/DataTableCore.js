@@ -1,6 +1,6 @@
 import DeleteSelectedButtonComponent from "../DataTable/DeleteSelectedButtonComponent";
-import FormValidate from "./FormValidate";
 import EditDialogComponent from "../DataTable/EditDialogComponent";
+import FormValidate from "./FormValidate";
 import SnackbarControl from "./SnackbarControl";
 import { EventBus } from "../EventBus";
 
@@ -148,6 +148,9 @@ export const DataTableCore = {
         cancel() {
             this.snackError('Відмінено')
         },
+        changeless() {
+            this.snackShow('Необхідно внести зміни', 'warning')
+        },
 
         // Видалення
         deleteSelectedItems() {
@@ -170,6 +173,8 @@ export const DataTableCore = {
                 .then(response => {
                     this.fetch();
                     this.snackSuccess('Успішно видалено');
+
+                    EventBus.$emit('dt-item-deleted');
 
                     this.selected = [];
 

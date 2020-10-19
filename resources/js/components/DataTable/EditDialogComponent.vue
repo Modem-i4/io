@@ -96,9 +96,15 @@ TODO
         save() {
             this.checkIsCanBeSaved().then(result => {
                 if(result) {
-                    this.isActive = false
-                    this.originalValue = this.returnValue;
-                    this.$emit('save')
+                    if (this.originalValue === this.returnValue) {
+                        this.isActive = false
+                        this.$emit('changeless-save')
+                    }
+                    else {
+                        this.isActive = false
+                        this.originalValue = this.returnValue
+                        this.$emit('save')
+                    }
                 }
                 else {
                     this.$emit('save-forbidden')
