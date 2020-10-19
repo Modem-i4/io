@@ -58,6 +58,19 @@ export const DataTableCore = {
         }, 400)
     },
     methods: {
+        // Обробка подій від dt-edit-dialog
+
+        // @cancel
+        cancel() {
+            this.snackError('Відмінено')
+        },
+        //@changeless-save
+        changeless() {
+            this.snackShow('Необхідно внести зміни', 'warning')
+        },
+
+        // Взаємодія з даними
+
         // Завантаження даних з сервера
         fetch() {
             this.loading = true;
@@ -80,6 +93,30 @@ export const DataTableCore = {
             }).catch(error => this.handleRequestError(error));
         },
 
+        // Створення нових об'єктів
+        create () {
+            this.$refs.itemCreateObserver.validate().then(result => {
+                if (result) {
+                    let item = this.newItem;
+
+                    if (typeof this.prepareItemForCreate === 'function') {
+                        item = this.prepareItemForCreate(item);
+                    }
+
+                    axios.post(this.crudApiEndpoint, item)
+                        .then(response => {
+                            this.snackSuccess('Створено');
+                            this.fetch();
+
+                            this.newItem = {};    //Очищуємо поля в формі додавання
+                            this.$refs.itemCreateObserver.reset();
+
+                            EventBus.$emit('dt-item-created');
+                        }).catch(error => this.handleRequestError(error));
+                }
+            });
+        },
+
         // Редагування полей
         update (item) {
             if (typeof this.prepareItemForUpdate === 'function') {
@@ -98,6 +135,43 @@ export const DataTableCore = {
                 });
         },
 
+        // Видалення вибраних
+        deleteSelectedItems() {
+            if(!this.isSelectedAny)
+                return this.snackError('Виберіть елементи для видалення');
+
+            this.massDelete(this.selected.map(item => item.id));
+        },
+        // Видалення одного об'єкту
+        deleteSingleItem (id) {    //TODO: Add custom messages
+            this.massDelete([id]);
+        },
+        // Видалення за массивом ідентифікаторів
+        massDelete(itemsIdArray) {
+            axios.delete(this.crudApiEndpoint, {
+                params: {
+                    idList: itemsIdArray,
+                },
+            })
+                .then(response => {
+                    this.fetch();
+                    this.snackSuccess('Успішно видалено');
+
+                    EventBus.$emit('dt-item-deleted');
+
+                    this.selected = [];
+
+                })
+                .catch(error => this.handleRequestError(error));
+        },
+
+
+        //Генерує назву для посилання на валідатор
+        getValidatorRef(itemFieldName, itemId) {    //TODO: Review
+            return 'itemsValidator.' + itemFieldName + '.' + itemId;
+        },
+
+        //Функція обробки помилок для запитів на сервер через axios
         handleRequestError(error) {
             if (error.response) {
                 // Сервер повернув помилку
@@ -121,69 +195,5 @@ export const DataTableCore = {
                 this.snackError('Сталася помилка при створенні запиту')
             }
         },
-
-        // Створення
-        create () {
-            this.$refs.itemCreateObserver.validate().then(result => {
-                if (result) {
-                    let item = this.newItem;
-
-                    if (typeof this.prepareItemForCreate === 'function') {
-                        item = this.prepareItemForCreate(item);
-                    }
-
-                    axios.post(this.crudApiEndpoint, item)
-                        .then(response => {
-                            this.snackSuccess('Створено');
-                            this.fetch();
-
-                            this.newItem = {};    //Очищуємо поля в формі додавання
-                            this.$refs.itemCreateObserver.reset();
-
-                            EventBus.$emit('dt-item-created');
-                        }).catch(error => this.handleRequestError(error));
-                }
-            });
-        },
-        cancel() {
-            this.snackError('Відмінено')
-        },
-        changeless() {
-            this.snackShow('Необхідно внести зміни', 'warning')
-        },
-
-        // Видалення
-        deleteSelectedItems() {
-            if(this.selected.length === 0) {
-                return this.snackError('Виберіть елементи для видалення');
-            }
-
-            this.massDelete(this.selected.map(item => item.id));
-
-        },
-        deleteSingleItem (id) {    //TODO: Add custom messages
-            this.massDelete([id]);
-        },
-        massDelete(itemsIdArray) {
-            axios.delete(this.crudApiEndpoint, {
-                params: {
-                    idList: itemsIdArray,
-                },
-            })
-                .then(response => {
-                    this.fetch();
-                    this.snackSuccess('Успішно видалено');
-
-                    EventBus.$emit('dt-item-deleted');
-
-                    this.selected = [];
-
-                })
-                .catch(error => this.handleRequestError(error));
-        },
-
-        getValidatorRef(itemFieldName, itemId) {    //TODO: Review
-            return 'itemsValidator.' + itemFieldName + '.' + itemId;
-        }
     },
 }

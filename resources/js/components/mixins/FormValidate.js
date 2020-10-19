@@ -7,7 +7,7 @@ setInteractionMode('eager')
 
 extend('required', {
     ...required,
-    message: '{_field_} не може бути порожнє',
+    message: 'Поле "{_field_}" не може бути порожнє',
     computesRequired: true,
 
     validate(value) {
@@ -20,7 +20,7 @@ extend('required', {
 
 extend('max', {
     ...max,
-    message: '{_field_} має містити не більше {length} символів',
+    message: 'Поле "{_field_}" має містити не більше {length} символів',
 })
 
 export default {
