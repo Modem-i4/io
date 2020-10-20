@@ -7,11 +7,12 @@ Inventory Organizer System
 [DB Schema](https://dbdesigner.page.link/XDCe6mDJfkDnMMZ89)
 
 
-## Installation
+## Installation for developers
 
 - Download files
 - Add domain **io.de** to hosts and apache vhosts file and route it to "**you project folder**/public"
 - Create DB: io
+- Put .env file in project folder
 - Run in project folder command: composer install
 - Run in project folder command: php artisan migrate --seed
 - Run in project folder command: npm run watch
@@ -20,7 +21,10 @@ Inventory Organizer System
 
 ## Developers
 
--
+- Ihor Zubenko
+- Maksym Lutsiuk
+- Nataliia Mosiichuk
+- Oleksandra Kravets
 
 ## Sponsors
 
@@ -28,7 +32,7 @@ Inventory Organizer System
 
 ## Contributing
 
--
+- 
 
 ## Security Vulnerabilities
 
