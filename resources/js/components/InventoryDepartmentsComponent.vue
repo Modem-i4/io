@@ -167,6 +167,7 @@
                             <v-icon
                                 small
                                 @click="deleteSingleItem(item.id)"
+                                :disabled="!item.isSelectable"
                             >
                                 mdi-delete
                             </v-icon>
@@ -250,6 +251,12 @@ export default {
 
         EventBus.$on('dt-item-deleted', data => {
             this.getAllDepartments();
+        });
+
+        EventBus.$on('dt-fetched', data => {
+            this.items.forEach(item => {
+                item.isSelectable = (item.children_count === 0);    //TODO: Add server-side validation for deleеe
+            })
         });
     }
 }
