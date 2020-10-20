@@ -85,6 +85,7 @@ class InventoryDepartmentRepository extends CoreRepository
         $result = $this->startConditions()
             ->select($columns)
             ->with(['parentDepartment:id,title',])
+            ->withCount('children')
             ->join('inventory_departments as parent', 'inventory_departments.parent_id', '=', 'parent.id')
             ->filter()
             ->paginate($perPage);

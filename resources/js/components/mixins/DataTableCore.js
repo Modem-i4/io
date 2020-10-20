@@ -90,6 +90,8 @@ export const DataTableCore = {
                 this.pagination.total = response.data.total;
 
                 this.loading = false;
+
+                EventBus.$emit('dt-fetched');
             }).catch(error => this.handleRequestError(error));
         },
 

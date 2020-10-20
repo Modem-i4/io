@@ -35,6 +35,11 @@ class InventoryDepartment extends Model
         return $this->belongsTo(InventoryDepartment::class, 'parent_id', 'id');
     }
 
+    public function children()
+    {
+        return $this->hasMany(InventoryDepartment::class, 'parent_id', 'id');
+    }
+
     /**
      * Аксесуар (Accessor)
      *
