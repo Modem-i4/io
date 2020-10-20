@@ -1,5 +1,6 @@
 <template>
     <v-menu
+        content-class="v-small-dialog__menu-content"
         v-model="isActive"
         :close-on-content-click="false"
         :close-on-click="!persistent"
@@ -10,34 +11,32 @@
             </div>
         </template>
 
-        <v-card>
-            <div
-                class="v-small-dialog__content"
-                @keydown.enter="save"
-                @keydown.esc="cancel"
-            >
-                <slot name="input"></slot>
-            </div>
-            <v-card-actions>
-                <v-spacer></v-spacer>
+        <div
+            class="v-small-dialog__content"
+            @keydown.enter="save"
+            @keydown.esc="cancel"
+        >
+            <slot name="input"></slot>
+        </div>
+        <div class="v-small-dialog__actions">
+            <v-spacer></v-spacer>
 
-                <v-btn
-                    text
-                    light
-                    @click="cancel"
-                >
-                    {{ this.cancelText }}
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    light
-                    @click="save"
-                >
-                    {{ this.saveText }}
-                </v-btn>
-            </v-card-actions>
-        </v-card>
+            <v-btn
+                text
+                light
+                @click="cancel"
+            >
+                {{ this.cancelText }}
+            </v-btn>
+            <v-btn
+                color="primary"
+                text
+                light
+                @click="save"
+            >
+                {{ this.saveText }}
+            </v-btn>
+        </div>
     </v-menu>
 </template>
 

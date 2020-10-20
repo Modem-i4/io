@@ -66,7 +66,7 @@ export const DataTableCore = {
         },
         //@changeless-save
         changeless() {
-            this.snackShow('Необхідно внести зміни', 'warning')
+            this.snackShow('Дані не оновлено', 'warning')
         },
 
         // Взаємодія з даними

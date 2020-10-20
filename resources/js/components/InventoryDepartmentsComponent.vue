@@ -120,7 +120,7 @@
                                                 v-model="props.item.title"
                                                 :counter="200"
                                                 :error-messages="errors"
-                                                label="Edit"
+                                                label="Назва"
                                                 single-line
                                                 required
                                             ></v-text-field>
@@ -164,13 +164,29 @@
                             </validation-observer>
                         </template>
                         <template v-slot:item.actions="{ item }">
-                            <v-icon
-                                small
-                                @click="deleteSingleItem(item.id)"
-                                :disabled="!item.isSelectable"
-                            >
-                                mdi-delete
-                            </v-icon>
+                            <template v-if="item.isSelectable">
+                                <v-icon
+                                    small
+                                    @click="deleteSingleItem(item.id)"
+                                >
+                                    mdi-delete
+                                </v-icon>
+                            </template>
+                            <template v-else>
+                                <v-tooltip left>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-icon
+                                            color="grey lighten-1"
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            small
+                                        >
+                                            mdi-delete
+                                        </v-icon>
+                                    </template>
+                                    <span>Має дочірні елементи</span>
+                                </v-tooltip>
+                            </template>
                         </template>
                     </v-data-table>
                 </v-card>
