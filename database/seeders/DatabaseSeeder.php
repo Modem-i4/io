@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,12 +24,12 @@ class DatabaseSeeder extends Seeder
 
     private function truncate()
     {
-        Schema::disableForeignKeyConstraints();
+        \Schema::disableForeignKeyConstraints();
 
-        App\Models\User::truncate();
-        App\Models\InventoryDepartment::truncate();
-        App\Models\InventoryType::truncate();
+        \App\Models\User::truncate();
+        \App\Models\InventoryDepartment::truncate();
+        \App\Models\InventoryType::truncate();
 
-        Schema::enableForeignKeyConstraints();
+        \Schema::enableForeignKeyConstraints();
     }
 }

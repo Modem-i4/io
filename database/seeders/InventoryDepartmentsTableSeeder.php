@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +24,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "1" => [
                 'title'     => 'Головний корпус',
                 'parent_id' => 1,
-            ], 
+            ],
             "2" => [
                  'title'     => 'Гуманітарний корпус',
                  'parent_id' => 1,
@@ -30,7 +32,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "3" => [
                 'title'     => 'Старомонастирський корпус',
                 'parent_id' => 1,
-            ], 
+            ],
             "4" => [
                  'title'     => 'Наукова бібліотека',
                  'parent_id' => 1,
@@ -38,7 +40,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "5" => [
                 'title'     => 'Господарська частина',
                 'parent_id' => 1,
-            ], 
+            ],
             "6" => [
                  'title'     => 'Адміністративний корпус',
                  'parent_id' => 1,
@@ -46,7 +48,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "7" => [
                 'title'     => '314 Кафедра держ-прав. дисц.',
                 'parent_id' => 3,
-            ], 
+            ],
             "8" => [
                  'title'     => '313 Кафедра цив-прав. дисц.',
                  'parent_id' => 3,
@@ -54,7 +56,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "9" => [
                 'title'     => '305 Кафедра теор. та іст. держ',
                 'parent_id' => 3,
-            ], 
+            ],
             "10" => [
                  'title'     => '315 Кафедра крим-прав. дисц.',
                  'parent_id' => 3,
@@ -62,7 +64,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "11" => [
                 'title'     => 'Кафедра фінансів',
                 'parent_id' => 2,
-            ], 
+            ],
             "12" => [
                  'title'     => 'Кафедра економ-мат. модел.',
                  'parent_id' => 2,
@@ -70,7 +72,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "13" => [
                 'title'     => 'Кафедра економ. теорії, менедж.',
                 'parent_id' => 2,
-            ], 
+            ],
             "14" => [
                  'title'     => 'Кафедра індоєвроп. мов',
                  'parent_id' => 2,
@@ -78,7 +80,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "15" => [
                 'title'     => 'Кафедра англ. мови та літ-ри',
                 'parent_id' => 2,
-            ], 
+            ],
             "16" => [
                  'title'     => 'Кафедра міжнар. мовн. комунік.',
                  'parent_id' => 2,
@@ -86,7 +88,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "17" => [
                 'title'     => 'Кафедра англ філології',
                 'parent_id' => 2,
-            ], 
+            ],
             "18" => [
                  'title'     => 'Кафедра історії',
                  'parent_id' => 2,
@@ -98,7 +100,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "20" => [
                 'title'     => 'Кафедра МВ',
                 'parent_id' => 4,
-            ], 
+            ],
             "21" => [
                  'title'     => '203 Кафедра культур. та філософії',
                  'parent_id' => 3,
@@ -110,7 +112,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "23" => [
                 'title'     => '201 Кафедра укр. мови і літ-ри',
                 'parent_id' => 3,
-            ], 
+            ],
             "24" => [
                  'title'     => '414 Кафедра політ. та нацбезпеки',
                  'parent_id' => 3,
@@ -118,7 +120,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "25" => [
                 'title'     => '412 Кафедра гром. здор. та фіз. вих.',
                 'parent_id' => 3,
-            ], 
+            ],
             "26" => [
                  'title'     => '413 Кафедра псих. та педагогіки',
                  'parent_id' => 3,
@@ -134,7 +136,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "29" => [
                 'title'     => 'Вчена рада',
                 'parent_id' => 2,
-            ], 
+            ],
             "30" => [
                  'title'     => 'Проректор з наук-пед. роб.',
                  'parent_id' => 2,
@@ -142,7 +144,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "31" => [
                 'title'     => 'Проректор з навч-вих. роб.',
                 'parent_id' => 2,
-            ], 
+            ],
             "32" => [
                  'title'     => 'Приймальня ректора',
                  'parent_id' => 2,
@@ -150,7 +152,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "33" => [
                 'title'     => 'Пом. ректора зі стратег. розв.',
                 'parent_id' => 2,
-            ], 
+            ],
             "34" => [
                  'title'     => 'Пом. ректора з осв. мен-',
                  'parent_id' => 2,
@@ -158,7 +160,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "35" => [
                 'title'     => 'Науковий відділ',
                 'parent_id' => 2,
-            ], 
+            ],
             "36" => [
                  'title'     => 'Редакц-видав. відділ',
                  'parent_id' => 6,
@@ -166,7 +168,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "37" => [
                 'title'     => 'Навч-методичний відділ',
                 'parent_id' => 2,
-            ], 
+            ],
             "38" => [
                  'title'     => 'Музей історії НаУОА',
                  'parent_id' => 2,
@@ -178,7 +180,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "40" => [
                 'title'     => 'Школа освітніх інновацій',
                 'parent_id' => 3,
-            ], 
+            ],
             "41" => [
                  'title'     => 'Пом. ректора з адмін-господ.',
                  'parent_id' => 2,
@@ -190,7 +192,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "43" => [
                 'title'     => 'Відділ кадрів',
                 'parent_id' => 7,
-            ], 
+            ],
             "44" => [
                  'title'     => 'Головний бухгалтер',
                  'parent_id' => 7,
@@ -198,7 +200,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "45" => [
                 'title'     => 'Бухгалтерія',
                 'parent_id' => 7,
-            ], 
+            ],
             "46" => [
                  'title'     => 'Фін-плановий відділ',
                  'parent_id' => 7,
@@ -206,7 +208,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "47" => [
                 'title'     => 'Юридичний відділ',
                 'parent_id' => 7,
-            ],  
+            ],
             "48" => [
                  'title'     => 'Відділ міжнар зв\'язків',
                  'parent_id' => 7,
@@ -214,7 +216,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "49" => [
                 'title'     => 'ІТЦ',
                 'parent_id' => 2,
-            ], 
+            ],
             "50" => [
                  'title'     => 'IT Hub',
                  'parent_id' => 7,
@@ -222,7 +224,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "51" => [
                 'title'     => 'Інженер з охорони праці',
                 'parent_id' => 6,
-            ], 
+            ],
             "52" => [
                  'title'     => 'Юридична клініка',
                  'parent_id' => 5,
@@ -230,7 +232,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "53" => [
                 'title'     => 'Пров. фах. з діловодства',
                 'parent_id' => 2,
-            ], 
+            ],
             "54" => [
                  'title'     => 'Професіонал з антикор. дія-ті',
                  'parent_id' => 2,
@@ -238,7 +240,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "55" => [
                 'title'     => 'ННЦЗДН',
                 'parent_id' => 4,
-            ], 
+            ],
             "56" => [
                  'title'     => '407 Деканат ПІМу, декан ПІМу',
                  'parent_id' => 3,
@@ -246,7 +248,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "57" => [
                 'title'     => 'Деканат економічний',
                 'parent_id' => 2,
-            ], 
+            ],
             "58" => [
                  'title'     => 'Декан економічний',
                  'parent_id' => 2,
@@ -258,7 +260,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "60" => [
                 'title'     => 'Декан РГМ',
                 'parent_id' => 2,
-            ], 
+            ],
             "61" => [
                  'title'     => 'Деканат МВ',
                  'parent_id' => 4,
@@ -270,7 +272,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "63" => [
                 'title'     => '214 Деканат Гуманітарний',
                 'parent_id' => 3,
-            ], 
+            ],
             "64" => [
                  'title'     => 'Декан Гуманітарний',
                  'parent_id' => 3,
@@ -278,7 +280,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "65" => [
                 'title'     => 'Актова зала',
                 'parent_id' => 2,
-            ], 
+            ],
             "66" => [
                  'title'     => 'Ресурсний РГМ',
                  'parent_id' => 2,
@@ -286,7 +288,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "67" => [
                 'title'     => 'Архів',
                 'parent_id' => 5,
-            ], 
+            ],
             "68" => [
                  'title'     => 'Братство спудеїв',
                  'parent_id' => 3,
@@ -298,7 +300,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "70" => [
                 'title'     => 'Відділ паспортний ',
                 'parent_id' => 6,
-            ], 
+            ],
             "71" => [
                  'title'     => 'Директор бібліотеки',
                  'parent_id' => 5,
@@ -310,7 +312,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "73" => [
                 'title'     => 'Інститут діаспори',
                 'parent_id' => 1,
-            ], 
+            ],
             "74" => [
                  'title'     => 'Комп\'ютерний центр',
                  'parent_id' => 1,
@@ -318,7 +320,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "75" => [
                 'title'     => 'Прохідна центральна',
                 'parent_id' => 1,
-            ], 
+            ],
             "76" => [
                  'title'     => 'Студ. відділ кадрів',
                  'parent_id' => 2,
@@ -326,7 +328,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "77" => [
                 'title'     => 'Чергова головного корпусу',
                 'parent_id' => 2,
-            ], 
+            ],
             "78" => [
                  'title'     => 'Медпункт',
                  'parent_id' => 6,
@@ -338,7 +340,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "80" => [
                 'title'     => 'Кругла читальна зала',
                 'parent_id' => 5,
-            ], 
+            ],
             "81" => [
                  'title'     => 'Читальна зала бібліотеки',
                  'parent_id' => 5,
@@ -350,7 +352,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "83" => [
                 'title'     => 'КК 20',
                 'parent_id' => 2,
-            ], 
+            ],
             "84" => [
                  'title'     => 'КК 21',
                  'parent_id' => 2,
@@ -358,7 +360,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "85" => [
                 'title'     => 'КК 22',
                 'parent_id' => 2,
-            ], 
+            ],
             "86" => [
                  'title'     => 'КК 23',
                  'parent_id' => 2,
@@ -366,7 +368,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "87" => [
                 'title'     => 'КК 32',
                 'parent_id' => 2,
-            ], 
+            ],
             "88" => [
                  'title'     => 'КК 101',
                  'parent_id' => 3,
@@ -378,7 +380,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "90" => [
                 'title'     => 'КК 211',
                 'parent_id' => 3,
-            ], 
+            ],
             "91" => [
                  'title'     => 'КК 212',
                  'parent_id' => 3,
@@ -390,7 +392,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "93" => [
                 'title'     => 'КК 310',
                 'parent_id' => 3,
-            ], 
+            ],
             "94" => [
                  'title'     => 'ГЖ Академічний дім',
                  'parent_id' => 1,
@@ -398,7 +400,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "95" => [
                 'title'     => 'ГЖ 2',
                 'parent_id' => 1,
-            ], 
+            ],
             "96" => [
                  'title'     => 'ГЖ 3',
                  'parent_id' => 1,
@@ -418,7 +420,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "100" => [
                 'title'     => 'ГЖ 7',
                 'parent_id' => 1,
-            ], 
+            ],
             "101" => [
                  'title'     => 'ГЖ 8',
                  'parent_id' => 1,
@@ -430,7 +432,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "103" => [
                 'title'     => 'ГЖ 10',
                 'parent_id' => 1,
-            ], 
+            ],
             "104" => [
                  'title'     => 'Стадіон',
                  'parent_id' => 1,
@@ -438,7 +440,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "105" => [
                 'title'     => 'Спортзал',
                 'parent_id' => 1,
-            ], 
+            ],
             "106" => [
                  'title'     => 'КМЦ',
                  'parent_id' => 1,
@@ -458,7 +460,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "110" => [
                 'title'     => '4',
                 'parent_id' => 2,
-            ], 
+            ],
             "111" => [
                  'title'     => '5',
                  'parent_id' => 2,
@@ -470,7 +472,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "113" => [
                 'title'     => '7',
                 'parent_id' => 2,
-            ], 
+            ],
             "114" => [
                  'title'     => '8',
                  'parent_id' => 2,
@@ -478,7 +480,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             "115" => [
                 'title'     => '9',
                 'parent_id' => 2,
-            ], 
+            ],
             "116" => [
                  'title'     => '10',
                  'parent_id' => 2,
@@ -919,8 +921,8 @@ class InventoryDepartmentsTableSeeder extends Seeder
                  'title'     => 'Відділ працев. студ.',
                  'parent_id' => 5,
             ]
-            
-            
+
+
 
         ];
 
@@ -959,7 +961,7 @@ class InventoryDepartmentsTableSeeder extends Seeder
             'title'     => 'Адміністративний корпус',
             'parent_id' => 1,
         ];
-        
+
 
         for ($i = 2; $i <=11; $i++) {
             $cName = 'Відділ #'.$i;
