@@ -34,7 +34,7 @@
                             rules="required"
                         >
                             <v-autocomplete
-                                v-model="newItem.parent_department"
+                                v-model="newItem.parent"
                                 :items="allDepartments"
                                 :error-messages="errors"
                                 label="Батьківський департамент"
@@ -130,19 +130,19 @@
                             </validation-observer>
                         </template>
 
-                        <template v-slot:item.parent_department.title="props">
+                        <template v-slot:item.parent.title="props">
                             <validation-observer
                                 :ref="getValidatorRef('parent', props.item.id)"
                                 v-slot=""
                             >
                                 <dt-edit-dialog
-                                    :return-value.sync="props.item.parent_department"
+                                    :return-value.sync="props.item.parent"
                                     :validator="$refs[getValidatorRef('parent', props.item.id)]"
                                     @save="update(props.item)"
                                     @changeless-save="changeless"
                                     @cancel="cancel"
                                 >
-                                    {{ (props.item.parent_department) ? props.item.parent_department.title : ' ' }}
+                                    {{ (props.item.parent) ? props.item.parent.title : ' ' }}
                                     <template v-slot:input>
                                         <validation-provider
                                             v-slot="{ errors }"
@@ -150,7 +150,7 @@
                                             rules="required|max:200"
                                         >
                                             <v-autocomplete
-                                                v-model="props.item.parent_department"
+                                                v-model="props.item.parent"
                                                 :items="allDepartments"
                                                 :error-messages="errors"
                                                 label="Виберіть батьківський департамент"
@@ -217,7 +217,7 @@ export default {
                    // sortable: false,
                 },
                 { text: "Назва", value: 'title' },
-                { text: 'Корпус', value: 'parent_department.title', fieldNameForSort: 'parent.title' },
+                { text: 'Корпус', value: 'parent.title', fieldNameForSort: 'parent.title' },
                 { text: 'Дії', value: 'actions', sortable: false },
             ],
         }
@@ -227,18 +227,18 @@ export default {
             console.log(this.$refs.testProviderRef);
         },
         prepareItemForUpdate(item) {
-            console.log('Typeof object - ', typeof item.parent_department);
-            console.log('Typeof object with replace - ', typeof (item.parent_department ?? {}));
+            console.log('Typeof object - ', typeof item.parent);
+            console.log('Typeof object with replace - ', typeof (item.parent ?? {}));
             return {
                 id: item.id,
-                parent_id: (item.parent_department ?? {}).id,
+                parent_id: (item.parent ?? {}).id,
                 title: item.title,
             };
         },
         prepareItemForCreate(data) {
             return {
                 title: data.title,
-                parent_id: (data.parent_department ?? {}).id,
+                parent_id: (data.parent ?? {}).id,
 
             };
         },
@@ -271,7 +271,7 @@ export default {
 
         EventBus.$on('dt-fetched', data => {
             this.items.forEach(item => {
-                item.isSelectable = (item.children_count === 0);    //TODO: Add server-side validation for deleеe
+                item.isSelectable = (item.children_count === 0);    //TODO: Add server-side validation for delete
             })
         });
     }

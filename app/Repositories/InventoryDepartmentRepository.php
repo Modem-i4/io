@@ -73,7 +73,7 @@ class InventoryDepartmentRepository extends CoreRepository
     /**
      * Отримати всі відділи з батьківськими категоріями
      *
-     * @return id, title, parent_id, parent_title, parent_department {id, title}
+     * @return id, title, parent_id, parent_title, parent {id, title}
      */
 
     public function getAllWithParents()
@@ -84,7 +84,7 @@ class InventoryDepartmentRepository extends CoreRepository
 
         $result = $this->startConditions()
             ->select($columns)
-            ->with(['parentDepartment:id,title',])
+            ->with(['parent:id,title',])
             ->withCount('children')
             ->join('inventory_departments as parent', 'inventory_departments.parent_id', '=', 'parent.id')
             ->filter()

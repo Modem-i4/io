@@ -27,9 +27,9 @@ class InventoryDepartment extends Model
     /**
      * Корпус
      *
-     * @return InventoryDepartment
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function parentDepartment()
+    public function parent()
     {
         //належить корпусу
         return $this->belongsTo(InventoryDepartment::class, 'parent_id', 'id');
@@ -49,7 +49,7 @@ class InventoryDepartment extends Model
      */
     public function getParentTitleAttribute()
     {
-        $title = $this->parentDepartment->title
+        $title = $this->parent->title
             ?? ($this->isRoot()
                 ? 'Корінь'
                 : '???');
