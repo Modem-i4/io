@@ -1,7 +1,7 @@
 composer require laravel/ui
 composer require laravel/socialite
 php artisan ui vue --auth
-npm install 
+npm install
 npm run dev
 php artisan migrate
 php artisan route:list
@@ -34,3 +34,5 @@ php artisan db:seed
 //php artisan vendor:publish --tag=laravel-pagination
 //Users //зробити
 php artisan make:controller Inventory/Admin/UserController --resource
+
+php artisan migrate:refresh --seed
