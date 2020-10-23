@@ -35,17 +35,22 @@
                         <ul class="navbar-nav mr-auto list-unstyled">
                             @can('isAdmin')
                                 <li class="nav-item">
-                                    <a href="#" class="text-dark ml-2 d-flex align-items-center">
+                                    <a href="#" class="text-dark ml-2 {{ request()->routeIs('admin.items.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
                                         <svg class="icon icon-display mx-2" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-display"></use></svg>Технічне обладнання
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="ml-2 {{ request()->routeIs('admin.departments.i')  ? 'active' : 'text-dark' }} d-flex align-items-center">
+                                    <a href="#" class="ml-2 {{ request()->routeIs('admin.licenses.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
+                                        <svg class="icon icon-file-text2 mx-2" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-windows"></use></svg>Ліцензії
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="ml-2 {{ request()->routeIs('admin.invoices.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
                                         <svg class="icon icon-file-text2 mx-2" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-file-text2"></use></svg>Накладні
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="text-dark ml-2 d-flex align-items-center">
+                                    <a href="#" class="text-dark ml-2 {{ request()->routeIs('admin.transfers.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
                                         <svg class="icon icon-transfer mx-2" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-transfer"></use></svg>Передачі
                                     </a>
                                 </li>
@@ -54,9 +59,6 @@
                     </div>
                     <!-- Right Side Of Navbar -->
                     <div class="d-flex ml-auto align-items-center">
-                    <!--button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button-->
                         <button
                             class="navbar-toggler border-0 bg-transparent d-lg-none"
                             type="button"
@@ -83,19 +85,22 @@
                                 <svg class="icon icon-cog" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-cog"></use></svg>
                             </a>
                             <div class="dropdown-menu gears dropdown-menu-right">
-                                <a href="{{ route('admin.departments.index') }}" class="dropdown-item d-flex align-items-center {{ request()->routeIs('admin.departments.index')  ? 'active' : 'text-dark' }}">
-                                    <svg class="icon icon-home mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-home"></use></svg>Приміщення
-                                </a>
-                                <a href="#" class="dropdown-item text-dark d-flex align-items-center">
-                                    <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-list"></use></svg>Типи обладнання
-                                </a>
-
-                                <div class="dropdown-divider"></div>
                                 <a href="{{ route('admin.users.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.users.index')  ? 'active' : 'text-dark' }}">
                                     <svg class="icon icon-user-plus mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-user-plus"></use></svg>Користувачі
                                 </a>
                                 <a href="#" class="dropdown-item text-dark d-flex align-items-center">
                                     <svg class="icon icon-users mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-users"></use></svg>Ролі користувачів
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('admin.departments.index') }}" class="dropdown-item d-flex align-items-center {{ request()->routeIs('admin.departments.index')  ? 'active' : 'text-dark' }}">
+                                    <svg class="icon icon-home mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-home"></use></svg>Приміщення
+                                </a>
+                                <a href="{{ route('admin.types.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.types.index')  ? 'active' : 'text-dark' }}">
+                                    <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-list"></use></svg>Типи обладнання
+                                </a>
+                                <a href="{{ route('admin.status.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.status.index')  ? 'active' : 'text-dark' }}">
+                                    <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-info"></use></svg>Статуси
                                 </a>
                             </div>
                         </div>
