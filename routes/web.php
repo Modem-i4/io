@@ -45,8 +45,8 @@ Route::group($inventoryGroupData, function() {
 
         //Departments
         Route::resource('departments', 'DepartmentController')
-            ->middleware('can:isAdmin')
-            ->only(['index'])                              //не робити маршрут для метода show
+            ->middleware('can:isAdmin') //TODO винести мідлвейр і онлі для всіх маршрутів
+            ->only(['index'])
             ->names('admin.departments');
 
         //Users
@@ -54,6 +54,23 @@ Route::group($inventoryGroupData, function() {
             ->only(['index', 'show'])
             ->names('admin.users');
 
+        //Types
+        Route::resource('types', 'TypeController')
+            ->middleware('can:isAdmin')
+            ->only(['index'])
+            ->names('admin.types');
+
+        //Status
+        Route::resource('status', 'StatusController')
+            ->middleware('can:isAdmin')
+            ->only(['index'])
+            ->names('admin.status');
+
+        //licenses
+        Route::resource('licenses', 'LicenseController')
+            ->middleware('can:isAdmin')
+            ->only(['index'])
+            ->names('admin.licenses');
     });
 });
 
