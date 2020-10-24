@@ -271,7 +271,7 @@ export default {
 
         EventBus.$on('dt-fetched', data => {
             this.items.forEach(item => {
-                item.isSelectable = (item.children_count === 0);    //TODO: Add server-side validation for delete
+                item.isSelectable = (item.children_count === 0);
             })
         });
     }

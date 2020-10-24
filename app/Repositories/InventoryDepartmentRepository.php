@@ -95,6 +95,24 @@ class InventoryDepartmentRepository extends CoreRepository
     }
 
     /**
+     * @param array $idList
+     * @return Collection
+     */
+    public function getByIdListWithChildCount($idList)
+    {
+        $columns = ['id', 'title'];
+
+        $result = $this->startConditions()
+            ->select($columns)
+            ->withCount('children')
+            ->whereIn('id', $idList)
+            ->toBase()
+            ->get();
+
+        return $result;
+    }
+
+    /**
      *  Пошук наявності дочірніх елементів для перевірки при видаленні
      *  @param int $id
      *  @return Model
