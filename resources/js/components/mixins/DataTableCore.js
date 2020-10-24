@@ -150,7 +150,7 @@ export const DataTableCore = {
         },
         // Видалення за массивом ідентифікаторів
         massDelete(itemsIdArray) {
-            axios.delete(this.crudApiEndpoint, {
+            axios.delete(this.crudApiEndpoint + '/destroy', {
                 params: {
                     idList: itemsIdArray,
                 },

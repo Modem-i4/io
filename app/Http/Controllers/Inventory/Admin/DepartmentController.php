@@ -14,7 +14,6 @@ class DepartmentController extends BaseController
 
     public function __construct()
     {
-        $this->middleware('auth');
         parent::__construct(); //конструктор від парента на перспективу, можливо колись знадобиться
         $this->inventoryDepartmentRepository = app(InventoryDepartmentRepository::class); //app вертає об'єкт класа
 

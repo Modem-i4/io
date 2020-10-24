@@ -27,7 +27,7 @@
                         @elsecan('isManager') {{ url('/manager/home') }}
                         @else {{ url('/user/home') }}
                         @endcan ">
-                                <img class="mb-1 img-fluid" src="/img/oa_logo.png" alt="Інвентаризація Острозька академія" width="50px"> Інвентаризація ОА{{-- config('app.name','Laravel') --}}
+                                <img class="mb-1 img-fluid" src="{{ public_path('/img/oa_logo.png') }}" alt="Інвентаризація Острозька академія" width="50px"> Інвентаризація ОА{{-- config('app.name','Laravel') --}}
                             </a>
                     </div>
                     <div class="collapse navbar-collapse align-items-center" id="navbarSupportedContent">
@@ -99,7 +99,7 @@
                                 <a href="{{ route('admin.types.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.types.index')  ? 'active' : 'text-dark' }}">
                                     <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-list"></use></svg>Типи обладнання
                                 </a>
-                                <a href="{{ route('admin.status.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.status.index')  ? 'active' : 'text-dark' }}">
+                                <a href="{{ route('admin.statuses.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.status.index')  ? 'active' : 'text-dark' }}">
                                     <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-info"></use></svg>Статуси
                                 </a>
                             </div>
@@ -118,10 +118,10 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="img-fluid rounded" width="45px" title="{{ Auth::user()->name }}">
+                            <img src="{{ auth()->user()->avatar }}" alt="avatar" class="img-fluid rounded" width="45px" title="{{ auth()->user()->name }}">
                             <div class="d-none align-items-center px-2 d-md-flex">
                                 <div>
-                                    <span>{{ Auth::user()->name }}</span>
+                                    <span>{{ auth()->user()->name }}</span>
                                     <span class="d-block">@can('isAdmin')
                                             <span class="badge badge-success">
                                             Адміністратор

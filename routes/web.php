@@ -12,81 +12,77 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//TODO: Додати групу з middleware auth на всі маршрути окрім тих що треба для входу. Підчистити конструктори контроллерів
-//TODO: Delete?
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
 
-Route::get('/user/home', 'HomeController@user')->name('user.home');
-Route::get('/admin/home', 'HomeController@admin')->middleware('can:isAdmin')->name('admin.home');
+Route::middleware('auth')->group(function() {
+    Route::get('/user/home', 'HomeController@user')->name('user.home');
+    Route::get('/admin/home', 'HomeController@admin')->middleware('can:isAdmin')->name('admin.home');
 
 
-$inventoryGroupData = [
-    'namespace' => 'Inventory',
-];
-Route::group($inventoryGroupData, function() {
-
-    //TODO: user/home???
-    Route::get('profile', 'UserController@profile');
-
-
-    //Адмінка
-    $inventoryAdminGroupData = [
-        'namespace' => 'Admin',
-        'prefix' => 'admin',
+    $inventoryGroupData = [
+        'namespace' => 'Inventory',
     ];
-    Route::group($inventoryAdminGroupData, function () {
-        //
-        /* $methods = ['index','edit','store','update','create',];
-         Route::resource('categories', 'CategoryController')
-         ->only($methods)
-         ->names('admin.categories');*/
+    Route::group($inventoryGroupData, function() {
 
-        //Departments
-        Route::resource('departments', 'DepartmentController')
-            ->middleware('can:isAdmin') //TODO винести мідлвейр і онлі для всіх маршрутів
-            ->only(['index'])
-            ->names('admin.departments');
+        //TODO: user/home???
+        //Route::get('profile', 'UserController@profile');
 
-        //Users
-        Route::resource('users', 'UserController')
-            ->only(['index', 'show'])
-            ->names('admin.users');
 
-        //Types
-        Route::resource('types', 'TypeController')
-            ->middleware('can:isAdmin')
-            ->only(['index'])
-            ->names('admin.types');
+        //Адмінка
+        $inventoryAdminGroupData = [
+            'namespace' => 'Admin',
+            'middleware' => 'can:isAdmin',
+            'prefix' => 'admin',
+        ];
+        Route::group($inventoryAdminGroupData, function () {
 
-        //Status
-        Route::resource('status', 'StatusController')
-            ->middleware('can:isAdmin')
-            ->only(['index'])
-            ->names('admin.status');
+            //Departments
+            Route::resource('departments', 'DepartmentController')
+                ->only(['index'])    //TODO винести онлі для всіх маршрутів
+                ->names('admin.departments');
 
-        //licenses
-        Route::resource('licenses', 'LicenseController')
-            ->middleware('can:isAdmin')
-            ->only(['index'])
-            ->names('admin.licenses');
+            //Users
+            Route::resource('users', 'UserController')
+                ->only(['index', 'show'])
+                ->names('admin.users');
+
+            //Types
+            Route::resource('types', 'TypeController')
+                ->only(['index'])
+                ->names('admin.types');
+
+            //Status
+            Route::get('statuses', 'StatusController@index')
+                ->name('admin.statuses.index');
+
+            //licenses
+            Route::resource('licenses', 'LicenseController')
+                ->only(['index'])
+                ->names('admin.licenses');
+
+        });
     });
 });
 
+
+
 //Auth
 $authGroupData = [
+    'middleware' => 'guest',
     'namespace' => 'Auth',
 ];
 Route::group($authGroupData, function() {
     //login with Google
-    Route::get('/login/google', 'LoginController@redirectToProvider');
-    Route::get('/login/google/callback', 'LoginController@handleProviderCallback');
-    Route::post('logout', 'LoginController@logout')->name('logout');
+    Route::get('/login/google/redirect', 'LoginController@redirectToProvider')->name('login.google.redirect');
+    Route::get('/login/google/callback', 'LoginController@handleProviderCallback')->name('login.google.callback');
 
-    //Route::post('login', 'LoginController@login');  //Native Login User Form
+    Route::get('/', 'LoginController@google')->name('login');    //TODO: Improve
 });
-Route::get('/test/users', 'Api\UserController@index');
+
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+
+
+
 
 //API
 Route::group(['middleware' => ['can:isAdmin']], function () {
@@ -100,7 +96,7 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
         Route::get('users', 'UserController@index');
 
         Route::get('departments/all', 'DepartmentController@all');
-        Route::delete('departments/', 'DepartmentController@destroyMany');    //TODO Перенести
+        Route::delete('departments/destroy', 'DepartmentController@destroyMany');
         Route::resource('departments', 'DepartmentController')
             ->only(['index', 'update', 'store'])
             ->names('api.departments');
