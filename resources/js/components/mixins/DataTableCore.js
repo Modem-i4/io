@@ -1,4 +1,5 @@
 import DeleteSelectedButtonComponent from "../DataTable/DeleteSelectedButtonComponent";
+import DeleteSingleButtonComponent from "../DataTable/DeleteSingleButtonComponent";
 import EditDialogComponent from "../DataTable/EditDialogComponent";
 import FormValidate from "./FormValidate";
 import SnackbarControl from "./SnackbarControl";
@@ -7,7 +8,8 @@ import { EventBus } from "../EventBus";
 export const DataTableCore = {
     mixins: [FormValidate, SnackbarControl],
     components: {
-        'delete-selected-button': DeleteSelectedButtonComponent,
+        'dt-delete-selected': DeleteSelectedButtonComponent,
+        'dt-delete-single': DeleteSingleButtonComponent,
         'dt-edit-dialog': EditDialogComponent,
     },
     data () {

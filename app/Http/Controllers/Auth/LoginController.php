@@ -49,7 +49,7 @@ class LoginController extends Controller
      */
     public function google()
     {
-        return view('auth.login');
+        return view('auth.google');
     }
 
     /**

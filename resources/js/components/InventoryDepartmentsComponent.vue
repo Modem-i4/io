@@ -63,10 +63,10 @@
             <div class="col-md-12">
                 <div class="d-flex justify-content-between flex-wrap">
                     <div class="py-3">
-                        <delete-selected-button
+                        <dt-delete-selected
                             @click.native="deleteSelectedItems"
                             :disabled="isSelectedAny"
-                        ></delete-selected-button>
+                        ></dt-delete-selected>
                     </div>
                 </div>
                 <v-card>
@@ -164,37 +164,19 @@
                             </validation-observer>
                         </template>
                         <template v-slot:item.actions="{ item }">
-                            <template v-if="item.isSelectable">
-                                <v-icon
-                                    small
-                                    @click="deleteSingleItem(item.id)"
-                                >
-                                    mdi-delete
-                                </v-icon>
-                            </template>
-                            <template v-else>
-                                <v-tooltip left>
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-icon
-                                            color="grey lighten-1"
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            small
-                                        >
-                                            mdi-delete
-                                        </v-icon>
-                                    </template>
-                                    <span>Має дочірні елементи</span>
-                                </v-tooltip>
-                            </template>
+                            <dt-delete-single
+                                tooltipText="Має дочірні компоненти"
+                                @delete="deleteSingleItem(item.id)"
+                                :isSelectable="item.isSelectable"
+                            ></dt-delete-single>
                         </template>
                     </v-data-table>
                 </v-card>
                 <div class="d-flex justify-content-between flex-wrap">
                     <div class="py-3">
-                        <delete-selected-button
+                        <dt-delete-selected
                             @click.native="deleteSelectedItems"
-                        ></delete-selected-button>
+                        ></dt-delete-selected>
                     </div>
                 </div>
             </div>

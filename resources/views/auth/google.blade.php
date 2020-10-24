@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ public_path('favicon.ico') }}">
+    <link rel="icon" href="{{ url('favicon.ico') }}">
     <title>Інвентаризація ОА</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -42,7 +42,7 @@
 <div class="flex-center position-ref full-height">
     <div class="content">
         <div class="text-center mb-4">
-            <img class="mb-1" src="{{ public_path('/img/oa_logo.png') }}" alt="Герб Національного університету 'Острозька академія'" width="150" height="150">
+            <img class="mb-1" src="{{ url('/img/oa_logo.png') }}" alt="Герб Національного університету 'Острозька академія'" width="150" height="150">
             <h1 class="mb-3">Інвентаризація ОА</h1>
         </div>
         <a href="{{ route('login.google.redirect') }}" class="btn btn-lg btn-danger btn-block">
@@ -70,7 +70,5 @@
     </div>
 @endif
 --}}
-
-</div>
 </body>
 </html>

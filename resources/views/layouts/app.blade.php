@@ -23,11 +23,11 @@
             <div class="container-fluid">
                     <div class="logo mr-3">
                             <a class="navbar-brand" href="
-                        @can('isAdmin') {{ url('/admin/home') }}
-                        @elsecan('isManager') {{ url('/manager/home') }}
-                        @else {{ url('/user/home') }}
+                        @can('isAdmin') {{ route('admin.home') }}
+                        @elsecan('isManager') {{ url('/manager/home') }}{{-- TODO: Create page and replace with route --}}
+                        @else {{ route('user.home') }}
                         @endcan ">
-                                <img class="mb-1 img-fluid" src="{{ public_path('/img/oa_logo.png') }}" alt="Інвентаризація Острозька академія" width="50px"> Інвентаризація ОА{{-- config('app.name','Laravel') --}}
+                                <img class="mb-1 img-fluid" src="{{ url('img/oa_logo.png') }}" alt="Інвентаризація Острозька академія" width="50px"> Інвентаризація ОА{{-- config('app.name','Laravel') --}}
                             </a>
                     </div>
                     <div class="collapse navbar-collapse align-items-center" id="navbarSupportedContent">
