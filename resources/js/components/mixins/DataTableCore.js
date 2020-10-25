@@ -15,7 +15,9 @@ export const DataTableCore = {
     data () {
         return {
             //singleSelect: false,
+            isSelectableByDefault: true,
             selected: [],
+
             pagination: {},
             search: '',
             items: [],
@@ -92,6 +94,9 @@ export const DataTableCore = {
                 this.pagination.total = response.data.total;
 
                 this.loading = false;
+
+                if(this.isSelectableByDefault)
+                    this.items.forEach(item => {item.isSelectable = true;})
 
                 EventBus.$emit('dt-fetched');
             }).catch(error => this.handleRequestError(error));

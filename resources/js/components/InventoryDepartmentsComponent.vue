@@ -193,6 +193,7 @@ export default {
     data () {
         return {
             allDepartments: [],
+            isSelectableByDefault: false,
             crudApiEndpoint: '/api/departments',
             headers: [
                 { text: 'id', align: 'start',  value: 'id',

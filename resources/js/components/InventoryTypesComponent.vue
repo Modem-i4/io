@@ -158,24 +158,5 @@ export default {
             };
         }
     },
-    created() {
-        EventBus.$on('dt-item-updated', data => {
-            this.getAllDepartments();
-        });
-
-        EventBus.$on('dt-item-created', data => {
-            this.getAllDepartments();
-        });
-
-        EventBus.$on('dt-item-deleted', data => {
-            this.getAllDepartments();
-        });
-
-        EventBus.$on('dt-fetched', data => {
-            this.items.forEach(item => {
-                item.isSelectable = (item.children_count === 0);
-            })
-        });
-    }
 }
 </script>
