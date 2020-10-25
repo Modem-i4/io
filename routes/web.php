@@ -101,6 +101,11 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
             ->only(['index', 'update', 'store'])
             ->names('api.departments');
 
+        Route::delete('statuses/destroy', 'StatusController@destroyMany');
+        Route::resource('statuses', 'StatusController')
+            ->only(['index', 'update', 'store'])
+            ->names('api.statuses');
+
         Route::delete('types/destroy', 'TypeController@destroyMany');
         Route::resource('types', 'TypeController')
             ->only(['index', 'update', 'store'])

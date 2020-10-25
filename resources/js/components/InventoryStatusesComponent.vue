@@ -64,7 +64,7 @@
                         v-model="selected"
                         show-select
                         :footer-props="{
-                            itemsPerPageOptions: [10, 25, 50]
+                            itemsPerPageOptions: [10, 25]
                         }"
                         :headers="headers"
                         :items="items"
@@ -131,11 +131,13 @@
 import { DataTableCore } from "./mixins/DataTableCore";
 import { EventBus } from "./EventBus";
 
+//TODO: Add deletable property
+
 export default {
     mixins: [DataTableCore],
     data () {
         return {
-            crudApiEndpoint: '/api/types',
+            crudApiEndpoint: '/api/statuses',
             headers: [
                 { text: 'id', align: 'start',  value: 'id',
                    // sortable: false,

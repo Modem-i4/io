@@ -12,8 +12,8 @@ class InventoryType extends Model
 
     public $timestamps = false;
     protected $fillable = [
-            'title',
-        ];
+        'title',
+    ];
 
     protected function getFilterClass()
     {
