@@ -18,11 +18,11 @@ class CreateInventoryRepairsTable extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->integer('user_id')->unsigned();
-            $table->integer('agent_id')->unsigned();
+            $table->integer('provider_id')->unsigned();
             $table->timestamps();
-        
+
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('agent_id')->references('id')->on('inventory_repair_agents');
+            $table->foreign('provider_id')->references('id')->on('inventory_providers');
         });
     }
 

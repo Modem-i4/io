@@ -18,14 +18,12 @@ class CreateInventoryUtilizationsTable extends Migration
             $table->integer('number');
             $table->date('date')->nullable();
             $table->integer('user_id')->unsigned();
-            $table->integer('agent_id')->unsigned();
+            $table->integer('provider_id')->unsigned();
             $table->text('file_url');
             $table->boolean('confirmed');
-        
-            
-            
+
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('agent_id')->references('id')->on('inventory_utilization_agents');
+            $table->foreign('provider_id')->references('id')->on('inventory_providers');
         });
     }
 

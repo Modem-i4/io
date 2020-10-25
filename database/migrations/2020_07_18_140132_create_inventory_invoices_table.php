@@ -14,13 +14,14 @@ class CreateInventoryInvoicesTable extends Migration
     public function up()
     {
         Schema::create('inventory_invoices', function (Blueprint $table) {
-            $table->increments('id');            
+            $table->increments('id');
             $table->string('number');
             $table->date('date');
+            $table->integer('provider_id')->unsigned();
             $table->text('file_url');
             $table->timestamps();
-            
-            
+
+            $table->foreign('provider_id')->references('id')->on('inventory_providers');
         });
     }
 
