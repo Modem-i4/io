@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInventoryRepairAgentsTable extends Migration
+class CreateInventoryProvidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateInventoryRepairAgentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_repair_agents', function (Blueprint $table) {
+        Schema::create('inventory_providers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('address')->nullable();
             $table->integer('phone')->nullable();
-            
         });
     }
 
@@ -29,6 +28,6 @@ class CreateInventoryRepairAgentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventory_repair_agents');
+        Schema::dropIfExists('inventory_providers');
     }
 }
