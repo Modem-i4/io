@@ -32,7 +32,7 @@
                             class="mr-4"
                             @click="create"
                         >
-                            <svg class="icon icon-plus mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-plus"></use></svg><span class="d-none d-md-inline">Додати приміщення</span>
+                            <svg class="icon icon-plus mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-plus"></use></svg><span class="d-none d-md-inline">Створити тип обладнання</span>
                         </v-btn>
                     </v-col>
                 </v-row>
@@ -129,7 +129,6 @@
 
 <script>
 import { DataTableCore } from "./mixins/DataTableCore";
-import { EventBus } from "./EventBus";
 
 export default {
     mixins: [DataTableCore],

@@ -5,7 +5,7 @@
     <section class="">
         <div class="container-fluid">
             <div class="col-12 pt-3 mb-3 bg-white rounded">
-                <h1 class="mb-3">Типи</h1>
+                <h1 class="mb-3">Типи обладнання</h1>
 
                 <types-table></types-table>
 
