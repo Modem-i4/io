@@ -21,6 +21,13 @@ abstract class QueryFilter
     protected $request;
 
     /**
+     * The default namespace where filters reside.
+     *
+     * @var string
+     */
+    protected static $namespace = 'App\\Filters\\';
+
+    /**
      * The attributes that can be searched
      *
      * @var array
@@ -66,6 +73,14 @@ abstract class QueryFilter
     public function filters()
     {
         return request()->all();
+    }
+
+    public static function filterForModel($modelName)
+    {
+        $modelName = Str::after($modelName, 'App\\Models\\');
+        $className = static::$namespace.$modelName.'Filter';
+
+        return $className;
     }
 
     /**

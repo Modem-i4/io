@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Inventory\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\InventoryProvider;
 
 class ProviderController extends Controller
 {
@@ -14,8 +13,6 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        dump(InventoryProvider::class);
-
         return view('inventory.admin.providers');
     }
 }

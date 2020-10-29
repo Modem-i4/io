@@ -4,7 +4,7 @@
 namespace App\Filters;
 
 
-class TypeFilter extends QueryFilter
+class InventoryTypeFilter extends QueryFilter
 {
 
     /**

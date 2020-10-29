@@ -4,7 +4,7 @@
 namespace App\Filters;
 
 
-class ProviderFilter extends QueryFilter
+class InventoryStatusFilter extends QueryFilter
 {
 
     /**
@@ -14,19 +14,10 @@ class ProviderFilter extends QueryFilter
      */
     protected $searchable = [
         'title',
-        'address',
-        'phone',
     ];
 
-    /**
-     * The attributes that can be searched
-     *
-     * @var array
-     */
     protected $sortable = [
         'id',
         'title',
-        'address',
-        'phone',
     ];
 }

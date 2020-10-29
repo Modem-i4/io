@@ -4,29 +4,33 @@
 namespace App\Traits;
 
 
+use App\Filters\QueryFilter;
+
 trait Filterable
 {
-    /**
-     * @var \App\Filters\QueryFilter
-     */
-    protected $filter;
-
-    public function __construct()
-    {
-        $this->filter = app($this->getFilterClass());
-    }
-
     /**
      * @param $query
      * @return mixed
      */
     public function scopeFilter($query)
     {
-        return $this->filter->apply($query);
+        return $this->getFilterInstance()->apply($query);
+    }
+
+    public function getFilterInstance()
+    {
+        $filter = static::newFilter() ?: QueryFilter::filterForModel(get_called_class());
+
+        return app($filter);
     }
 
     /**
-     * @return \App\Filters\QueryFilter
+     * Create a new filter instance for the model.
+     *
+     * @return string|void
      */
-    abstract protected function getFilterClass();
+    protected static function newFilter()
+    {
+        //
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Filters\DepartmentsFilter;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -65,10 +64,5 @@ class InventoryDepartment extends Model
     public function isRoot()
     {
         return $this->id === InventoryDepartment::ROOT;
-    }
-
-    protected function getFilterClass()
-    {
-        return DepartmentsFilter::class;
     }
 }

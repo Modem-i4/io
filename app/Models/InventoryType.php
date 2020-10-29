@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Filters\TypeFilter;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,9 +13,4 @@ class InventoryType extends Model
     protected $fillable = [
         'title',
     ];
-
-    protected function getFilterClass()
-    {
-        return TypeFilter::class;
-    }
 }
