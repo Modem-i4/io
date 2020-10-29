@@ -31,14 +31,31 @@ class UserRepository extends CoreRepository
      *
      * @return
      */
-    public function getAll()
+    public function getForEdit($id)
     {
+        return $this->startConditions()
+            ->where('id', $id)
+            ->first();
+    }
+
+    /**
+     * Отримати всіх користувачів
+     *
+     * @return id, title
+     */
+
+    public function getAllWithPaginateAndFiltering()
+    {
+
+        $perPage = request('perPage');
         $columns = ['id', 'name', 'email', 'role'];
 
         $result = $this->startConditions()
             ->select($columns)
-            ->toBase()
-            ->get();
+            ->filter()
+            ->paginate($perPage);
+
         return $result;
+
     }
 }

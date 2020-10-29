@@ -142,7 +142,6 @@
                         </template>
 
                         <template v-slot:item.email="props">
-
                             <validation-observer
                                 :ref="getValidatorRef('email', props.item.id)"
                                 v-slot=""
@@ -159,7 +158,7 @@
                                         <validation-provider
                                             v-slot="{ errors }"
                                             name="E-mail"
-                                            rules="required|max:100"
+                                            rules="required|email"
                                         >
                                             <v-text-field
                                                 v-model="props.item.email"

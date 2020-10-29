@@ -1,4 +1,4 @@
-import { required, max, min } from 'vee-validate/dist/rules'
+import { required, email, max, min } from 'vee-validate/dist/rules'
 import { extend, setInteractionMode } from 'vee-validate'
 
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
@@ -16,6 +16,11 @@ extend('required', {
             valid: ['', null, undefined].indexOf(value) === -1,
         }
     }
+})
+
+extend('email', {
+    ...email,
+    message: 'Email має бути дійсним',
 })
 
 extend('max', {
