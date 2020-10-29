@@ -36,22 +36,22 @@
                             @can('isAdmin')
                                 <li class="nav-item">
                                     <a href="#" class="text-dark ml-2 {{ request()->routeIs('admin.items.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
-                                        <svg class="icon icon-display mx-2" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-display"></use></svg>Технічне обладнання
+                                        <svg class="icon icon-display mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-display"></use></svg><span class="d-none d-lg-inline">Технічне обладнання</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="ml-2 {{ request()->routeIs('admin.licenses.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
-                                        <svg class="icon icon-file-text2 mx-2" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-windows"></use></svg>Ліцензії
+                                        <svg class="icon icon-file-text2 mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-windows"></use></svg><span class="d-none d-lg-inline">Ліцензії</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="ml-2 {{ request()->routeIs('admin.invoices.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
-                                        <svg class="icon icon-file-text2 mx-2" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-file-text2"></use></svg>Накладні
+                                        <svg class="icon icon-file-text2 mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-file-text2"></use></svg><span class="d-none d-lg-inline">Накладні</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="text-dark ml-2 {{ request()->routeIs('admin.transfers.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
-                                        <svg class="icon icon-transfer mx-2" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-transfer"></use></svg>Передачі
+                                        <svg class="icon icon-transfer mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-transfer"></use></svg><span class="d-none d-lg-inline">Передачі</span>
                                     </a>
                                 </li>
                             @endcan
@@ -68,13 +68,13 @@
                             aria-expanded="false"
                             aria-label="{{ __('Toggle navigation') }}"
                         >
-                            <svg class="icon icon-cog" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-menu"></use></svg>
+                            <svg class="icon icon-cog"><use xlink:href="/img/icons/symbol-defs.svg#icon-menu"></use></svg>
                         </button>
 
                     @can('isAdmin')
-                        <div class="dropdown pr-1">
+                        <div class="dropdown pr-1 ml-2">
                             <a
-                                class="dropdown-toggle gears text-decoration-none pr-1"
+                                class="dropdown-toggle gears text-decoration-none pr-1 "
                                 href="#"
                                 role="button"
                                 id="dropdownMenuLink"
@@ -82,7 +82,7 @@
                                 aria-haspopup="true"
                                 aria-expanded="false"
                             >
-                                <svg class="icon icon-cog" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-cog"></use></svg>
+                                <svg class="icon icon-cog"><use xlink:href="/img/icons/symbol-defs.svg#icon-cog"></use></svg>
                             </a>
                             <div class="dropdown-menu gears dropdown-menu-right">
                                 <a href="{{ route('admin.users.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.users.index')  ? 'active' : 'text-dark' }}">
@@ -107,13 +107,13 @@
 
                             <a href=""
                             type="button"
-                            class="border-0 bg-transparent pr-3"
+                            class="border-0 bg-transparent pr-3 ml-2"
                             data-toggle="tooltip"
                             data-placement="right"
                             title="{{ __('Вийти') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                             >
-                                <svg class="icon icon-cog" fill="currentColor"><use xlink:href="/img/icons/symbol-defs.svg#icon-exit"></use></svg>
+                                <svg class="icon icon-cog"><use xlink:href="/img/icons/symbol-defs.svg#icon-exit"></use></svg>
                         </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
