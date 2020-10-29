@@ -1,4 +1,4 @@
-import { required, max } from 'vee-validate/dist/rules'
+import { required, max, min } from 'vee-validate/dist/rules'
 import { extend, setInteractionMode } from 'vee-validate'
 
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
@@ -21,6 +21,11 @@ extend('required', {
 extend('max', {
     ...max,
     message: 'Поле "{_field_}" має містити не більше {length} символів',
+})
+
+extend('min', {
+    ...min,
+    message: 'Поле "{_field_}" має містити не менше {length} символів',
 })
 
 export default {

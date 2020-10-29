@@ -15,12 +15,30 @@ class DatabaseSeeder extends Seeder
     {
         $this->truncate();
 
+        if(config('app.debug')) {
+            $this->testingSeeds();
+        }
+        else {
+            $this->productionSeeds();
+        }
+    }
+
+    private function testingSeeds()
+    {
+        $this->call(UsersTableSeeder::class);
+        $this->call(InventoryDepartmentsTableSeeder::class);
+        $this->call(InventoryStatusesTableSeeder::class);
+        $this->call(InventoryTypesTableSeeder::class);
+
+        $this->call(InventoryProviderTestTableSeeder::class);
+    }
+
+    private function productionSeeds()
+    {
         $this->call(UsersTableSeeder::class);
         $this->call(InventoryDepartmentsTableSeeder::class);
         $this->call(InventoryTypesTableSeeder::class);
         $this->call(InventoryStatusesTableSeeder::class);
-
-        //TODO: Create seeders for testing
     }
 
     private function truncate()
@@ -29,8 +47,9 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::truncate();
         \App\Models\InventoryDepartment::truncate();
-        \App\Models\InventoryType::truncate();
+        \App\Models\InventoryProvider::truncate();
         \App\Models\InventoryStatus::truncate();
+        \App\Models\InventoryType::truncate();
 
         \Schema::enableForeignKeyConstraints();
     }

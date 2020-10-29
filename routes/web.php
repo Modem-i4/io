@@ -46,6 +46,11 @@ Route::middleware('auth')->group(function() {
                 ->names('admin.users');
 
             //Types
+            Route::resource('providers', 'ProviderController')
+                ->only(['index'])
+                ->names('admin.providers');
+
+            //Types
             Route::resource('types', 'TypeController')
                 ->only(['index'])
                 ->names('admin.types');
@@ -100,6 +105,11 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
         Route::resource('departments', 'DepartmentController')
             ->only(['index', 'update', 'store'])
             ->names('api.departments');
+
+        Route::delete('providers/destroy', 'ProviderController@destroyMany');
+        Route::resource('providers', 'ProviderController')
+            ->only(['index', 'update', 'store'])
+            ->names('api.providers');
 
         Route::delete('statuses/destroy', 'StatusController@destroyMany');
         Route::resource('statuses', 'StatusController')

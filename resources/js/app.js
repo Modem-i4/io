@@ -25,6 +25,7 @@ window.axios = require('axios');
 
 Vue.component('users-table', require('./components/UserTableComponent.vue').default);
 Vue.component('departments-table', require('./components/InventoryDepartmentsComponent.vue').default);
+Vue.component('providers-table', require('./components/InventoryProvidersComponent.vue').default);
 Vue.component('statuses-table', require('./components/InventoryStatusesComponent.vue').default);
 Vue.component('types-table', require('./components/InventoryTypesComponent.vue').default);
 
