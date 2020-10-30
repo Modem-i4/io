@@ -25,7 +25,7 @@ class InventoryUserCreateRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5|max:100',    //TODO: Review
-            'email' => 'email:rfc,dns',
+            'email' => 'email:rfc,dns', //TODO: Валідатор пропускає мейл, а ларавел відкидає, мабуть ларавел перевіряє чи існує домен реально.
             'role' => 'required',
         ];
     }

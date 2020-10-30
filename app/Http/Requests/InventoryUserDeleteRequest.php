@@ -25,7 +25,7 @@ class InventoryUserDeleteRequest extends FormRequest
     {
         return [
             'idList' => 'array',
-            'idList.*' => 'exists:inventory_users,id',
+            'idList.*' => 'exists:users,id',
         ];
     }    //TODO: Add custom validation error messages
 }

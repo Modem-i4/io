@@ -98,7 +98,10 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
     ];
 
     Route::group($apiGroupData, function () {
-        Route::get('users', 'UserController@index');
+        Route::delete('users/destroy', 'UserController@destroyMany');
+        Route::resource('users', 'UserController')
+            ->only(['index', 'update', 'store'])
+            ->names('api.users');
 
         Route::get('departments/all', 'DepartmentController@all');
         Route::delete('departments/destroy', 'DepartmentController@destroyMany');

@@ -11,14 +11,14 @@
                 >
                     <validation-provider
                         v-slot="{ errors }"
-                        name="ПІП"
-                        rules="required|max:100"
+                        name="Ім'я"
+                        rules="required|min:5|max:100"
                     >
                         <v-text-field
                             v-model="newItem.name"
                             :counter="100"
                             :error-messages="errors"
-                            label="ПІП"
+                            label="Ім'я"
                             required
                         ></v-text-field>
                     </validation-provider>
@@ -49,12 +49,13 @@
                         name="Роль"
                         rules="required"
                     >
-                        <v-text-field
+                        <v-select
+                            :items="roles"
                             v-model="newItem.role"
                             :error-messages="errors"
                             label="Роль"
                             required
-                        ></v-text-field>
+                        ></v-select>
                     </validation-provider>
                 </v-col>
                 <v-col
@@ -125,7 +126,7 @@
                                         <validation-provider
                                             v-slot="{ errors }"
                                             name="Ім'я"
-                                            rules="required|max:100"
+                                            rules="required|min:5|max:100"
                                         >
                                             <v-text-field
                                                 v-model="props.item.name"
@@ -174,6 +175,37 @@
                             </validation-observer>
                         </template>
 
+                        <template v-slot:item.role="props">
+                            <validation-observer
+                                :ref="getValidatorRef('role', props.item.id)"
+                                v-slot=""
+                            >
+                                <dt-edit-dialog
+                                    :return-value.sync="props.item.role"
+                                    :validator="$refs[getValidatorRef('role', props.item.id)]"
+                                    @save="update(props.item)"
+                                    @changeless-save="changeless"
+                                    @cancel="cancel"
+                                >
+                                    {{ props.item.role }}
+                                    <template v-slot:input>
+                                        <validation-provider
+                                            v-slot="{ errors }"
+                                            name="Роль"
+                                            rules="required"
+                                        >
+                                            <v-select
+                                                :items="roles"
+                                                v-model="props.item.role"
+                                                :error-messages="errors"
+                                                label="Роль"
+                                                required
+                                            ></v-select>
+                                        </validation-provider>
+                                    </template>
+                                </dt-edit-dialog>
+                            </validation-observer>
+                        </template>
 
                         <template v-slot:item.actions="{ item }">
                             <dt-delete-single
@@ -202,6 +234,8 @@ export default {
     mixins: [DataTableCore],
     data () {
         return {
+            //role : 'user', TODO: Add default value to select
+            roles: ['admin', 'user', 'manager'],
             crudApiEndpoint: '/api/users',
             headers: [
                 { text: 'id', align: 'start',  value: 'id',
