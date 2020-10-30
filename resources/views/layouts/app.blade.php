@@ -91,7 +91,10 @@
                                 <a href="#" class="dropdown-item text-dark d-flex align-items-center">
                                     <svg class="icon icon-users mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-users"></use></svg>Ролі користувачів
                                 </a>
-
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('admin.providers.index') }}" class="dropdown-item d-flex align-items-center {{ request()->routeIs('admin.providers.index')  ? 'active' : 'text-dark' }}">
+                                    <svg class="icon icon-users mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-users"></use></svg>Постачальники
+                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a href="{{ route('admin.departments.index') }}" class="dropdown-item d-flex align-items-center {{ request()->routeIs('admin.departments.index')  ? 'active' : 'text-dark' }}">
                                     <svg class="icon icon-home mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-home"></use></svg>Приміщення

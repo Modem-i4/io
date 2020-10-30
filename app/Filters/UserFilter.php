@@ -16,6 +16,7 @@ class UserFilter extends QueryFilter
         'id',
         'name',
         'email',
+        'role',
     ];
 
     protected $sortable = [
