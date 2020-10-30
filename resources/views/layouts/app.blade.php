@@ -35,22 +35,22 @@
                         <ul class="navbar-nav mr-auto list-unstyled">
                             @can('isAdmin')
                                 <li class="nav-item">
-                                    <a href="#" class="text-dark ml-2 {{ request()->routeIs('admin.items.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
+                                    <a href="#" class="text-dark ml-2 {{ navbar_item_class('admin.items.index') }} d-flex align-items-center">
                                         <svg class="icon icon-display mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-display"></use></svg><span class="d-none d-lg-inline">Технічне обладнання</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="ml-2 {{ request()->routeIs('admin.licenses.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
+                                    <a href="#" class="ml-2 {{ navbar_item_class('admin.licenses.index') }} d-flex align-items-center">
                                         <svg class="icon icon-file-text2 mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-windows"></use></svg><span class="d-none d-lg-inline">Ліцензії</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="ml-2 {{ request()->routeIs('admin.invoices.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
+                                    <a href="#" class="ml-2 {{ navbar_item_class('admin.invoices.index') }} d-flex align-items-center">
                                         <svg class="icon icon-file-text2 mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-file-text2"></use></svg><span class="d-none d-lg-inline">Накладні</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="text-dark ml-2 {{ request()->routeIs('admin.transfers.index')  ? 'active' : 'text-dark' }} d-flex align-items-center">
+                                    <a href="#" class="text-dark ml-2 {{ navbar_item_class('admin.transfers.index') }} d-flex align-items-center">
                                         <svg class="icon icon-transfer mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-transfer"></use></svg><span class="d-none d-lg-inline">Передачі</span>
                                     </a>
                                 </li>
@@ -85,24 +85,24 @@
                                 <svg class="icon icon-cog"><use xlink:href="/img/icons/symbol-defs.svg#icon-cog"></use></svg>
                             </a>
                             <div class="dropdown-menu gears dropdown-menu-right">
-                                <a href="{{ route('admin.users.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.users.index')  ? 'active' : 'text-dark' }}">
+                                <a href="{{ route('admin.users.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ navbar_item_class('admin.users.index') }}">
                                     <svg class="icon icon-user-plus mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-user-plus"></use></svg>Користувачі
                                 </a>
                                 <a href="#" class="dropdown-item text-dark d-flex align-items-center">
                                     <svg class="icon icon-users mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-users"></use></svg>Ролі користувачів
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="{{ route('admin.providers.index') }}" class="dropdown-item d-flex align-items-center {{ request()->routeIs('admin.providers.index')  ? 'active' : 'text-dark' }}">
+                                <a href="{{ route('admin.providers.index') }}" class="dropdown-item d-flex align-items-center {{ navbar_item_class('admin.providers.index') }}">
                                     <svg class="icon icon-users mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-users"></use></svg>Постачальники
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="{{ route('admin.departments.index') }}" class="dropdown-item d-flex align-items-center {{ request()->routeIs('admin.departments.index')  ? 'active' : 'text-dark' }}">
+                                <a href="{{ route('admin.departments.index') }}" class="dropdown-item d-flex align-items-center {{ navbar_item_class('admin.departments.index') }}">
                                     <svg class="icon icon-home mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-home"></use></svg>Приміщення
                                 </a>
-                                <a href="{{ route('admin.types.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.types.index')  ? 'active' : 'text-dark' }}">
+                                <a href="{{ route('admin.types.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ navbar_item_class('admin.types.index') }}">
                                     <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-list"></use></svg>Типи обладнання
                                 </a>
-                                <a href="{{ route('admin.statuses.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ request()->routeIs('admin.status.index')  ? 'active' : 'text-dark' }}">
+                                <a href="{{ route('admin.statuses.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ navbar_item_class('admin.status.index') }}">
                                     <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-info"></use></svg>Статуси
                                 </a>
                             </div>
