@@ -17,7 +17,7 @@ class CreateInventoryProvidersTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('address')->nullable();
-            $table->string('phone')->nullable();
+            $table->integer('phone')->nullable();
         });
     }
 
