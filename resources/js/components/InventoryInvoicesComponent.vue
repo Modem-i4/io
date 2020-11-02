@@ -33,13 +33,35 @@
                         name="Дата накладної"
                         rules="required|max:200"
                     >
-                        <v-text-field
+                    <v-menu
+                        ref="menu1"
+                        v-model="menu1"
+                        :close-on-content-click="false"
+                        transition="scale-transition"
+                        offset-y
+                        max-width="290px"
+                        min-width="290px"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                                v-model="dateFormatted"
+                                label="Дата накладної"
+                                hint="ДД/ММ/РРРР"
+                                persistent-hint
+                                prepend-icon="mdi-calendar"
+                                v-bind="attrs"
+                                @blur="date = parseDate(dateFormatted)"
+                                v-on="on"
+                            ></v-text-field>
+                        </template>
+                        <v-date-picker
                             v-model="newItem.date"
-                            :counter="200"
                             :error-messages="errors"
-                            label="Дата накладної"
+                            no-title
+                            @input="menu1 = false"
                             required
-                        ></v-text-field>
+                        ></v-date-picker>
+                    </v-menu>
                     </validation-provider>
                 </v-col>
 
@@ -115,17 +137,18 @@
                             <td>0</td>
                             <td>
                                 <validation-provider
-                                v-slot="{ errors }"
-                                name="Номер накладної"
-                                rules="required|max:200"
+                                    v-slot="{ errors }"
+                                    name="Тип"
                                 >
-                                <v-text-field
-                                    v-model="newItem.title"
-                                    :counter="200"
-                                    :error-messages="errors"
-                                    label="Номер накладної"
-                                    required
-                                ></v-text-field>
+                                    <v-autocomplete
+                                        v-model="newItem.model"
+                                        :items="allTypes"
+                                        :error-messages="errors"
+                                        label="Тип"
+                                        item-text="title"
+                                        item-value="id"
+                                        return-object
+                                    ></v-autocomplete>
                                 </validation-provider>
                             </td>
                             <td>
