@@ -29,6 +29,13 @@ class UserController extends Controller
         return $items;
     }
 
+    public function all()
+    {
+        $items = $this->inventoryUserRepository->getAllForList();
+
+        return $items;
+    }
+
     public function update(InventoryUserUpdateRequest $request, $id)
     {
         $item = $this->inventoryUserRepository->getForEdit($id);

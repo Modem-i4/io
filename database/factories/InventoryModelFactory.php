@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\InventoryProvider;
+use App\Models\InventoryModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class InventoryProviderFactory extends Factory
+class InventoryModelFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = InventoryProvider::class;
+    protected $model = InventoryModel::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,7 @@ class InventoryProviderFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->company,
-            'address' => $this->faker->address,
-            'phone' => '380975640986',
+            'title' => $this->faker->domainWord,
         ];
     }
 }

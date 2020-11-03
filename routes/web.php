@@ -40,6 +40,11 @@ Route::middleware('auth')->group(function() {
                 ->only(['index'])    //TODO винести онлі для всіх маршрутів
                 ->names('admin.departments');
 
+            //Invoices
+            Route::resource('invoices', 'InvoiceController')
+                ->only(['create', 'index', 'show'])
+                ->names('admin.invoices');
+
             //Users
             Route::resource('users', 'UserController')
                 ->only(['index', 'show'])
@@ -55,11 +60,11 @@ Route::middleware('auth')->group(function() {
                 ->only(['index'])
                 ->names('admin.types');
 
-            //Status
+            //Statuses
             Route::get('statuses', 'StatusController@index')
                 ->name('admin.statuses.index');
 
-            //licenses
+            //Licenses
             Route::resource('licenses', 'LicenseController')
                 ->only(['index'])
                 ->names('admin.licenses');
@@ -98,31 +103,44 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
     ];
 
     Route::group($apiGroupData, function () {
-        Route::delete('users/destroy', 'UserController@destroyMany');
-        Route::resource('users', 'UserController')
-            ->only(['index', 'update', 'store'])
-            ->names('api.users');
-
+        // Departments
         Route::get('departments/all', 'DepartmentController@all');
         Route::delete('departments/destroy', 'DepartmentController@destroyMany');
         Route::resource('departments', 'DepartmentController')
             ->only(['index', 'update', 'store'])
             ->names('api.departments');
 
+        // Models
+        Route::get('models/all', 'ModelController@all');
+        // TODO: Datatable for models
+
+        // Providers
+        Route::get('providers/all', 'ProviderController@all');
         Route::delete('providers/destroy', 'ProviderController@destroyMany');
         Route::resource('providers', 'ProviderController')
             ->only(['index', 'update', 'store'])
             ->names('api.providers');
 
+        // Statuses
         Route::delete('statuses/destroy', 'StatusController@destroyMany');
         Route::resource('statuses', 'StatusController')
             ->only(['index', 'update', 'store'])
             ->names('api.statuses');
 
+        // Types
+        Route::get('types/all', 'TypeController@all');
         Route::delete('types/destroy', 'TypeController@destroyMany');
         Route::resource('types', 'TypeController')
             ->only(['index', 'update', 'store'])
             ->names('api.types');
+
+        // Users
+        Route::get('users/all', 'UserController@all');
+        Route::delete('users/destroy', 'UserController@destroyMany');
+        Route::resource('users', 'UserController')
+            ->only(['index', 'update', 'store'])
+            ->names('api.users');
+
     });
 
 });

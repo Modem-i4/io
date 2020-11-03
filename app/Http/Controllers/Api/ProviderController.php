@@ -29,6 +29,13 @@ class ProviderController extends Controller
         return $items;
     }
 
+    public function all()
+    {
+        $items = $this->inventoryProviderRepository->getAllForList();
+
+        return $items;
+    }
+
     public function update(InventoryProviderUpdateRequest $request, $id)
     {
         $item = $this->inventoryProviderRepository->getForEdit($id);

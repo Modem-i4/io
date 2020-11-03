@@ -38,6 +38,17 @@ class UserRepository extends CoreRepository
             ->first();
     }
 
+    public function getAllForList()
+    {
+        $columns = ['id', 'name'];
+
+        $result = $this->startConditions()
+            ->select($columns)    //TODO: toBase?
+            ->get();
+
+        return $result;
+    }
+
     /**
      * Отримати всіх користувачів
      *

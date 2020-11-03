@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InventoryStatusesTableSeeder::class);
         $this->call(InventoryTypesTableSeeder::class);
 
+        $this->call(InventoryModelTestTableSeeder::class);
         $this->call(InventoryProviderTestTableSeeder::class);
     }
 

@@ -26,6 +26,18 @@ class InventoryProviderRepository extends CoreRepository
             ->first();
     }
 
+    public function getAllForList()
+    {
+        $columns = ['id', 'title'];
+
+        $result = $this->startConditions()
+            ->select($columns)
+            ->get();
+
+        return $result;
+
+    }
+
     /**
      * Отримати всі відділи
      *

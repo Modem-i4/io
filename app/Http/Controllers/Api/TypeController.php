@@ -29,6 +29,13 @@ class TypeController extends Controller
         return $items;
     }
 
+    public function all()
+    {
+        $items = $this->inventoryTypeRepository->getAllForList();
+
+        return $items;
+    }
+
     public function update(InventoryTypeUpdateRequest $request, $id)
     {
         $item = $this->inventoryTypeRepository->getForEdit($id);
