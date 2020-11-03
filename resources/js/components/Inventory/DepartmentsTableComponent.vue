@@ -185,8 +185,8 @@
 </template>
 
 <script>
-import { DataTableCore } from "./mixins/DataTableCore";
-import { EventBus } from "./EventBus";
+import { DataTableCore } from "../mixins/DataTableCore";
+import { EventBus } from "../EventBus";
 
 export default {
     mixins: [DataTableCore],

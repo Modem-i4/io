@@ -228,7 +228,7 @@
 </template>
 
 <script>
-import { DataTableCore } from "./mixins/DataTableCore";
+import { DataTableCore } from "../mixins/DataTableCore";
 
 export default {
     mixins: [DataTableCore],
