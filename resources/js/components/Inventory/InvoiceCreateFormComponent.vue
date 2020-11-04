@@ -150,9 +150,10 @@
                     </td>
                     <td>
                         <v-text-field
+                            :error-messages="errors"
+                            min="1"
                             v-model="item.count"
                             type="number"
-                            :error-messages="errors"
                             required
                         ></v-text-field>
                     </td>
@@ -208,7 +209,9 @@ export default {
     },
     methods: {
         addItem() {
-            this.invoice.items.push({});
+            this.invoice.items.push({
+                count: 1,
+            });
         },
         deleteItemByIndex(itemIndex) {
             this.invoice.items.splice(itemIndex, 1);

@@ -1,5 +1,5 @@
 /*!
-  * Bootstrap v4.5.2 (https://getbootstrap.com/)
+  * Bootstrap v4.5.3 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
@@ -1219,6 +1219,8 @@
 
 /*! exports provided: default, Goto */
 
+/*! exports provided: default, functionalThemeClasses */
+
 /*! exports provided: default, mergeStyles, mergeClasses, mergeListeners */
 
 /*! exports provided: default, validateNumber, validateWeekdays */
@@ -1232,8 +1234,6 @@
 /*! exports provided: fromHSVA, fromHSLA, fromRGBA, fromHexa, fromHex, parseColor, extractColor, hasAlpha */
 
 /*! exports provided: fromXYZ, toXYZ */
-
-/*! exports provided: functionalThemeClasses, default */
 
 /*! exports provided: genPath */
 
@@ -3112,6 +3112,12 @@
 /*!******************************************************************************!*\
   !*** external {"commonjs":"vue","commonjs2":"vue","amd":"vue","root":"Vue"} ***!
   \******************************************************************************/
+
+/**
+  * vee-validate v3.4.3
+  * (c) 2020 Abdelrahman Awad
+  * @license MIT
+  */
 
 /**
  * @license

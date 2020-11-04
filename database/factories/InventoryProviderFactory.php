@@ -24,7 +24,7 @@ class InventoryProviderFactory extends Factory
         return [
             'title' => $this->faker->company,
             'address' => $this->faker->address,
-            'phone' => '380975640986',
+            'phone' => $this->faker->e164PhoneNumber
         ];
     }
 }
