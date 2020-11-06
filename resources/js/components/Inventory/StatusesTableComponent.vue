@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import { DataTableCore } from "../mixins/DataTableCore";
+import DataTableCore from "../mixins/DataTableCore";
 
 //TODO: Add deletable property
 

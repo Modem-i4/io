@@ -2,11 +2,12 @@ import DeleteSelectedButtonComponent from "../DataTable/DeleteSelectedButtonComp
 import DeleteSingleButtonComponent from "../DataTable/DeleteSingleButtonComponent";
 import EditDialogComponent from "../DataTable/EditDialogComponent";
 import FormValidate from "./FormValidate";
+import RequestErrorHandler from "./RequestErrorHandler";
 import SnackbarControl from "./SnackbarControl";
 import { EventBus } from "../EventBus";
 
-export const DataTableCore = {
-    mixins: [FormValidate, SnackbarControl],
+export default {
+    mixins: [FormValidate, RequestErrorHandler, SnackbarControl],
     components: {
         'dt-delete-selected': DeleteSelectedButtonComponent,
         'dt-delete-single': DeleteSingleButtonComponent,
@@ -178,31 +179,6 @@ export const DataTableCore = {
         //Генерує назву для посилання на валідатор
         getValidatorRef(itemFieldName, itemId) {    //TODO: Review
             return 'itemsValidator.' + itemFieldName + '.' + itemId;
-        },
-
-        //Функція обробки помилок для запитів на сервер через axios
-        handleRequestError(error) {
-            if (error.response) {
-                // Сервер повернув помилку
-                let errorText;
-
-                switch (error.response.status) {
-                    case 422:
-                        errorText = 'Помилка валідації!';
-                        console.log(error.response.data);
-                        break;
-                    default:
-                        errorText = 'Помилка ' + error.response.status;
-                        break;
-                }
-                this.snackError(errorText);
-            } else if (error.request) {
-                // Сервер не повернув нічого
-                this.snackError('Не вдалось підключитися до сервера')
-            } else {
-                // Сталася помилка при створенні запиту
-                this.snackError('Сталася помилка при створенні запиту')
-            }
         },
     },
 }
