@@ -93,7 +93,7 @@
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a href="{{ route('admin.providers.index') }}" class="dropdown-item d-flex align-items-center {{ navbar_item_class('admin.providers.index') }}">
-                                    <svg class="icon icon-users mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-users"></use></svg>Постачальники
+                                    <svg class="icon icon-user-tie mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-user-tie"></use></svg>Постачальники
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a href="{{ route('admin.departments.index') }}" class="dropdown-item d-flex align-items-center {{ navbar_item_class('admin.departments.index') }}">
@@ -102,8 +102,11 @@
                                 <a href="{{ route('admin.types.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ navbar_item_class('admin.types.index') }}">
                                     <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-list"></use></svg>Типи обладнання
                                 </a>
+                                <a href="{{ route('admin.models.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ navbar_item_class('admin.models.index') }}">
+                                    <svg class="icon icon-hardware mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-hardware"></use></svg>Моделі обладнання
+                                </a>
                                 <a href="{{ route('admin.statuses.index') }}" class="dropdown-item text-dark d-flex align-items-center {{ navbar_item_class('admin.status.index') }}">
-                                    <svg class="icon icon-list mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-info"></use></svg>Статуси
+                                    <svg class="icon icon-info mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-info"></use></svg>Статуси
                                 </a>
                             </div>
                         </div>

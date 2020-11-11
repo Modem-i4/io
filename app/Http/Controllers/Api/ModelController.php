@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\InventoryModelUpdateRequest;
+use App\Http\Requests\InventoryModelCreateRequest;
+use App\Http\Requests\InventoryModelDeleteRequest;
+use App\Models\InventoryModel;
 use App\Repositories\InventoryModelRepository;
-use Illuminate\Http\Request;
 
 class ModelController extends Controller
 {
@@ -26,7 +29,9 @@ class ModelController extends Controller
      */
     public function index()
     {
-        //
+        $items = $this->inventoryModelRepository->getAllWithPaginateAndFiltering();
+
+        return $items;
     }
 
     public function all()
@@ -42,20 +47,9 @@ class ModelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InventoryModelCreateRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $result = InventoryModel::insert($request->input());
     }
 
     /**
@@ -65,8 +59,18 @@ class ModelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(InventoryModelUpdateRequest $request, $id)
     {
-        //
+        $item = $this->inventoryModelRepository->getForEdit($id);
+        abort_if(empty($item), '404');
+
+        $result = $item->update($request->input());
+    }
+
+    public function destroyMany(InventoryModelDeleteRequest $request)
+    {
+        $idList = $request->input('idList');
+        InventoryModel::destroy($idList);
+
     }
 }

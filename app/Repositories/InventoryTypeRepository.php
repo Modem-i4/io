@@ -39,7 +39,7 @@ class InventoryTypeRepository extends CoreRepository
     }
 
     /**
-     * Отримати всі відділи
+     * Отримати всі типи
      *
      * @return id, title
      */

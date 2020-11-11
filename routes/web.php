@@ -50,10 +50,15 @@ Route::middleware('auth')->group(function() {
                 ->only(['index', 'show'])
                 ->names('admin.users');
 
-            //Types
+            //Providers
             Route::resource('providers', 'ProviderController')
                 ->only(['index'])
                 ->names('admin.providers');
+
+            //Models
+            Route::resource('models', 'ModelController')
+                ->only(['index'])
+                ->names('admin.models');
 
             //Types
             Route::resource('types', 'TypeController')
@@ -112,7 +117,10 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
 
         // Models
         Route::get('models/all', 'ModelController@all');
-        // TODO: Datatable for models
+        Route::delete('models/destroy', 'ModelController@destroyMany');
+        Route::resource('models', 'ModelController')
+            ->only(['index', 'update', 'store'])
+            ->names('api.models');
 
         // Providers
         Route::get('providers/all', 'ProviderController@all');
