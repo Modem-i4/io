@@ -18,8 +18,8 @@ class CreateInventoryInvoicesTable extends Migration
             $table->string('number');
             $table->date('date');
             $table->integer('provider_id')->unsigned();
-            $table->text('file_url');
-            $table->float('total_sum', 10, 2);
+            $table->text('file_url')->nullable();    //TODO: Create file upload and total sum
+            $table->float('total_sum', 10, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('provider_id')->references('id')->on('inventory_providers');

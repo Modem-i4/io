@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Inventory\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        return view('inventory.admin.invoices.index');
     }
 
     /**

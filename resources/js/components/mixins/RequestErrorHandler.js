@@ -1,4 +1,7 @@
+import SnackbarControl from "./SnackbarControl";
+
 export default {
+    mixins: [SnackbarControl],
     methods: {
         //Функція обробки помилок для запитів на сервер через axios
         handleRequestError(error) {

@@ -30,10 +30,10 @@ class CreateInventoryItemsTable extends Migration
             $table->date('deleted_at')->nullable(); //
             $table->boolean('has_parts')->nullable();
             $table->integer('part_of')->unsigned()->nullable();
-            $table->integer('writeoff_id')->unsigned();
-            $table->integer('utilization_id')->unsigned();
+            $table->integer('writeoff_id')->unsigned()->nullable();
+            $table->integer('utilization_id')->unsigned()->nullable();
 
-            
+
             $table->foreign('part_of')->references('id')->on('inventory_items');
             $table->foreign('type_id')->references('id')->on('inventory_types');
             $table->foreign('model_id')->references('id')->on('inventory_models');

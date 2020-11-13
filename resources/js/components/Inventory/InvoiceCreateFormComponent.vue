@@ -3,7 +3,7 @@
         <v-row>
             <v-col
                 cols="12"
-                sm="4"
+                sm="3"
             >
 
                 <v-menu
@@ -16,7 +16,7 @@
                 >
                     <template v-slot:activator="{ on, attrs }">
                         <v-text-field
-                            v-model="invoice.date"
+                            v-model="invoice.data.date"
                             label="Дата накладної"
                             prepend-icon="mdi-calendar"
                             readonly
@@ -25,7 +25,7 @@
                         ></v-text-field>
                     </template>
                     <v-date-picker
-                        v-model="invoice.date"
+                        v-model="invoice.data.date"
                         @input="menu2 = false"
                     ></v-date-picker>
                 </v-menu>
@@ -33,10 +33,10 @@
             </v-col>
             <v-col
                 cols="12"
-                sm="4"
+                sm="3"
             >
                 <v-text-field
-                    v-model="invoice.number"
+                    v-model="invoice.data.number"
                     :counter="16"
                     :error-messages="errors"
                     label="Номер"
@@ -45,17 +45,31 @@
             </v-col>
             <v-col
                 cols="12"
-                sm="4"
+                sm="3"
             >
                 <v-autocomplete
-                    v-model="invoice.provider"
+                    v-model="invoice.data.provider_id"
                     :items="providers"
                     :error-messages="errors"
                     label="Постачальник"
                     item-text="title"
                     item-value="id"
-                    return-object
                 ></v-autocomplete>
+            </v-col>
+            <v-col
+                cols="12"
+                sm="3"
+            >
+                <v-btn
+                    class="ma-2"
+                    color="green"
+                    @click="createInvoice()"
+                    large
+                    outlined
+                >
+                    Створити накладну
+                    <v-icon>mdi-file-plus</v-icon>
+                </v-btn>
             </v-col>
         </v-row>
 
@@ -95,17 +109,16 @@
                     <td>{{ index }}</td>
                     <td>
                         <v-autocomplete
-                            v-model="item.type"
+                            v-model="item.type_id"
                             :items="types"
                             :error-messages="errors"
                             item-text="title"
                             item-value="id"
-                            return-object
                         ></v-autocomplete>
                     </td>
                     <td>
                         <v-text-field
-                            v-model="item.number"
+                            v-model="item.inventory_number"
                             :counter="16"
                             :error-messages="errors"
                             required
@@ -113,32 +126,29 @@
                     </td>
                     <td>
                         <v-autocomplete
-                            v-model="item.user"
+                            v-model="item.owner_id"
                             :items="users"
                             :error-messages="errors"
                             item-text="name"
                             item-value="id"
-                            return-object
                         ></v-autocomplete>
                     </td>
                     <td>
                         <v-autocomplete
-                            v-model="item.department"
+                            v-model="item.department_id"
                             :items="departments"
                             :error-messages="errors"
                             item-text="title"
                             item-value="id"
-                            return-object
                         ></v-autocomplete>
                     </td>
                     <td>
                         <v-autocomplete
-                            v-model="item.model"
+                            v-model="item.model_id"
                             :items="models"
                             :error-messages="errors"
                             item-text="title"
                             item-value="id"
-                            return-object
                         ></v-autocomplete>
                     </td>
                     <td>
@@ -184,10 +194,12 @@
 
 <script>
 import FormValidate from "../mixins/FormValidate";
+import RequestErrorHandler from "../mixins/RequestErrorHandler";
+import SnackbarControl from "../mixins/SnackbarControl";
 
 export default {
     name: "InvoiceCreateFormComponent",
-    mixins: [FormValidate],
+    mixins: [FormValidate, RequestErrorHandler, SnackbarControl],
     data() {
         return{
             departments: [],
@@ -197,9 +209,13 @@ export default {
             users: [],
 
             invoice: {    // TODO: ?????????
-                date: new Date().toISOString().substr(0, 10),
-                number: null,
-
+                data: {
+                    date: new Date().toISOString().substr(0, 10),
+                    number: null,
+                    provider_id: null,
+                    file_url: "sometextlikeurl",
+                    total_sum: 13531,
+                },
                 items: [],
             },
 
@@ -217,6 +233,13 @@ export default {
             this.invoice.items.splice(itemIndex, 1);
             if(this.invoice.items.length === 0)
                 this.addItem();
+        },
+
+        createInvoice() {
+          axios.post('/api/invoices', this.invoice)
+            .then(response => {
+                this.snackSuccess('Створено');
+            }).catch(error => this.handleRequestError(error));
         },
 
         getAvailableDepartments() {    // TODO: Refactor
