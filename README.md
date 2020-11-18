@@ -14,6 +14,7 @@ Inventory Organizer System
 - Create DB: io
 - Put .env file in project folder
 - Run in project folder command: composer install
+- Run in project folder command: npm install
 - Run in project folder command: php artisan migrate --seed
 - Run in project folder command: npm run watch
 - Open in browser io.de
