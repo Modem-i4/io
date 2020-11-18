@@ -25,13 +25,24 @@ class DatabaseSeeder extends Seeder
 
     private function testingSeeds()
     {
+        \Schema::disableForeignKeyConstraints();
+
         $this->call(UsersTableSeeder::class);
         $this->call(InventoryDepartmentsTableSeeder::class);
         $this->call(InventoryStatusesTableSeeder::class);
         $this->call(InventoryTypesTableSeeder::class);
 
+        $this->call(InventoryInvoiceTestTableSeeder::class);
+        $this->call(InventoryItemTestTableSeeder::class);
+        $this->call(InventoryLicenseTestTableSeeder::class);
         $this->call(InventoryModelTestTableSeeder::class);
         $this->call(InventoryProviderTestTableSeeder::class);
+        $this->call(InventoryRepairTestTableSeeder::class);
+        $this->call(InventoryTransferTestTableSeeder::class);
+        $this->call(InventoryUtilizationTestTableSeeder::class);
+        $this->call(InventoryWriteoffTestTableSeeder::class);
+
+        \Schema::enableForeignKeyConstraints();
     }
 
     private function productionSeeds()
