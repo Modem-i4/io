@@ -5,30 +5,13 @@
                 cols="12"
                 sm="3"
             >
-
-                <v-menu
-                    v-model="invoiceDatePickerMenu"
-                    :close-on-content-click="false"
-                    :nudge-right="40"
-                    transition="scale-transition"
-                    offset-y
-                    min-width="290px"
+                <datepicker-dropdown
+                    v-model="invoice.data.date"
+                    input-label="Дата накладної"
+                    input-icon="mdi-calendar"
                 >
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                            v-model="invoice.data.date"
-                            label="Дата накладної"
-                            prepend-icon="mdi-calendar"
-                            readonly
-                            v-bind="attrs"
-                            v-on="on"
-                        ></v-text-field>
-                    </template>
-                    <v-date-picker
-                        v-model="invoice.data.date"
-                        @input="menu2 = false"
-                    ></v-date-picker>
-                </v-menu>
+
+                </datepicker-dropdown>
 
             </v-col>
             <v-col
@@ -104,7 +87,7 @@
                 <tbody>
                 <tr
                     v-for="(item, index) in invoice.items"
-                    :key="item.type"
+                    :key="item.type_id"
                 >
                     <td>{{ index }}</td>
                     <td>
@@ -189,10 +172,115 @@
             <v-icon>mdi-plus</v-icon>
         </v-btn>
 
+        <v-simple-table>
+            <template v-slot:default>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Тип</th>
+                    <th>Назва</th>
+                    <th>
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <span
+                                    v-bind="attrs"
+                                    v-on="on"
+                                >
+                                    М.В.Особа
+                                </span>
+                            </template>
+                            <span>Матеріально відповідальна особа</span>
+                        </v-tooltip>
+                    </th>
+
+                    <th>Дійсна до</th>
+                    <th>Ціна</th>
+                    <th>Кількість</th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr
+                    v-for="(license, index) in invoice.licenses"
+                    :key="license.type_id"
+                >
+                    <td>{{ index }}</td>
+                    <td>
+                        <v-autocomplete
+                            v-model="license.type_id"
+                            :items="types"
+                            :error-messages="errors"
+                            item-text="title"
+                            item-value="id"
+                        ></v-autocomplete>
+                    </td>
+                    <td>
+                        <v-text-field
+                            v-model="license.title"
+                            :counter="35"
+                            :error-messages="errors"
+                            required
+                        ></v-text-field>
+                    </td>
+                    <td>
+                        <v-autocomplete
+                            v-model="license.owner_id"
+                            :items="users"
+                            :error-messages="errors"
+                            item-text="name"
+                            item-value="id"
+                        ></v-autocomplete>
+                    </td>
+                    <td>
+                        <datepicker-dropdown
+                            v-model="license.end_date"
+                        >
+                        </datepicker-dropdown>
+                    </td>
+                    <td>
+                        <v-text-field
+                            v-model="license.price"
+                            :error-messages="errors"
+                            required
+                        ></v-text-field>
+                    </td>
+                    <td>
+                        <v-text-field
+                            :error-messages="errors"
+                            min="1"
+                            v-model="license.count"
+                            type="number"
+                            required
+                        ></v-text-field>
+                    </td>
+                    <td>
+                        <v-icon
+                            @click="deleteLicenseByIndex(index)"
+                            small
+                        >
+                            mdi-delete
+                        </v-icon>
+                    </td>
+                </tr>
+                </tbody>
+            </template>
+        </v-simple-table>
+        <v-btn
+            class="ma-2"
+            color="indigo"
+            @click="addLicense()"
+            outlined
+        >
+            Додати ліцензію
+            <v-icon>mdi-plus</v-icon>
+        </v-btn>
+
     </div>
 </template>
 
 <script>
+import DatePickerDropdownComponent from "../DatePickerDropdownComponent";
 import FormValidate from "../mixins/FormValidate";
 import RequestErrorHandler from "../mixins/RequestErrorHandler";
 import SnackbarControl from "../mixins/SnackbarControl";
@@ -200,6 +288,9 @@ import SnackbarControl from "../mixins/SnackbarControl";
 export default {
     name: "InvoiceCreateFormComponent",
     mixins: [FormValidate, RequestErrorHandler, SnackbarControl],
+    components: {
+        'datepicker-dropdown': DatePickerDropdownComponent,
+    },
     data() {
         return{
             departments: [],
@@ -217,11 +308,14 @@ export default {
                     total_sum: 13531,
                 },
                 items: [],
+                licenses: [],
             },
-
-
-            invoiceDatePickerMenu: false,
         }
+    },
+    computed: {
+        positionsCount: function() {
+            return this.invoice.items.length + this.invoice.licenses.length;
+        },
     },
     methods: {
         addItem() {
@@ -229,10 +323,16 @@ export default {
                 count: 1,
             });
         },
+        addLicense() {
+            this.invoice.licenses.push({
+                count: 1,
+            });
+        },
         deleteItemByIndex(itemIndex) {
             this.invoice.items.splice(itemIndex, 1);
-            if(this.invoice.items.length === 0)
-                this.addItem();
+        },
+        deleteLicenseByIndex(licenseIndex) {
+            this.invoice.licenses.splice(licenseIndex, 1);
         },
 
         createInvoice() {
