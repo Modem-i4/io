@@ -18,8 +18,8 @@ class CreateInventoryDepartmentsTable extends Migration
             $table->string('title');
             $table->integer('parent_id')->unsigned()->default('1');
             //$table->timestamps();
-            
-            $table->foreign('parent_id')->references('id')->on('inventory_departments');
+
+//            $table->foreign('parent_id')->references('id')->on('inventory_departments');
         });
     }
 

@@ -25,6 +25,7 @@ class InventoryRepairFactory extends Factory
             'start_date' => now(),
             'end_date' => now()->addDays(11),
             'user_id' => $this->faker->numberBetween(1, 3),
+            'item_id' => $this->faker->numberBetween(1, 100),
             'provider_id' => $this->faker->numberBetween(1, 100),
         ];
     }

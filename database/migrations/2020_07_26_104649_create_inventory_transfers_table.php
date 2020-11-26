@@ -22,12 +22,12 @@ class CreateInventoryTransfersTable extends Migration
             $table->timestamps();
             $table->text('file_url');
             $table->boolean('confirmed');
-                      
-            $table->foreign('item_id')->references('id')->on('inventory_items');
-            $table->foreign('from_user_id')->references('id')->on('users');
-            $table->foreign('to_user_id')->references('id')->on('users');
 
-                       
+//            $table->foreign('item_id')->references('id')->on('inventory_items');
+//            $table->foreign('from_user_id')->references('id')->on('users');
+//            $table->foreign('to_user_id')->references('id')->on('users');
+
+
         });
     }
 

@@ -17,15 +17,16 @@ class CreateInventoryLicensesTable extends Migration
             $table->increments('id');
             $table->integer('type_id')->unsigned();
             $table->string('title');
+            $table->integer('item_id')->unsigned()->nullable();
             $table->integer('invoice_id')->unsigned();
             $table->decimal('price');
             $table->integer('owner_id')->unsigned();
-            $table->integer('amount');
-           
-            
-            $table->foreign('type_id')->references('id')->on('inventory_types');
-            $table->foreign('invoice_id')->references('id')->on('inventory_invoices');
-            $table->foreign('owner_id')->references('id')->on('users');
+
+
+//            $table->foreign('type_id')->references('id')->on('inventory_types');
+//            $table->foreign('item_id')->references('id')->on('inventory_items');
+//            $table->foreign('invoice_id')->references('id')->on('inventory_invoices');
+//            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 

@@ -30,7 +30,6 @@ class InventoryItemFactory extends Factory
             'inventory_number' => $this->faker->numberBetween(10000, 99999),
             'price' => $this->faker->numberBetween(100, 12000),
             'invoice_id' => $this->faker->numberBetween(1, 100),
-            'repair_id' => $this->faker->numberBetween(1, 100),    //TODO: wthit??
         ];
     }
 }

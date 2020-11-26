@@ -24,10 +24,10 @@ class InventoryLicenseFactory extends Factory
         return [
             'type_id' => $this->faker->numberBetween(1, 50),    //TODO: Type for license?
             'title' => $this->faker->company,
+            'item_id' => $this->faker->numberBetween(1, 100),
             'invoice_id' => $this->faker->numberBetween(1, 100),
             'price' => $this->faker->numberBetween(120, 890),
             'owner_id' => $this->faker->numberBetween(1, 3),
-            'amount' => $this->faker->numberBetween(1, 15),    //TODO: Amount???
             //'end_date' => now()->addMonths(17),
         ];
     }

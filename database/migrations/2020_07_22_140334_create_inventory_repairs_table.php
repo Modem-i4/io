@@ -15,14 +15,16 @@ class CreateInventoryRepairsTable extends Migration
     {
         Schema::create('inventory_repairs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('item_id')->unsigned();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->integer('user_id')->unsigned();
             $table->integer('provider_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('provider_id')->references('id')->on('inventory_providers');
+//            $table->foreign('item_id')->references('id')->on('inventory_items');
+//            $table->foreign('user_id')->references('id')->on('users');
+//            $table->foreign('provider_id')->references('id')->on('inventory_providers');
         });
     }
 

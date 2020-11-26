@@ -20,9 +20,9 @@ class CreateInventoryWriteoffsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->text('file_url');
             $table->boolean('confirmed');
-           
-            
-            $table->foreign('user_id')->references('id')->on('users');
+
+
+//            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

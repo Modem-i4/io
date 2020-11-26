@@ -28,7 +28,7 @@ class InventoryInvoiceCreateRequest extends FormRequest
             'data.number' => 'required|string',
             'data.provider_id' => 'required|integer|exists:inventory_providers,id',
             'items' => 'array',
-            'items.*.inventory_number' => 'required',
+            'items.*.inventory_number' => 'required|distinct|unique:inventory_items,inventory_number',
             'items.*.type_id' => 'required|exists:inventory_types,id',
             'items.*.owner_id' => 'required|exists:users,id',
             'items.*.department_id' => 'required|exists:inventory_departments,id',

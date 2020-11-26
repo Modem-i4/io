@@ -22,7 +22,7 @@ class CreateInventoryInvoicesTable extends Migration
             $table->float('total_sum', 10, 2)->nullable();
             $table->timestamps();
 
-            $table->foreign('provider_id')->references('id')->on('inventory_providers');
+//            $table->foreign('provider_id')->references('id')->on('inventory_providers');
         });
     }
 

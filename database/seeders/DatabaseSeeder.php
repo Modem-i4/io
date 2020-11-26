@@ -13,20 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \Schema::disableForeignKeyConstraints();
+
         $this->truncate();
 
-        if(config('app.debug')) {
+        if(config('app.debug'))
             $this->testingSeeds();
-        }
-        else {
+        else
             $this->productionSeeds();
-        }
+
+        \Schema::enableForeignKeyConstraints();
     }
 
     private function testingSeeds()
     {
-        \Schema::disableForeignKeyConstraints();
-
         $this->call(UsersTableSeeder::class);
         $this->call(InventoryDepartmentsTableSeeder::class);
         $this->call(InventoryStatusesTableSeeder::class);
@@ -41,8 +41,6 @@ class DatabaseSeeder extends Seeder
         $this->call(InventoryTransferTestTableSeeder::class);
         $this->call(InventoryUtilizationTestTableSeeder::class);
         $this->call(InventoryWriteoffTestTableSeeder::class);
-
-        \Schema::enableForeignKeyConstraints();
     }
 
     private function productionSeeds()
@@ -55,14 +53,18 @@ class DatabaseSeeder extends Seeder
 
     private function truncate()
     {
-        \Schema::disableForeignKeyConstraints();
-
         \App\Models\User::truncate();
         \App\Models\InventoryDepartment::truncate();
+        \App\Models\InventoryInvoice::truncate();
+        \App\Models\InventoryItem::truncate();
+        \App\Models\InventoryLicense::truncate();
+        \App\Models\InventoryModel::truncate();
         \App\Models\InventoryProvider::truncate();
+        \App\Models\InventoryRepair::truncate();
         \App\Models\InventoryStatus::truncate();
+        \App\Models\InventoryTransfer::truncate();
         \App\Models\InventoryType::truncate();
-
-        \Schema::enableForeignKeyConstraints();
+        \App\Models\InventoryUtilization::truncate();
+        \App\Models\InventoryWriteoff::truncate();
     }
 }

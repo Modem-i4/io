@@ -22,8 +22,8 @@ class CreateInventoryUtilizationsTable extends Migration
             $table->text('file_url');
             $table->boolean('confirmed');
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('provider_id')->references('id')->on('inventory_providers');
+//            $table->foreign('user_id')->references('id')->on('users');
+//            $table->foreign('provider_id')->references('id')->on('inventory_providers');
         });
     }
 
