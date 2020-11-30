@@ -25,8 +25,9 @@ class InventoryInvoiceCreateRequest extends FormRequest
     {
         return [
             'data.date' => 'required|date',
-            'data.number' => 'required|string',
+            'data.number' => 'required|string|unique:inventory_invoices,number',
             'data.provider_id' => 'required|integer|exists:inventory_providers,id',
+
             'items' => 'array',
             'items.*.inventory_number' => 'required|distinct|unique:inventory_items,inventory_number',
             'items.*.type_id' => 'required|exists:inventory_types,id',
@@ -35,6 +36,13 @@ class InventoryInvoiceCreateRequest extends FormRequest
             'items.*.model_id' => 'required|exists:inventory_models,id',
             'items.*.price' => 'required',
             'items.*.count' => 'required|integer',
+
+            'licenses' => 'array',
+            'licenses.*.type_id' => 'required|exists:inventory_types,id',
+            'licenses.*.title' => 'required|string',
+            'licenses.*.price' => 'required',
+            'licenses.*.owner_id' => 'required|exists:users,id',
+            'licenses.*.end_date' => 'date',
         ];
     }
 }

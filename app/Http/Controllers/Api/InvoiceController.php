@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\InventoryInvoiceCreateRequest;
 use App\Models\InventoryInvoice;
 use App\Models\InventoryItem;
+use App\Models\InventoryLicense;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -30,6 +31,7 @@ class InvoiceController extends Controller
     {
         $data = $request->input();    //TODO: Rename invoice data parameter
         $items = $data["items"];
+        $licenses = $data["licenses"];
 
         $invoice = InventoryInvoice::create($data['data']);
 
@@ -38,6 +40,12 @@ class InvoiceController extends Controller
             $item['status_id'] = 1;
 
             InventoryItem::create($item);
+        }
+
+        foreach ($licenses as $license) {
+            $license['invoice_id'] = $invoice->id;
+
+            InventoryLicense::create($license);
         }
     }
 
