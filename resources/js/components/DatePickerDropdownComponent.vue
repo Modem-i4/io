@@ -9,7 +9,7 @@
     >
         <template v-slot:activator="{ on, attrs }">
             <v-text-field
-                v-model="value"
+                v-model="modelData"
                 :label="inputLabel"
                 :prepend-icon="inputIcon"
                 readonly
@@ -18,8 +18,9 @@
             ></v-text-field>
         </template>
         <v-date-picker
-            v-model="value"
+            v-model="modelData"
             @input="pickerMenu = false"
+            @change="handleInput()"
         ></v-date-picker>
     </v-menu>
 </template>
@@ -39,11 +40,13 @@ export default {
     data() {
         return {
             pickerMenu: false,
+
+            modelData: this.value,
         }
     },
     methods: {
         handleInput (e) {
-            this.$emit('input', this.content)
+            this.$emit('input', this.modelData)
         }
     }
 }

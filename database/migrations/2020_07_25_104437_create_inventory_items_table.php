@@ -18,7 +18,6 @@ class CreateInventoryItemsTable extends Migration
             $table->integer('type_id')->unsigned();
             $table->integer('model_id')->unsigned();
             $table->integer('department_id')->unsigned();
-            $table->integer('sticker_id')->unsigned()->nullable();
             $table->integer('owner_id')->unsigned();
             $table->integer('status_id')->unsigned();
             $table->string('inventory_number')->nullable();
@@ -35,8 +34,7 @@ class CreateInventoryItemsTable extends Migration
 //            $table->foreign('part_of')->references('id')->on('inventory_items');
 //            $table->foreign('type_id')->references('id')->on('inventory_types');
 //            $table->foreign('model_id')->references('id')->on('inventory_models');
-//            $table->foreign('department_id')->references('id')->on('inventory_departments');
-//            $table->foreign('sticker_id')->references('id')->on('inventory_licenses');
+//            $table->foreign('department_id')->references('id')->on('inventory_departments')
 //            $table->foreign('owner_id')->references('id')->on('users');
 //            $table->foreign('status_id')->references('id')->on('inventory_statuses');
 //            $table->foreign('invoice_id')->references('id')->on('inventory_invoices');

@@ -48,7 +48,6 @@ class AddForeignKeys extends Migration
             $table->foreign('type_id')->references('id')->on('inventory_types');
             $table->foreign('model_id')->references('id')->on('inventory_models');
             $table->foreign('department_id')->references('id')->on('inventory_departments');
-            $table->foreign('sticker_id')->references('id')->on('inventory_licenses');
             $table->foreign('owner_id')->references('id')->on('users');
             $table->foreign('status_id')->references('id')->on('inventory_statuses');
             $table->foreign('invoice_id')->references('id')->on('inventory_invoices');

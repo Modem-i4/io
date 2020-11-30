@@ -80,7 +80,6 @@
                     <th>Місце</th>
                     <th>Модель</th>
                     <th>Ціна</th>
-                    <th>Кількість</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -142,15 +141,6 @@
                         ></v-text-field>
                     </td>
                     <td>
-                        <v-text-field
-                            :error-messages="errors"
-                            min="1"
-                            v-model="item.count"
-                            type="number"
-                            required
-                        ></v-text-field>
-                    </td>
-                    <td>
                         <v-icon
                             @click="deleteItemByIndex(index)"
                             small
@@ -195,7 +185,6 @@
 
                     <th>Дійсна до</th>
                     <th>Ціна</th>
-                    <th>Кількість</th>
                     <th></th>
 
                 </tr>
@@ -203,7 +192,6 @@
                 <tbody>
                 <tr
                     v-for="(license, index) in invoice.licenses"
-                    :key="license.type_id"
                 >
                     <td>{{ index }}</td>
                     <td>
@@ -246,15 +234,9 @@
                         ></v-text-field>
                     </td>
                     <td>
-                        <v-text-field
-                            :error-messages="errors"
-                            min="1"
-                            v-model="license.count"
-                            type="number"
-                            required
-                        ></v-text-field>
-                    </td>
-                    <td>
+                        <dt-duplicate
+                            @make-copy="makeLicenseCopy($event, index)"
+                        ></dt-duplicate>
                         <v-icon
                             @click="deleteLicenseByIndex(index)"
                             small
@@ -284,12 +266,14 @@ import DatePickerDropdownComponent from "../DatePickerDropdownComponent";
 import FormValidate from "../mixins/FormValidate";
 import RequestErrorHandler from "../mixins/RequestErrorHandler";
 import SnackbarControl from "../mixins/SnackbarControl";
+import DuplicateButtonComponent from "../DataTable/DuplicateButtonComponent"
 
 export default {
     name: "InvoiceCreateFormComponent",
     mixins: [FormValidate, RequestErrorHandler, SnackbarControl],
     components: {
         'datepicker-dropdown': DatePickerDropdownComponent,
+        'dt-duplicate': DuplicateButtonComponent,
     },
     data() {
         return{
@@ -328,12 +312,21 @@ export default {
                 count: 1,
             });
         },
+
         deleteItemByIndex(itemIndex) {
             this.invoice.items.splice(itemIndex, 1);
         },
         deleteLicenseByIndex(licenseIndex) {
             this.invoice.licenses.splice(licenseIndex, 1);
         },
+
+
+        makeLicenseCopy(count, licenseIndex) {
+            for(let i = 0;i < count;i++) {
+                this.invoice.licenses.splice(licenseIndex, 0, Object.assign({}, this.invoice.licenses[licenseIndex]));
+            }
+        },
+
 
         createInvoice() {
           axios.post('/api/invoices', this.invoice)
