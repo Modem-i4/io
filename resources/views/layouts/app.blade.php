@@ -40,11 +40,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="ml-2 {{ navbar_item_class('admin.licenses.index') }} d-flex align-items-center">
+                                    <a href="{{ route('admin.licenses.index') }}" class="ml-2 {{ navbar_item_class('admin.licenses.index') }} d-flex align-items-center">
                                         <svg class="icon icon-file-text2 mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-windows"></use></svg><span class="d-none d-lg-inline">Ліцензії</span>
                                     </a>
                                 </li>
-                                <li class="nav-item"><a href="{{ route('admin.invoices.index') }}" class="ml-2 {{ navbar_item_class('admin.invoices.index') }} d-flex align-items-center">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.invoices.index') }}" class="ml-2 {{ navbar_item_class('admin.invoices.index') }} d-flex align-items-center">
                                         <svg class="icon icon-file-text2 mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-file-text2"></use></svg><span class="d-none d-lg-inline">Накладні</span>
                                     </a>
                                 </li>

@@ -31,12 +31,13 @@ export default {
 
             crudApiEndpoint: '',
             headers: [],
+            defaultSortByField: 'id',
         }
     },
     computed: {
         sortBy: function() {    // TODO: Rename to sortField?
             if(this.options.sortBy.length === 0) {
-                return null;
+                return this.defaultSortByField;
             }
             return (this.headers.filter(obj => {
                 return obj.value === this.options.sortBy[0]

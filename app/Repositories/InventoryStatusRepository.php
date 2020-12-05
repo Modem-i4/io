@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\InventoryStatus as Model;
+use Illuminate\Support\Collection;
 
 /**
  * Class InventoryTypeRepository.
@@ -10,9 +11,8 @@ use App\Models\InventoryStatus as Model;
 class InventoryStatusRepository extends CoreRepository
 {
     /**
-     *  Отримати модель для редагування в адмінці
-     *  @param int $id
-     *  @return Model
+     * Отримати модель для редагування в адмінці
+     * @return string
      */
     protected function getModelClass()
     {
@@ -29,7 +29,7 @@ class InventoryStatusRepository extends CoreRepository
     /**
      * Отримати всі відділи
      *
-     * @return id, title
+     * @return Collection
      */
 
     public function getAllWithPaginateAndFiltering()

@@ -120,6 +120,11 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
             ->only(['index', 'update', 'store'])
             ->names('api.invoices');
 
+        //Licenses
+        Route::resource('licenses', 'LicenseController')
+            ->only(['index'])
+            ->names('api.licenses');
+
         // Models
         Route::get('models/all', 'ModelController@all');
         Route::delete('models/destroy', 'ModelController@destroyMany');

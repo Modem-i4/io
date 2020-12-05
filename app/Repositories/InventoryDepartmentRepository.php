@@ -11,18 +11,19 @@ use Illuminate\Database\Eloquent\Collection;
 class InventoryDepartmentRepository extends CoreRepository
 {
     /**
-     *  Отримати модель для редагування в адмінці
-     *  @param int $id
-     *  @return Model
+     * Отримати модель для редагування в адмінці
+     * @return string
      */
-    protected function getModelClass()
+    protected function getModelClass(): string
     {
         return Model::class; //абстрагування моделі InventoryDepartment, для легшого створення іншого репозиторія
     }
 
     /**
-    */
-    public function getForShow($id)
+     * @param $id
+     * @return object
+     */
+    public function getForShow($id): object
     {
         return $this->startConditions()
             ->where('id', $id)
@@ -30,7 +31,11 @@ class InventoryDepartmentRepository extends CoreRepository
             ->first();
     }
 
-    public function getForEdit($id)
+    /**
+     * @param $id
+     * @return object
+     */
+    public function getForEdit($id): object
     {
         return $this->startConditions()
             ->where('id', $id)
@@ -40,7 +45,7 @@ class InventoryDepartmentRepository extends CoreRepository
     /**
      * Отримати всі відділи
      *
-     * @return id, title
+     * @return Collection
      */
 
     public function getAll()
@@ -58,6 +63,9 @@ class InventoryDepartmentRepository extends CoreRepository
 
     }
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public function getAllForList()
     {
         $columns = ['id', 'title'];
@@ -73,7 +81,7 @@ class InventoryDepartmentRepository extends CoreRepository
     /**
      * Отримати всі відділи з батьківськими категоріями
      *
-     * @return id, title, parent_id, parent_title, parent {id, title}
+     * @return Collection
      */
 
     public function getAllWithParents()
@@ -113,11 +121,11 @@ class InventoryDepartmentRepository extends CoreRepository
     }
 
     /**
-     *  Пошук наявності дочірніх елементів для перевірки при видаленні
-     *  @param int $id
-     *  @return Model
+     * Пошук наявності дочірніх елементів для перевірки при видаленні
+     * @param int $id
+     * @return Model
      */
-    public function getChild($id)
+    public function getChild(int $id)
     {
         return $this->startConditions()->where('parent_id', $id)->first();
     }

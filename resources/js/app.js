@@ -32,6 +32,7 @@ Vue.component('providers-table', require('./components/Inventory/ProvidersTableC
 Vue.component('statuses-table', require('./components/Inventory/StatusesTableComponent.vue').default);
 Vue.component('types-table', require('./components/Inventory/TypesTableComponent.vue').default);
 Vue.component('models-table', require('./components/Inventory/ModelsTableComponent.vue').default);
+Vue.component('licenses-table', require('./components/Inventory/LicensesTableComponent.vue').default);
 
 Vue.component('app-snackbar', require('./components/AppSnackbar.vue').default);
 
