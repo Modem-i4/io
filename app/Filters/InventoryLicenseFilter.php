@@ -15,7 +15,6 @@ class InventoryLicenseFilter extends QueryFilter
     protected $searchable = [
         'base.id',
         'base.title',
-        //TODO: 'type.title',
         'base.price',
         'item.inventory_number',
         'invoice.number',
@@ -30,7 +29,6 @@ class InventoryLicenseFilter extends QueryFilter
     protected $sortable = [
         'base.id',
         'base.title',
-        //TODO: 'type.title',
         'base.price',
         'item_number',
         'invoice_number',

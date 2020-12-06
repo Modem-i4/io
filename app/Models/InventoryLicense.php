@@ -23,7 +23,6 @@ class InventoryLicense extends Model
      * @var string[]
      */
     protected $fillable = [
-        'type_id',
         'title',
         'price',
         'item_id',

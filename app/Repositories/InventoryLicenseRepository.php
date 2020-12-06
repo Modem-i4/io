@@ -33,12 +33,10 @@ class InventoryLicenseRepository extends CoreRepository
             'base.title',
             'base.price',
 
-            //'base.type_id',
             //'base.item_id',
             //'base.invoice_id',
             //'base.owner_id',
 
-            'type.title as type_title',
             'item.inventory_number as item_number',
             'invoice.number as invoice_number',
             'owner.name as owner_name',
@@ -48,8 +46,6 @@ class InventoryLicenseRepository extends CoreRepository
         $result = $this->startConditions()
             ->from('inventory_licenses as base')
             ->select($columns)
-            //->with(['type:id,title', 'item:id,inventory_number', 'invoice:id,number', 'owner:id,name'])
-            ->join('inventory_types as type', 'base.type_id', '=', 'type.id')
             ->join('inventory_items as item', 'base.item_id', '=', 'item.id')
             ->join('inventory_invoices as invoice', 'base.invoice_id', '=', 'invoice.id')
             ->join('users as owner', 'base.owner_id', '=', 'owner.id')
