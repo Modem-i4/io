@@ -20,19 +20,17 @@ window.axios = require('axios');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
 Vue.component('invoice-create-form', require('./components/Inventory/InvoiceCreateFormComponent.vue').default);
 Vue.component('invoice-create-form-dev', require('./components/InventoryInvoicesComponent.vue').default);
 
-Vue.component('users-table', require('./components/Inventory/UsersTableComponent.vue').default);
 Vue.component('departments-table', require('./components/Inventory/DepartmentsTableComponent.vue').default);
+Vue.component('items-table', require('./components/Inventory/ItemsTableComponent.vue').default);
+Vue.component('licenses-table', require('./components/Inventory/LicensesTableComponent.vue').default);
+Vue.component('models-table', require('./components/Inventory/ModelsTableComponent.vue').default);
 Vue.component('providers-table', require('./components/Inventory/ProvidersTableComponent.vue').default);
 Vue.component('statuses-table', require('./components/Inventory/StatusesTableComponent.vue').default);
 Vue.component('types-table', require('./components/Inventory/TypesTableComponent.vue').default);
-Vue.component('models-table', require('./components/Inventory/ModelsTableComponent.vue').default);
-Vue.component('licenses-table', require('./components/Inventory/LicensesTableComponent.vue').default);
+Vue.component('users-table', require('./components/Inventory/UsersTableComponent.vue').default);
 
 Vue.component('app-snackbar', require('./components/AppSnackbar.vue').default);
 

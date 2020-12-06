@@ -45,35 +45,39 @@ Route::middleware('auth')->group(function() {
                 ->only(['create', 'index', 'show'])
                 ->names('admin.invoices');
 
-            //Users
-            Route::resource('users', 'UserController')
-                ->only(['index', 'show'])
-                ->names('admin.users');
-
-            //Providers
-            Route::resource('providers', 'ProviderController')
+            //Items
+            Route::resource('items', 'ItemController')
                 ->only(['index'])
-                ->names('admin.providers');
-
-            //Models
-            Route::resource('models', 'ModelController')
-                ->only(['index'])
-                ->names('admin.models');
-
-            //Types
-            Route::resource('types', 'TypeController')
-                ->only(['index'])
-                ->names('admin.types');
-
-            //Statuses
-            Route::get('statuses', 'StatusController@index')
-                ->name('admin.statuses.index');
+                ->names('admin.items');
 
             //Licenses
             Route::resource('licenses', 'LicenseController')
                 ->only(['index'])
                 ->names('admin.licenses');
 
+            //Models
+            Route::resource('models', 'ModelController')
+                ->only(['index'])
+                ->names('admin.models');
+
+            //Providers
+            Route::resource('providers', 'ProviderController')
+                ->only(['index'])
+                ->names('admin.providers');
+
+            //Statuses
+            Route::get('statuses', 'StatusController@index')
+                ->name('admin.statuses.index');
+
+            //Types
+            Route::resource('types', 'TypeController')
+                ->only(['index'])
+                ->names('admin.types');
+
+            //Users
+            Route::resource('users', 'UserController')
+                ->only(['index', 'show'])
+                ->names('admin.users');
         });
     });
 });
@@ -119,6 +123,11 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
         Route::resource('invoices', 'InvoiceController')
             ->only(['index', 'update', 'store'])
             ->names('api.invoices');
+
+        //Items
+        Route::resource('items', 'ItemController')
+            ->only(['index'])
+            ->names('api.items');
 
         //Licenses
         Route::resource('licenses', 'LicenseController')

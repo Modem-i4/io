@@ -35,7 +35,7 @@
                         <ul class="navbar-nav mr-auto list-unstyled">
                             @can('isAdmin')
                                 <li class="nav-item">
-                                    <a href="#" class="text-dark ml-2 {{ navbar_item_class('admin.items.index') }} d-flex align-items-center">
+                                    <a href="{{ route('admin.items.index') }}" class="text-dark ml-2 {{ navbar_item_class('admin.items.index') }} d-flex align-items-center">
                                         <svg class="icon icon-display mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-display"></use></svg><span class="d-none d-lg-inline">Технічне обладнання</span>
                                     </a>
                                 </li>

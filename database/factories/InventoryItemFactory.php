@@ -22,7 +22,7 @@ class InventoryItemFactory extends Factory
     public function definition()
     {
         return [
-            'type_id' => $this->faker->numberBetween(1, 100),
+            'type_id' => $this->faker->numberBetween(1, 50),
             'model_id' => $this->faker->numberBetween(1, 100),
             'department_id' => $this->faker->numberBetween(1, 100),
             'owner_id' => $this->faker->numberBetween(1, 3),

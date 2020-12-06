@@ -14,6 +14,6 @@ class InventoryModelTestTableSeeder extends Seeder
      */
     public function run()
     {
-        InventoryModel::factory(50)->create();
+        InventoryModel::factory(200)->create();
     }
 }

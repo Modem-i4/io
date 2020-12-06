@@ -14,6 +14,6 @@ class InventoryUtilizationTestTableSeeder extends Seeder
      */
     public function run()
     {
-        InventoryUtilization::factory(100)->create();
+        InventoryUtilization::factory(200)->create();
     }
 }

@@ -14,6 +14,6 @@ class InventoryWriteoffTestTableSeeder extends Seeder
      */
     public function run()
     {
-        InventoryWriteoff::factory(100)->create();
+        InventoryWriteoff::factory(200)->create();
     }
 }
