@@ -22,7 +22,6 @@ class AddForeignKeys extends Migration
         });
 
         Schema::table('inventory_licenses', function (Blueprint $table) {
-            $table->foreign('type_id')->references('id')->on('inventory_types');
             $table->foreign('item_id')->references('id')->on('inventory_items');
             $table->foreign('invoice_id')->references('id')->on('inventory_invoices');
             $table->foreign('owner_id')->references('id')->on('users');

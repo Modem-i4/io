@@ -15,15 +15,14 @@ class CreateInventoryLicensesTable extends Migration
     {
         Schema::create('inventory_licenses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type_id')->unsigned();
             $table->string('title');
+            $table->decimal('price');
             $table->integer('item_id')->unsigned()->nullable();
             $table->integer('invoice_id')->unsigned();
-            $table->decimal('price');
             $table->integer('owner_id')->unsigned();
+            $table->timestamp('end_date')->nullable();
 
 
-//            $table->foreign('type_id')->references('id')->on('inventory_types');
 //            $table->foreign('item_id')->references('id')->on('inventory_items');
 //            $table->foreign('invoice_id')->references('id')->on('inventory_invoices');
 //            $table->foreign('owner_id')->references('id')->on('users');

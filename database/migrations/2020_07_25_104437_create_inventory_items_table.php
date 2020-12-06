@@ -29,6 +29,7 @@ class CreateInventoryItemsTable extends Migration
             $table->integer('part_of')->unsigned()->nullable();
             $table->integer('writeoff_id')->unsigned()->nullable();
             $table->integer('utilization_id')->unsigned()->nullable();
+            $table->string('comment')->nullable();
 
 
 //            $table->foreign('part_of')->references('id')->on('inventory_items');

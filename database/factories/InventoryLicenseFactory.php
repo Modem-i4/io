@@ -22,7 +22,6 @@ class InventoryLicenseFactory extends Factory
     public function definition()
     {
         return [
-            'type_id' => $this->faker->numberBetween(1, 50),    //TODO: Type for license?
             'title' => $this->faker->company,
             'item_id' => $this->faker->numberBetween(1, 100),
             'invoice_id' => $this->faker->numberBetween(1, 100),
