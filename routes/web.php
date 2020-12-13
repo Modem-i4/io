@@ -78,6 +78,10 @@ Route::middleware('auth')->group(function() {
             Route::resource('users', 'UserController')
                 ->only(['index', 'show'])
                 ->names('admin.users');
+            //Repairs
+            Route::resource('repairs', 'RepairController')
+                ->only(['index'])
+                ->names('admin.repairs');
         });
     });
 });
@@ -125,6 +129,7 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
             ->names('api.invoices');
 
         //Items
+        Route::get('items/all', 'ItemController@all');
         Route::resource('items', 'ItemController')
             ->only(['index'])
             ->names('api.items');
@@ -167,6 +172,13 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
         Route::resource('users', 'UserController')
             ->only(['index', 'update', 'store'])
             ->names('api.users');
+
+        // Repairs
+        Route::get('repairs/all', 'RepairController@all');
+        Route::delete('repairs/destroy', 'RepairController@destroyMany');
+        Route::resource('repairs', 'RepairController')
+            ->only(['index', 'update', 'store'])
+            ->names('api.repairs');
 
     });
 

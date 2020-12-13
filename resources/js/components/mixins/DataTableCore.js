@@ -106,6 +106,7 @@ export default {
 
         // Створення нових об'єктів
         create () {
+            alert(this.newItem.end_date);
             this.$refs.itemCreateObserver.validate().then(result => {
                 if (result) {
                     let item = this.newItem;
@@ -113,7 +114,6 @@ export default {
                     if (typeof this.prepareItemForCreate === 'function') {
                         item = this.prepareItemForCreate(item);
                     }
-
                     axios.post(this.crudApiEndpoint, item)
                         .then(response => {
                             this.snackSuccess('Створено');
