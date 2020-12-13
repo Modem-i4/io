@@ -66,6 +66,7 @@ class InventoryRepairRepository extends CoreRepository
             'user.name as user',
             'provider.title as provider',
         ];
+        //$columns = '*';
 
         $result = $this->startConditions()
             ->from('inventory_repairs as base')
@@ -75,6 +76,7 @@ class InventoryRepairRepository extends CoreRepository
             ->join('inventory_providers as provider', 'base.provider_id', '=', 'provider.id')
             ->filter()
             ->paginate($perPage);
+
 
         return $result;
     }
