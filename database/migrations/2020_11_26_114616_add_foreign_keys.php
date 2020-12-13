@@ -59,8 +59,6 @@ class AddForeignKeys extends Migration
             $table->foreign('from_user_id')->references('id')->on('users');
             $table->foreign('to_user_id')->references('id')->on('users');
         });
-
-
     }
 
     /**

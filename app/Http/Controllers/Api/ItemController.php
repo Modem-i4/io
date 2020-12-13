@@ -24,4 +24,11 @@ class ItemController extends Controller
 
         return $items;
     }
+
+    public function all()
+    {
+        $items = $this->inventoryItemRepository->getAllForList();
+
+        return $items;
+    }
 }

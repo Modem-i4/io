@@ -30,6 +30,7 @@ Vue.component('providers-table', require('./components/Inventory/ProvidersTableC
 Vue.component('statuses-table', require('./components/Inventory/StatusesTableComponent.vue').default);
 Vue.component('types-table', require('./components/Inventory/TypesTableComponent.vue').default);
 Vue.component('users-table', require('./components/Inventory/UsersTableComponent.vue').default);
+Vue.component('repairs-table', require('./components/Inventory/RepairsTableComponent.vue').default);
 
 Vue.component('app-snackbar', require('./components/AppSnackbar.vue').default);
 

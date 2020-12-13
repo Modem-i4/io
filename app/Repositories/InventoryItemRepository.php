@@ -61,4 +61,14 @@ class InventoryItemRepository extends CoreRepository
 
         return $result;
     }
+
+    public function getAllForList()
+    {
+        $columns = ['id', 'inventory_number'];
+        $result = $this->startConditions()
+            ->select($columns)
+            ->get();
+
+        return $result;
+    }
 }

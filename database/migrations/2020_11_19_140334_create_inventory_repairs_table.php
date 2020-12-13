@@ -22,9 +22,9 @@ class CreateInventoryRepairsTable extends Migration
             $table->integer('provider_id')->unsigned();
             $table->timestamps();
 
-//            $table->foreign('item_id')->references('id')->on('inventory_items');
-//            $table->foreign('user_id')->references('id')->on('users');
-//            $table->foreign('provider_id')->references('id')->on('inventory_providers');
+            //$table->foreign('item_id')->references('id')->on('inventory_items');
+            //$table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('provider_id')->references('id')->on('inventory_providers');
         });
     }
 
