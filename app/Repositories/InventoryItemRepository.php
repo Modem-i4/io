@@ -33,6 +33,7 @@ class InventoryItemRepository extends CoreRepository
             'base.inventory_number',
             'base.comment',
             'base.has_parts',
+            'base.owner_id',
 
 //            'base.part_of',
 //            'base.type_id',
