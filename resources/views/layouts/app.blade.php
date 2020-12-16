@@ -54,6 +54,11 @@
                                         <svg class="icon icon-transfer mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-transfer"></use></svg><span class="d-none d-lg-inline">Передачі</span>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="#" class="text-dark ml-2 {{ navbar_item_class('admin.repairs.index') }} d-flex align-items-center">
+                                        <svg class="icon icon-wrench mx-2"><use xlink:href="/img/icons/symbol-defs.svg#icon-wrench"></use></svg><span class="d-none d-lg-inline">Ремонти</span>
+                                    </a>
+                                </li>
                             @endcan
                         </ul>
                     </div>

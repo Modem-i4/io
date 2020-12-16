@@ -52,6 +52,7 @@ export default {
                 { text: 'Модель', value: 'model_title' },
                 { text: 'Накладна', value: 'invoice_number' },
                 { text: 'Власник', value: 'owner_name' },
+                { text: 'Статус', value: 'status_title' },
                 //TODO: { text: 'Дії', value: 'actions', sortable: false },
             ],
         }
