@@ -56,16 +56,6 @@ class InventoryRepairRepository extends CoreRepository
 
     public function getAllWithRelationsAndPaginate()
     {
-
-        /*$perPage = request('perPage');
-        $columns = ['id', 'item_id', 'start_date', 'end_date', 'user_id', 'provider_id'];
-
-        $result = $this->startConditions()
-            ->select($columns)
-            ->paginate($perPage);
-*/
-
-
         $perPage = request('perPage');
         $columns = [
             'base.id',
@@ -76,7 +66,6 @@ class InventoryRepairRepository extends CoreRepository
             'user.name as user',
             'provider.title as provider',
         ];
-        //$columns = '*';
 
         $result = $this->startConditions()
             ->from('inventory_repairs as base')
@@ -87,8 +76,6 @@ class InventoryRepairRepository extends CoreRepository
             ->filter()
             ->paginate($perPage);
 
-
         return $result;
-
     }
 }
