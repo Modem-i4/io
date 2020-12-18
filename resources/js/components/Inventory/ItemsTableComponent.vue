@@ -26,6 +26,21 @@
                     :loading="loading"
                     class="elevation-1"
                 >
+                    <template v-slot:item.actions="{ item }">
+                        <div class="d-flex">
+                            <repair-item-menu
+                                @repair="repairItem"
+                                :newRepair="item"
+                                :providers="providers"
+                            ></repair-item-menu>
+
+                            <dt-delete-single
+                                @delete="deleteSingleItem(item.id)"
+                                :isSelectable="item.isSelectable"
+                            ></dt-delete-single>
+                        </div>
+                    </template>
+
                 </v-data-table>
             </v-card>
         </div>
@@ -34,12 +49,18 @@
 
 <script>
 import DataTableCore from "../mixins/DataTableCore";
+import RepairItemFormComponent from "./RepairItemFormComponent";
+import {EventBus} from "../EventBus";
 
 export default {
     mixins: [DataTableCore],
+    components: {
+        'repair-item-menu': RepairItemFormComponent,
+    },
     data () {
         return {
             crudApiEndpoint: '/api/items',
+            providers: [],
             headers: [
                 { text: 'id', align: 'start',  value: 'id'
                     // sortable: false,
@@ -50,9 +71,31 @@ export default {
                 { text: 'Накладна', value: 'invoice_number' },
                 { text: 'Власник', value: 'owner_name' },
                 { text: 'Статус', value: 'status_title' },
-                //TODO: { text: 'Дії', value: 'actions', sortable: false },
+                { text: 'Дії', value: 'actions', sortable: false },
             ],
         }
+    },
+    methods: {
+        repairItem(item) {
+            let newItem = {
+                item_id: item.id,
+                start_date: item.start_date,
+                user_id: item.owner_id,
+                provider_id: item.provider_id,
+            };
+            axios.post('/api/repairs', newItem)
+                .then(response => {
+                    this.snackSuccess('Додано в ремонт');
+                }).catch(error => this.handleRequestError(error));
+        },
+        getAllProviders() {
+            axios.get('/api/providers/all').then(response => {
+                this.providers = response.data;
+            }).catch(error => this.handleRequestError(error));
+        },
+    },
+    mounted() {
+        this.getAllProviders()
     }
 }
 </script>

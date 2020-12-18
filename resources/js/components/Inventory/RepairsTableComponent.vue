@@ -167,13 +167,6 @@
                         </template>
                     </v-data-table>
                 </v-card>
-                <div class="d-flex justify-content-between flex-wrap">
-                    <div class="py-3">
-                        <dt-delete-selected
-                            @click.native="deleteSelectedItems"
-                        ></dt-delete-selected>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -203,7 +196,7 @@ export default {
                 { text: 'Користувач', value: 'user' },
                 { text: 'Виконавець', value: 'provider' },
                 { text: 'Дата початку', value: 'start_date' },
-                { text: 'Дата кінця', value: 'end_date' },
+                { text: 'Дата кінця', value: 'end_date' }, //TODO: display "plus" if end_date is empty
                 { text: 'Дії', value: 'actions', sortable: false },
             ],
         }
@@ -250,7 +243,7 @@ export default {
             axios.get('/api/providers/all').then(response => {
                 this.providers = response.data;
             }).catch(error => this.handleRequestError(error));
-        },
+        }
     },
     mounted() {
         this.getAllRepairs();

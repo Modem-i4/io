@@ -33,6 +33,7 @@ class InventoryItemRepository extends CoreRepository
             'base.inventory_number as inventory_number',
             'base.comment as comment',
             'base.has_parts as has_parts',
+            'base.owner_id as owner_id',
 
             'parent.inventory_number as parent_number',
             'type.title as type_title',
