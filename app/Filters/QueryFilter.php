@@ -53,7 +53,7 @@ abstract class QueryFilter
      *
      * @var string
      */
-    protected $sortDirection = 'sortDirection';
+    protected $sortDirection = 'sortDirection';    //TODO: Add custom sort(float, numeric, date)
 
     /**
      * The name of the "search" parameter.
@@ -75,7 +75,7 @@ abstract class QueryFilter
         return request()->all();
     }
 
-    public static function filterForModel($modelName)
+    public static function filterForModel($modelName)    //TODO: Optimize
     {
         $modelName = Str::after($modelName, 'App\\Models\\');
         $className = static::$namespace.$modelName.'Filter';
@@ -91,7 +91,7 @@ abstract class QueryFilter
     {
         $this->builder = $builder;
 
-        foreach ($this->filters() as $filter => $value) {
+        foreach ($this->filters() as $filter => $value) {    // TODO: Refactor
             $filter = $filter.'Filter';
             if(method_exists($this, $filter)) {
                 $this->$filter($value);

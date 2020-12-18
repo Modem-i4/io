@@ -29,13 +29,9 @@ class InventoryLicenseRepository extends CoreRepository
 
         $perPage = request('perPage');
         $columns = [
-            'base.id',
-            'base.title',
-            'base.price',
-
-            //'base.item_id',
-            //'base.invoice_id',
-            //'base.owner_id',
+            'base.id as id',
+            'base.title as title',
+            'base.price as price',
 
             'item.inventory_number as item_number',
             'invoice.number as invoice_number',

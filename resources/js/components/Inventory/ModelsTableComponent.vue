@@ -63,9 +63,7 @@
                     <v-data-table
                         v-model="selected"
                         show-select
-                        :footer-props="{
-                            itemsPerPageOptions: [10, 25, 50]
-                        }"
+                        :footer-props="footerOptions"
                         :headers="headers"
                         :items="items"
                         :options.sync="options"

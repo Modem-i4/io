@@ -86,9 +86,7 @@
                     <v-data-table
                         v-model="selected"
                         show-select
-                        :footer-props="{
-                            itemsPerPageOptions: [10, 25, 50, 100]
-                        }"
+                        :footer-props="footerOptions"
                         :headers="headers"
                         :items="items"
                         :options.sync="options"
@@ -200,7 +198,7 @@ export default {
                    // sortable: false,
                 },
                 { text: "Назва", value: 'title' },
-                { text: 'Корпус', value: 'parent.title', fieldNameForSort: 'parent.title' },
+                { text: 'Корпус', value: 'parent.title' },
                 { text: 'Дії', value: 'actions', sortable: false },
             ],
         }

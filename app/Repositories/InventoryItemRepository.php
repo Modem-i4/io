@@ -29,20 +29,10 @@ class InventoryItemRepository extends CoreRepository
 
         $perPage = request('perPage');
         $columns = [
-            'base.id',
-            'base.inventory_number',
-            'base.comment',
-            'base.has_parts',
-
-//            'base.part_of',
-//            'base.type_id',
-//            'base.model_id',
-//            'base.department_id',
-//            'base.owner_id',
-//            'base.status_id',
-//            'base.invoice_id',
-//            'base.writeoff_id',
-//            'base.utilization_id',
+            'base.id as id',
+            'base.inventory_number as inventory_number',
+            'base.comment as comment',
+            'base.has_parts as has_parts',
 
             'parent.inventory_number as parent_number',
             'type.title as type_title',

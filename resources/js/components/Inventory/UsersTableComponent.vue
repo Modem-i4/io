@@ -98,9 +98,7 @@
                     <v-data-table
                         v-model="selected"
                         show-select
-                        :footer-props="{
-                            itemsPerPageOptions: [10, 25, 50]
-                        }"
+                        :footer-props="footerOptions"
                         :headers="headers"
                         :items="items"
                         :options.sync="options"
@@ -235,7 +233,7 @@ export default {
     data () {
         return {
             //role : 'user', TODO: Add default value to select
-            roles: ['admin', 'user', 'manager'],
+            roles: ['admin', 'user', 'manager'],    //TODO
             crudApiEndpoint: '/api/users',
             headers: [
                 { text: 'id', align: 'start',  value: 'id',

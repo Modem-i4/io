@@ -31,8 +31,8 @@ class InventoryItemFilter extends QueryFilter
      * @var array
      */
     protected $sortable = [
-        'base.id',
-        'base.inventory_number',
+        'id',
+        'inventory_number',
 
         'parent_number',
         'type_title',

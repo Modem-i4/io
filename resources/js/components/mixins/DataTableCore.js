@@ -28,6 +28,9 @@ export default {
             options: {
                 itemsPerPage: 10,
             },
+            footerOptions: {
+                itemsPerPageOptions: [10, 25, 50, 100],
+            },
 
             crudApiEndpoint: '',
             headers: [],
@@ -36,12 +39,18 @@ export default {
     },
     computed: {
         sortBy: function() {    // TODO: Rename to sortField?
-            if(this.options.sortBy.length === 0) {
+            if(this.options.sortBy.length === 0) {    // If no column is selected for sorting, return the default value
                 return this.defaultSortByField;
             }
+
+            return this.options.sortBy[0];
+
+            /*
+            // If the filedNameForSort attribute is specified in the column, return it, otherwise return the default value
             return (this.headers.filter(obj => {
                 return obj.value === this.options.sortBy[0]
             })[0]).fieldNameForSort ?? this.options.sortBy[0];
+             */
         },
         sortDirection: function() {
             return this.sortBy == null ? null : this.options.sortDesc[0] ? 'desc' : 'asc';

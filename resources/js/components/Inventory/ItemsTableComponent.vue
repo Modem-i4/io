@@ -18,9 +18,7 @@
                 <v-data-table
                     v-model="selected"
                     show-select
-                    :footer-props="{
-                        itemsPerPageOptions: [10, 25, 50, 100]
-                    }"
+                    :footer-props="footerOptions"
                     :headers="headers"
                     :items="items"
                     :options.sync="options"
@@ -41,13 +39,12 @@ export default {
     mixins: [DataTableCore],
     data () {
         return {
-            defaultSortByField: 'base.id',
             crudApiEndpoint: '/api/items',
             headers: [
-                { text: 'id', align: 'start',  value: 'id', fieldNameForSort: 'base.id'
+                { text: 'id', align: 'start',  value: 'id'
                     // sortable: false,
                 },
-                { text: 'Номер', value: 'inventory_number', fieldNameForSort: 'base.inventory_number' },
+                { text: 'Номер', value: 'inventory_number' },
                 { text: 'Тип', value: 'type_title' },
                 { text: 'Модель', value: 'model_title' },
                 { text: 'Накладна', value: 'invoice_number' },

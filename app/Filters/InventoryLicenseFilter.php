@@ -16,6 +16,7 @@ class InventoryLicenseFilter extends QueryFilter
         'base.id',
         'base.title',
         'base.price',
+        
         'item.inventory_number',
         'invoice.number',
         'owner.name',
@@ -27,9 +28,10 @@ class InventoryLicenseFilter extends QueryFilter
      * @var array
      */
     protected $sortable = [
-        'base.id',
-        'base.title',
-        'base.price',
+        'id',
+        'title',
+        'price',
+
         'item_number',
         'invoice_number',
         'owner_name',
