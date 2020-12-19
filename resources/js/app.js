@@ -24,6 +24,7 @@ Vue.component('invoice-create-form', require('./components/Inventory/InvoiceCrea
 Vue.component('invoice-create-form-dev', require('./components/InventoryInvoicesComponent.vue').default);
 
 Vue.component('departments-table', require('./components/Inventory/DepartmentsTableComponent.vue').default);
+Vue.component('invoices-table', require('./components/Inventory/InvoicesTableComponent.vue').default);
 Vue.component('items-table', require('./components/Inventory/ItemsTableComponent.vue').default);
 Vue.component('licenses-table', require('./components/Inventory/LicensesTableComponent.vue').default);
 Vue.component('models-table', require('./components/Inventory/ModelsTableComponent.vue').default);

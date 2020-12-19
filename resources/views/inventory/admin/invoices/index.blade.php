@@ -7,10 +7,9 @@
             <div class="col-12 pt-3 mb-3 bg-white rounded">
                 <h1 class="mb-3">Накладні</h1>
 
-                <div>
-                    Список накладних
-                </div>
                 <a href="{{ route('admin.invoices.create') }}">Створити нову накладну</a>
+
+                <invoices-table></invoices-table>
 
             </div>
         </div>

@@ -7,10 +7,21 @@ use App\Http\Requests\InventoryInvoiceCreateRequest;
 use App\Models\InventoryInvoice;
 use App\Models\InventoryItem;
 use App\Models\InventoryLicense;
+use App\Repositories\InventoryInvoiceRepository;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
+    /**
+     * @var InventoryInvoiceRepository
+     */
+    private $inventoryInvoiceRepository;
+
+    public function __construct()
+    {
+        $this->inventoryInvoiceRepository = app(InventoryInvoiceRepository::class);
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +29,9 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $items = $this->inventoryInvoiceRepository->getAllWithRelationsAndPaginate();
+
+        return $items;
     }
 
     /**
