@@ -6,10 +6,8 @@
 
 require('./bootstrap');
 
-import Vuetify from 'vuetify';
-
 window.Vue = require('vue');
-window.Vue.use(Vuetify);
+import vuetify from './plugins/vuetify';
 window.axios = require('axios');
 
 /**
@@ -41,15 +39,11 @@ Vue.component('app-snackbar', require('./components/AppSnackbar.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import { VApp } from "vuetify/lib";
 
-import uk from "vuetify/lib/locale/uk";
-
-const app = new Vue({
-    vuetify: new Vuetify({
-        lang: {
-            locales: { uk },
-            current: 'uk',
-        },
-    }),
-    el: '#app',
-});
+new Vue({
+    vuetify,
+    components: {
+        VApp
+    },
+}).$mount('#app');
