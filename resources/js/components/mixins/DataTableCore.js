@@ -115,6 +115,7 @@ export default {
 
         // Створення нових об'єктів
         create () {
+            alert(this.newItem.end_date);
             this.$refs.itemCreateObserver.validate().then(result => {
                 if (result) {
                     let item = this.newItem;
