@@ -9,16 +9,17 @@
     >
         <template v-slot:activator="{ on, attrs }">
             <v-text-field
-                v-model="modelData"
+                v-model="value"
                 :label="inputLabel"
                 :prepend-icon="inputIcon"
+                :disabled="disabled"
                 readonly
                 v-bind="attrs"
                 v-on="on"
             ></v-text-field>
         </template>
         <v-date-picker
-            v-model="modelData"
+            v-model="value"
             @input="pickerMenu = false"
             @change="handleInput()"
         ></v-date-picker>
@@ -29,25 +30,35 @@
 export default {
     name: "DatePickerDropdownComponent",
     props: {
-        value: {},
         inputLabel: {
             default: null,
         },
         inputIcon: {
             default: null,
         },
+        autofill: {
+            default: false,
+        },
+        fill: {
+            default: '',
+        },
+        disabled: {
+            default: false,
+        }
     },
     data() {
         return {
             pickerMenu: false,
-
-            modelData: this.value,
+            value: this.autofill ? new Date().toISOString().substr(0, 10) : (this.fill) ? this.fill : '',
         }
     },
     methods: {
         handleInput (e) {
-            this.$emit('input', this.modelData)
+            this.$emit('input', this.value)
         }
+    },
+    mounted() {
+        if(this.autofill) this.handleInput();
     }
 }
 </script>
