@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InventoryRepairUpdateRequest extends FormRequest
+class InventoryItemStatusUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,6 @@ class InventoryRepairUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_date' => 'required',
-            'item_id' => 'required',
-            'user_id' => 'required',
-            'provider_id' => 'required'
         ];
     }
 }

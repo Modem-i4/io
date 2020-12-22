@@ -55,6 +55,7 @@
                 >
                     <datepicker-dropdown
                         v-model="newItem.start_date"
+                        :autofill="true"
                         input-label="Дата початку"
                         input-icon="mdi-calendar"
                         required
@@ -68,7 +69,6 @@
                 >
                     <datepicker-dropdown
                         v-model="newItem.end_date"
-                        value="value"
                         input-label="Дата закінчення"
                         input-icon="mdi-calendar"
                     >
@@ -115,9 +115,7 @@
                     <v-data-table
                         v-model="selected"
                         show-select
-                        :footer-props="{
-                            itemsPerPageOptions: [10, 25]
-                        }"
+                        :footer-props="footerOptions"
                         :headers="headers"
                         :items="items"
                         :options.sync="options"
@@ -125,15 +123,117 @@
                         :loading="loading"
                         class="elevation-1"
                     >
-                        <template v-slot:item.end_date="props">
+                        <template v-slot:item.user="props">
 
                             <validation-observer
-                                :ref="getValidatorRef('title', props.item.id)"
+                                :ref="getValidatorRef('user_id', props.item.id)"
                                 v-slot=""
                             >
                                 <dt-edit-dialog
-                                    :return-value.sync="props.item.title"
-                                    :validator="$refs[getValidatorRef('title', props.item.id)]"
+                                    :return-value.sync="props.item.user_id"
+                                    :validator="$refs[getValidatorRef('user_id', props.item.id)]"
+                                    @save="update(props.item)"
+                                    @changeless-save="changeless"
+                                    @cancel="cancel"
+                                >
+                                    {{ props.item.user }}
+                                    <template v-slot:input>
+                                        <validation-provider
+                                            v-slot="{ errors }"
+                                            name="Користувач"
+                                            rules="required"
+                                        >
+                                            <v-autocomplete
+                                                v-model="props.item.user_id"
+                                                :items="users"
+                                                :error-messages="errors"
+                                                item-text="name"
+                                                item-value="id"
+                                                label="Користувач"
+                                            ></v-autocomplete>
+                                        </validation-provider>
+                                    </template>
+                                </dt-edit-dialog>
+                            </validation-observer>
+                        </template>
+
+                        <template v-slot:item.provider="props">
+
+                            <validation-observer
+                                :ref="getValidatorRef('provider_id', props.item.id)"
+                                v-slot=""
+                            >
+                                <dt-edit-dialog
+                                    :return-value.sync="props.item.provider_id"
+                                    :validator="$refs[getValidatorRef('provider_id', props.item.id)]"
+                                    @save="update(props.item)"
+                                    @changeless-save="changeless"
+                                    @cancel="cancel"
+                                >
+                                    {{ props.item.provider }}
+                                    <template v-slot:input>
+                                        <validation-provider
+                                            v-slot="{ errors }"
+                                            name="Виконавець"
+                                            rules="required"
+                                        >
+                                            <v-autocomplete
+                                                v-model="props.item.provider_id"
+                                                :items="providers"
+                                                :error-messages="errors"
+                                                item-text="title"
+                                                item-value="id"
+                                                label="Виконавець"
+                                            ></v-autocomplete>
+                                        </validation-provider>
+                                    </template>
+                                </dt-edit-dialog>
+                            </validation-observer>
+                        </template>
+
+
+                        <template v-slot:item.start_date="props">
+
+                            <validation-observer
+                                :ref="getValidatorRef('start_date', props.item.id)"
+                                v-slot=""
+                            >
+                                <dt-edit-dialog
+                                    :return-value.sync="props.item.start_date"
+                                    :validator="$refs[getValidatorRef('start_date', props.item.id)]"
+                                    @save="update(props.item)"
+                                    @changeless-save="changeless"
+                                    @cancel="cancel"
+                                >
+                                    {{ props.item.start_date }}
+                                    <template v-slot:input>
+                                        <validation-provider
+                                            v-slot="{ errors }"
+                                            name="Дата почаку"
+                                        >
+                                            <!--rules="required|max:40"-->
+                                            <datepicker-dropdown
+                                                v-model="props.item.start_date"
+                                                input-label="Дата початку"
+                                                input-icon="mdi-calendar"
+                                                :fill="props.item.start_date"
+                                            >
+                                            </datepicker-dropdown>
+                                        </validation-provider>
+                                    </template>
+                                </dt-edit-dialog>
+                            </validation-observer>
+                        </template>
+
+                        <template v-slot:item.end_date="props">
+
+                            <validation-observer
+                                :ref="getValidatorRef('end_date', props.item.id)"
+                                v-slot=""
+                            >
+                                <dt-edit-dialog
+                                    :return-value.sync="props.item.end_date"
+                                    :validator="$refs[getValidatorRef('end_date', props.item.id)]"
                                     @save="update(props.item)"
                                     @changeless-save="changeless"
                                     @cancel="cancel"
@@ -142,17 +242,16 @@
                                     <template v-slot:input>
                                         <validation-provider
                                             v-slot="{ errors }"
-                                            name="Назва"
-                                            rules="required|max:40"
+                                            name="Дата закінчення"
                                         >
-                                            <v-text-field
+                                            <!--rules="required|max:40"-->
+                                            <datepicker-dropdown
                                                 v-model="props.item.end_date"
-                                                :counter="40"
-                                                :error-messages="errors"
-                                                label="Назва"
-                                                single-line
-                                                required
-                                            ></v-text-field>
+                                                input-label="Дата закінчення"
+                                                input-icon="mdi-calendar"
+                                                :fill="props.item.start_date"
+                                            >
+                                            </datepicker-dropdown>
                                         </validation-provider>
                                     </template>
                                 </dt-edit-dialog>
@@ -243,13 +342,19 @@ export default {
             axios.get('/api/providers/all').then(response => {
                 this.providers = response.data;
             }).catch(error => this.handleRequestError(error));
-        }
+        },
+        getUserid() {
+            axios.get('/api/users/my_id').then(response => {
+                this.newItem.user_id = response.data;
+            })
+        },
     },
     mounted() {
         this.getAllRepairs();
         this.getAvailableUsers();
         this.getItems();
         this.getAllProviders();
+        this.getUserid();
     }
 }
 </script>

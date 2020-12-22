@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\InventoryRepairCreateRequest;
 use App\Http\Requests\InventoryRepairDeleteRequest;
 use App\Http\Requests\InventoryRepairUpdateRequest;
-use App\Models\InventoryType;
 use App\Models\InventoryRepair;
 use App\Repositories\InventoryRepairRepository;
 
@@ -40,11 +39,15 @@ class RepairController extends Controller
     {
         $item = $this->inventoryRepairRepository->getForEdit($id);
         abort_if(empty($item), '404');
-
         $result = $item->update($request->input());
-
     }
 
+    public function updateEndDate(InventoryRepairUpdateRequest $request, $item_id)
+    {
+        $item = $this->inventoryRepairRepository->getForEndDateEdit($item_id);
+        abort_if(empty($item), '404');
+        $result = $item->update($request->input());
+    }
     public function store(InventoryRepairCreateRequest $request)
     {
         $result = InventoryRepair::insert($request->input());

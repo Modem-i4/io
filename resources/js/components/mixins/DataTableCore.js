@@ -115,7 +115,6 @@ export default {
 
         // Створення нових об'єктів
         create () {
-            alert(this.newItem.end_date);
             this.$refs.itemCreateObserver.validate().then(result => {
                 if (result) {
                     let item = this.newItem;
@@ -142,11 +141,9 @@ export default {
             if (typeof this.prepareItemForUpdate === 'function') {
                 item = this.prepareItemForUpdate(item);
             }
-
             axios.patch(this.crudApiEndpoint + '/' + item.id, item)
                 .then(response => {
                     this.snackSuccess('Збережено');
-
                     EventBus.$emit('dt-item-updated');
                 }).catch(error => {
                     this.handleRequestError(error);

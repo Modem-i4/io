@@ -29,15 +29,10 @@
                     <template v-slot:item.actions="{ item }">
                         <div class="d-flex">
                             <repair-item-menu
-                                @repair="repairItem"
-                                :newRepair="item"
+                                @setStatus="setStatus"
+                                :itemToRepair="item"
                                 :providers="providers"
                             ></repair-item-menu>
-
-                            <dt-delete-single
-                                @delete="deleteSingleItem(item.id)"
-                                :isSelectable="item.isSelectable"
-                            ></dt-delete-single>
                         </div>
                     </template>
 
@@ -76,17 +71,15 @@ export default {
         }
     },
     methods: {
-        repairItem(item) {
-            let newItem = {
-                item_id: item.id,
-                start_date: item.start_date,
-                user_id: item.owner_id,
-                provider_id: item.provider_id,
-            };
-            axios.post('/api/repairs', newItem)
+        setStatus(itemId, statusId) {
+            axios.patch(this.crudApiEndpoint + '/' + itemId, {'status_id': statusId} )
                 .then(response => {
-                    this.snackSuccess('Додано в ремонт');
-                }).catch(error => this.handleRequestError(error));
+                    EventBus.$emit('dt-item-updated');
+                }).catch(error => {
+                this.handleRequestError(error);
+            }).finally(result => {
+                this.fetch();
+            });
         },
         getAllProviders() {
             axios.get('/api/providers/all').then(response => {

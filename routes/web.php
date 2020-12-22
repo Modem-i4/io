@@ -131,7 +131,7 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
         //Items
         Route::get('items/all', 'ItemController@all');
         Route::resource('items', 'ItemController')
-            ->only(['index'])
+            ->only(['index', 'update'])
             ->names('api.items');
 
         //Licenses
@@ -168,6 +168,7 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
 
         // Users
         Route::get('users/all', 'UserController@all');
+        Route::get("users/my_id", function () { echo Illuminate\Support\Facades\Auth::id(); });
         Route::delete('users/destroy', 'UserController@destroyMany');
         Route::resource('users', 'UserController')
             ->only(['index', 'update', 'store'])
@@ -176,6 +177,7 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
         // Repairs
         Route::get('repairs/all', 'RepairController@all');
         Route::delete('repairs/destroy', 'RepairController@destroyMany');
+        Route::post('repairs/finish_repair/{item_id}', 'RepairController@updateEndDate');
         Route::resource('repairs', 'RepairController')
             ->only(['index', 'update', 'store'])
             ->names('api.repairs');

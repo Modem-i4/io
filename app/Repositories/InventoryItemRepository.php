@@ -19,6 +19,12 @@ class InventoryItemRepository extends CoreRepository
         return Model::class;
     }
 
+    public function getForEdit($id)
+    {
+        return $this->startConditions()
+            ->where('id', $id)
+            ->first();
+    }
     /**
      * Отримати всі відділи з батьківськими категоріями
      *
@@ -34,16 +40,7 @@ class InventoryItemRepository extends CoreRepository
             'base.comment',
             'base.has_parts',
             'base.owner_id',
-
-//            'base.part_of',
-//            'base.type_id',
-//            'base.model_id',
-//            'base.department_id',
-//            'base.owner_id',
-//            'base.status_id',
-//            'base.invoice_id',
-//            'base.writeoff_id',
-//            'base.utilization_id',
+            'base.status_id',
 
             'parent.inventory_number as parent_number',
             'type.title as type_title',

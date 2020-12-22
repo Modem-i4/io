@@ -114,10 +114,8 @@ TODO
             this.isActive = true
         },
         async checkIsCanBeSaved() {    //TODO: Add exception handling, delete debug messages
-            //console.log(this.validator)
             if (this.validator) {
-                //console.log('validating');
-                return await this.validator.validate()
+                return this.validator.validate() //await
                     .then(result => {
                         console.log('Fn-checkIsCanBeSaved', 'Validation result', result)
                         return result;

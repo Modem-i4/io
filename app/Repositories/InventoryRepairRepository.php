@@ -37,6 +37,13 @@ class InventoryRepairRepository extends CoreRepository
             ->where('id', $id)
             ->first();
     }
+    public function getForEndDateEdit($item_id)
+    {
+        return $this->startConditions()
+            ->whereNull('end_date')
+            ->where('item_id', $item_id)
+            ->first();
+    }
 
     public function getAllForList()
     {
@@ -61,6 +68,9 @@ class InventoryRepairRepository extends CoreRepository
             'base.id',
             'base.start_date',
             'base.end_date',
+            'base.provider_id',
+            'base.user_id',
+            'base.item_id',
 
             'item.inventory_number as inventory_number',
             'user.name as user',
