@@ -133,3 +133,28 @@ TODO
     },
 }
 </script>
+
+<style lang="sass">
+@import '~vuetify/src/components/VDataTable/VEditDialog.sass'
+
++theme(v-small-dialog) using ($material)
+    &__menu-content,
+    &__actions
+        background: map-get($material, 'cards')
+
+.v-small-dialog
+    display: block
+
+    &__activator
+        cursor: pointer
+        &__content
+            display: inline-block
+
+    &__content
+        padding: $edit-dialog-content-padding
+
+    &__actions
+        padding: $edit-dialog-actions-padding
+        text-align: right
+        white-space: pre
+</style>
