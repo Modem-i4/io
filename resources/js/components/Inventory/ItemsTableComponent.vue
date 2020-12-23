@@ -31,6 +31,7 @@
                             <repair-item-menu
                                 @setStatus="setStatus"
                                 :itemToRepair="item"
+                                :myUserId="myUserId"
                                 :providers="providers"
                             ></repair-item-menu>
                         </div>
@@ -56,6 +57,7 @@ export default {
         return {
             crudApiEndpoint: '/api/items',
             providers: [],
+            myUserId: {},
             headers: [
                 { text: 'id', align: 'start',  value: 'id'
                     // sortable: false,
@@ -86,9 +88,15 @@ export default {
                 this.providers = response.data;
             }).catch(error => this.handleRequestError(error));
         },
+        getUserid() {
+            axios.get('/api/users/my_id').then(response => {
+                this.myUserId = response.data;
+            }).catch(error => this.handleRequestError(error));
+        },
     },
     mounted() {
-        this.getAllProviders()
+        this.getAllProviders();
+        this.getUserid();
     }
 }
 </script>

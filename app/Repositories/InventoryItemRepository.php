@@ -79,4 +79,20 @@ class InventoryItemRepository extends CoreRepository
 
         return $result;
     }
+
+    public function getRepairableForList()
+    {
+        $columns = ['id', 'inventory_number'];
+        $result = $this->startConditions()
+            ->select($columns)
+            ->where([
+                ['status_id', '<>', 3],
+                ['status_id', '<>', 4],
+                ['status_id', '<>', 6],
+                ['status_id', '<>', 7],
+            ])
+            ->get();
+
+        return $result;
+    }
 }

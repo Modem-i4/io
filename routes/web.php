@@ -130,6 +130,7 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
 
         //Items
         Route::get('items/all', 'ItemController@all');
+        Route::get('items/repeirable', 'ItemController@repeirable');
         Route::resource('items', 'ItemController')
             ->only(['index', 'update'])
             ->names('api.items');

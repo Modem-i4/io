@@ -42,7 +42,7 @@ class InventoryRepairRepository extends CoreRepository
         return $this->startConditions()
             ->whereNull('end_date')
             ->where('item_id', $item_id)
-            ->first();
+            ->last(); //інакше може бути використано створений фейкером запис без відповідника
     }
 
     public function getAllForList()

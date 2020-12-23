@@ -36,7 +36,10 @@ class ItemController extends Controller
     public function all()
     {
         $items = $this->inventoryItemRepository->getAllForList();
-
+        return $items;
+    }
+    public function repeirable() {
+        $items = $this->inventoryItemRepository->getRepairableForList();
         return $items;
     }
     public function update(InventoryItemStatusUpdateRequest $request, $id)

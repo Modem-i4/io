@@ -249,7 +249,7 @@
                                                 v-model="props.item.end_date"
                                                 input-label="Дата закінчення"
                                                 input-icon="mdi-calendar"
-                                                :fill="props.item.start_date"
+                                                :fill="props.item.end_date"
                                             >
                                             </datepicker-dropdown>
                                         </validation-provider>
@@ -262,7 +262,37 @@
                             <dt-delete-single
                                 @delete="deleteSingleItem(item.id)"
                                 :isSelectable="item.isSelectable"
+                                class="d-inline-flex"
                             ></dt-delete-single>
+                            <template v-if="!item.end_date">
+                                <v-tooltip top>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-icon
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            small
+                                            @click="completeRepair(item)"
+                                        >
+                                            mdi-wrench
+                                        </v-icon>
+                                    </template>
+                                    <span>{{ completeRepairTooltipText }}</span>
+                                </v-tooltip>
+
+                                <v-tooltip top>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-icon
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            small
+                                            @click="forbidRepair(item)"
+                                        >
+                                            mdi-briefcase-off
+                                        </v-icon>
+                                    </template>
+                                    <span>{{ forbidRepairTooltipText }}</span>
+                                </v-tooltip>
+                            </template>
                         </template>
                     </v-data-table>
                 </v-card>
@@ -274,6 +304,8 @@
 <script>
 import DataTableCore from "../mixins/DataTableCore";
 import DatePickerDropdownComponent from "../DatePickerDropdownComponent";
+import ItemsTableComponent from "./ItemsTableComponent";
+import {EventBus} from "../EventBus";
 export default {
     mixins: [DataTableCore],
     components: {
@@ -295,10 +327,18 @@ export default {
                 { text: 'Користувач', value: 'user' },
                 { text: 'Виконавець', value: 'provider' },
                 { text: 'Дата початку', value: 'start_date' },
-                { text: 'Дата кінця', value: 'end_date' }, //TODO: display "plus" if end_date is empty
+                { text: 'Дата кінця', value: 'end_date' },
                 { text: 'Дії', value: 'actions', sortable: false },
             ],
         }
+    },
+    props: {
+        completeRepairTooltipText: {
+            default: "Завершити ремонт"
+        },
+        forbidRepairTooltipText: {
+            default: "Не підлягає ремонту"
+        },
     },
     methods: {
         prepareItemForUpdate(item) {
@@ -325,16 +365,15 @@ export default {
             axios.get('/api/repairs/all').then(response => {
                 this.allRepairs = response.data;
                 this.loading = false;
-            })
-                .catch(error => this.handleRequestError(error));
+            }).catch(error => this.handleRequestError(error));
         },
         getAvailableUsers() {
             axios.get('/api/users/all').then(response => {
                 this.users = response.data;
             }).catch(error => this.handleRequestError(error));
         },
-        getItems() {
-            axios.get('/api/items/all').then(response => {
+        getAvailableItems() {
+            axios.get('/api/items/repeirable').then(response => {
                 this.itemsInfo = response.data;
             }).catch(error => this.handleRequestError(error));
         },
@@ -346,15 +385,29 @@ export default {
         getUserid() {
             axios.get('/api/users/my_id').then(response => {
                 this.newItem.user_id = response.data;
-            })
+            }).catch(error => this.handleRequestError(error));
         },
+        finishRepair(repair, statusId) {
+            repair.end_date = new Date().toISOString().substr(0, 10);
+            this.update(repair)
+            axios.patch('/api/items/' + repair.item_id, {'status_id': statusId} )
+                .catch(error => {
+                    this.handleRequestError(error);
+                });
+        },
+        completeRepair(repair) {
+            this.finishRepair(repair, 2); //встановити статус "Передається"
+        },
+        forbidRepair(repair) {
+            this.finishRepair(repair, 4); //встановити статус "Не підлягає ремонту"
+        }
     },
     mounted() {
+        this.getUserid();
         this.getAllRepairs();
         this.getAvailableUsers();
-        this.getItems();
+        this.getAvailableItems();
         this.getAllProviders();
-        this.getUserid();
     }
 }
 </script>

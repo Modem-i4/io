@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="lala">
         <template v-if="this.isSelectable">
             <v-icon
                 small

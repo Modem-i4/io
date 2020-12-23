@@ -14,12 +14,19 @@
                 </v-icon>
             </template>
             <template v-else>
-                <v-icon
-                    color="grey lighten-1"
-                    small
-                >
-                    mdi-hammer-wrench
-                </v-icon>
+                <v-tooltip top>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-icon
+                            v-bind="attrs"
+                            v-on="on"
+                            color="grey lighten-1"
+                            small
+                        >
+                            mdi-hammer-wrench
+                        </v-icon>
+                    </template>
+                    <span>{{ repairMenuLockedText }}</span>
+                </v-tooltip>
             </template>
         </template>
         <div class="container">
@@ -152,12 +159,16 @@ export default {
         finishRepairText:{
             default: 'Завершити ремонт',
         },
+        repairMenuLockedText:{
+            default: 'Статус не передбачає ремонту',
+        },
         itemToRepair: {
             default: {},
         },
         providers: {
             default: [],
         },
+        myUserId: {}
     },
     computed: {
         isSelectable: function() {
@@ -194,7 +205,7 @@ export default {
             let newRepair = {
                 item_id: this.itemToRepair.id,
                 start_date: this.itemToRepair.start_date,
-                user_id: this.itemToRepair.owner_id,
+                user_id: this.myUserId,
                 provider_id: this.itemToRepair.provider_id,
             };
             axios.post(this.crudApiEndpoint, newRepair)
@@ -213,7 +224,7 @@ export default {
             }).catch(error => {
                 this.handleRequestError(error);
             });
-        }
+        },
     }
 }
 </script>

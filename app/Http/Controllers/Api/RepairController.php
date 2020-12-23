@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InventoryRepairCreateRequest;
 use App\Http\Requests\InventoryRepairDeleteRequest;
+use App\Http\Requests\InventoryRepairUpdateEndDateRequest;
 use App\Http\Requests\InventoryRepairUpdateRequest;
 use App\Models\InventoryRepair;
 use App\Repositories\InventoryRepairRepository;
@@ -42,7 +43,7 @@ class RepairController extends Controller
         $result = $item->update($request->input());
     }
 
-    public function updateEndDate(InventoryRepairUpdateRequest $request, $item_id)
+    public function updateEndDate(InventoryRepairUpdateEndDateRequest $request, $item_id)
     {
         $item = $this->inventoryRepairRepository->getForEndDateEdit($item_id);
         abort_if(empty($item), '404');
