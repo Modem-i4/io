@@ -121,7 +121,7 @@ Route::group(['middleware' => ['can:isAdmin']], function () {
 
         //Invoices
         Route::resource('invoices', 'InvoiceController')
-            ->only(['index', 'update', 'store'])
+            ->only(['index', 'update', 'show', 'store'])
             ->names('api.invoices');
 
         //Items

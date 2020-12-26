@@ -17,4 +17,14 @@ class InventoryInvoice extends Model
         'file_url',
         'total_sum'
     ];
+
+    public function licenses()
+    {
+        return $this->hasMany(InventoryLicense::class, 'invoice_id', 'id');
+    }
+
+    public function items()
+    {
+        return $this->hasMany(InventoryItem::class, 'invoice_id', 'id');
+    }
 }

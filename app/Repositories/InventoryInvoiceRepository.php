@@ -24,6 +24,31 @@ class InventoryInvoiceRepository extends CoreRepository
      *
      * @return Collection
      */
+    public function getFullDataById($id)
+    {
+        $columns = [
+            'id',
+            'number',
+            'date',
+            'file_url',    //Full story
+            'total_sum',
+            'created_at',
+            'updated_at'
+        ];
+
+        $result = $this->startConditions()
+            ->select($columns)
+            ->where('id', $id)
+            ->first();
+
+        return $result;
+    }
+
+    /**
+     * Отримати всі відділи з батьківськими категоріями
+     *
+     * @return Collection
+     */
     public function getAllWithRelationsAndPaginate()
     {
 

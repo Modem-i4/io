@@ -35,17 +35,17 @@ class InventoryLicense extends Model
 
     public function type()
     {
-        return $this->belongsTo(InventoryType::class);
+        return $this->belongsTo(InventoryType::class, 'type_id', 'id');
     }
 
     public function item()
     {
-        return $this->belongsTo(InventoryItem::class);
+        return $this->belongsTo(InventoryItem::class, 'item_id', 'id');
     }
 
     public function invoice()
     {
-        return $this->belongsTo(InventoryInvoice::class);
+        return $this->belongsTo(InventoryInvoice::class, 'invoice_id', 'id');
     }
 
     public function owner()

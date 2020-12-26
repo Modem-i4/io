@@ -8,6 +8,8 @@ use App\Models\InventoryInvoice;
 use App\Models\InventoryItem;
 use App\Models\InventoryLicense;
 use App\Repositories\InventoryInvoiceRepository;
+use App\Repositories\InventoryItemRepository;
+use App\Repositories\InventoryLicenseRepository;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -17,9 +19,21 @@ class InvoiceController extends Controller
      */
     private $inventoryInvoiceRepository;
 
+    /**
+     * @var InventoryItemRepository
+     */
+    private $inventoryItemRepository;
+
+    /**
+     * @var InventoryLicenseRepository
+     */
+    private $inventoryLicenseRepository;
+
     public function __construct()
     {
         $this->inventoryInvoiceRepository = app(InventoryInvoiceRepository::class);
+        $this->inventoryItemRepository = app(InventoryItemRepository::class);
+        $this->inventoryLicenseRepository = app(InventoryLicenseRepository::class);
 
     }
     /**
@@ -70,7 +84,20 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $invoice = $this->inventoryInvoiceRepository->getFullDataById($id);
+
+        abort_if(empty($invoice), 404);
+
+        $items = $this->inventoryItemRepository->getAllWithRelationsByInvoiceId($id);
+        $licenses = $this->inventoryLicenseRepository->getAllWithRelationsByInvoiceId($id);
+
+        $response = [
+            'invoice' => $invoice,
+            'items' => $items,
+            'licenses' => $licenses
+        ];
+
+        return $response;
     }
 
     /**
