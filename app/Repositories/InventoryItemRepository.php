@@ -95,4 +95,32 @@ class InventoryItemRepository extends CoreRepository
 
         return $result;
     }
+  
+    public function getAllWithRelationsByInvoiceId($invoiceId)
+    {
+
+        $columns = [
+            'base.id as id',
+            'base.inventory_number as inventory_number',
+            'base.invoice_id as invoice_id',
+
+            'type.title as type_title',
+            'model.title as model_title',
+            'owner.name as owner_name',
+            'status.title as status_title',
+        ];
+
+        $result = $this->startConditions()
+            ->from('inventory_items as base')
+            ->select($columns)
+            ->where('base.invoice_id', $invoiceId)
+            ->leftJoin('inventory_types as type', 'base.type_id', '=', 'type.id')
+            ->leftJoin('inventory_models as model', 'base.model_id', '=', 'model.id')
+            ->leftJoin('users as owner', 'base.owner_id', '=', 'owner.id')
+            ->leftJoin('inventory_statuses as status', 'base.status_id', '=', 'status.id')
+            ->toBase()
+            ->get();
+
+        return $result;
+    }
 }

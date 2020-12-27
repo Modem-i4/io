@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class InventoryItem extends Model
 {
-    use HasFactory, Filterable;
+    use HasFactory, Filterable;    //TODO: SoftDelete?
 
     /**
      * The attributes that are mass assignable.
@@ -30,4 +30,9 @@ class InventoryItem extends Model
         'utilization_id',
         'comment',
     ];
+
+    public function invoice()
+    {
+        return $this->belongsTo(InventoryInvoice::class, 'invoice_id', 'id');
+    }
 }
